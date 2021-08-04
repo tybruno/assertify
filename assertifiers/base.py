@@ -1,8 +1,19 @@
-from dataclasses import dataclass, field
-from typing import Optional, Union, Type
-from unittest_assertions.base import BuiltinAssertion
+from abc import (
+    ABC,
+    abstractmethod,
+)
+from dataclasses import (
+    dataclass,
+    field,
+)
 from string import Template
-from abc import ABC, abstractmethod
+from typing import (
+    Optional,
+    Type,
+    Union,
+)
+
+from unittest_assertions.base import BuiltinAssertion
 
 
 class Assertifier(ABC):

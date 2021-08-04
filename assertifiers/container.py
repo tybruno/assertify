@@ -1,5 +1,10 @@
-from dataclasses import dataclass, field
+from dataclasses import (
+    dataclass,
+    field,
+)
+
 import unittest_assertions.container
+
 from assertifiers.base import BuiltinAssertionAssertify
 
 

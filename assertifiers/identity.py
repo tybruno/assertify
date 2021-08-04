@@ -1,7 +1,16 @@
-from dataclasses import dataclass, field
+from dataclasses import (
+    dataclass,
+    field,
+)
+from typing import (
+    Optional,
+    Type,
+    Union,
+)
+
 import unittest_assertions.identity
+
 from assertifiers.base import BuiltinAssertionAssertify
-from typing import Optional, Union, Type
 
 
 @dataclass
