@@ -1,6 +1,7 @@
 from dataclasses import dataclass, field
 import unittest_assertions.control
-from assertify.base import BuiltinAssertionAssertify
+from assertifiers.base import BuiltinAssertionAssertify
+from typing import Union, Type, Any
 
 
 @dataclass
@@ -9,7 +10,13 @@ class AssertifyRaises(BuiltinAssertionAssertify):
         default=unittest_assertions.control.AssertRaises, init=False
     )
 
-    def __call__(self, expected_exception, **kwargs):
+    def __call__(
+        self,
+        expected_exception: Union[
+            Type[BaseException], tuple[Type[BaseException]]
+        ],
+        **kwargs: Any
+    ):
         super().__call__(expected_exception=expected_exception, **kwargs)
 
 

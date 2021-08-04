@@ -1,6 +1,7 @@
 from dataclasses import dataclass, field
 import unittest_assertions.identity
-from assertify.base import BuiltinAssertionAssertify
+from assertifiers.base import BuiltinAssertionAssertify
+from typing import Optional, Union, Type
 
 
 @dataclass
@@ -42,6 +43,9 @@ class AssertifyIsInstance(BuiltinAssertionAssertify):
     assertion_cls: unittest_assertions.identity.AssertIsInstance = field(
         default=unittest_assertions.identity.AssertIsInstance, init=False
     )
+    raises: Optional[
+        Union[None, Type[Exception], Type[AssertionError]]
+    ] = field(default=TypeError)
 
     def __call__(self, obj, cls):
         super().__call__(obj=obj, cls=cls)

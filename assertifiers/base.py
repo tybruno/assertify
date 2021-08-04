@@ -2,10 +2,24 @@ from dataclasses import dataclass, field
 from typing import Optional, Union, Type
 from unittest_assertions.base import BuiltinAssertion
 from string import Template
+from abc import ABC, abstractmethod
+
+
+class Assertifier(ABC):
+    def __init__(
+        self,
+        raises: Optional[Union[None, Type[Exception], Type[AssertionError]]],
+        msg: Optional[Union[None, str, Template]],
+    ):
+        ...
+
+    @abstractmethod
+    def __call__(self, **kwargs) -> bool:
+        ...
 
 
 @dataclass
-class BuiltinAssertionAssertify:
+class BuiltinAssertionAssertify(Assertifier):
     assertion_cls: BuiltinAssertion
     raises: Optional[
         Union[None, Type[Exception], Type[AssertionError]]
