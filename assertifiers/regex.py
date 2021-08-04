@@ -1,6 +1,6 @@
 from dataclasses import dataclass, field
 import unittest_assertions.regex
-from assertify.base import BuiltinAssertionAssertify
+from assertifiers.base import BuiltinAssertionAssertify
 
 
 @dataclass

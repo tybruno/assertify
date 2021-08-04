@@ -1,6 +1,6 @@
 from dataclasses import dataclass, field
 import unittest_assertions.comparison
-from assertify.base import BuiltinAssertionAssertify
+from assertifiers.base import BuiltinAssertionAssertify
 
 
 @dataclass
@@ -17,14 +17,14 @@ class AssertifyEqual(EqualityAssertify):
 
 
 @dataclass
-class AssertNotEqual(EqualityAssertify):
+class AssertifyNotEqual(EqualityAssertify):
     assertion_cls: unittest_assertions.comparison.AssertNotEqual = field(
         default=unittest_assertions.comparison.AssertNotEqual, init=False
     )
 
 
 @dataclass
-class AssertAlmostEqual(EqualityAssertify):
+class AssertifyAlmostEqual(EqualityAssertify):
     assertion_cls: unittest_assertions.comparison.AssertAlmostEqual = field(
         default=unittest_assertions.comparison.AssertAlmostEqual, init=False
     )
@@ -36,7 +36,7 @@ class AssertAlmostEqual(EqualityAssertify):
 
 
 @dataclass
-class AssertNotAlmostEqual(EqualityAssertify):
+class AssertifyNotAlmostEqual(AssertifyAlmostEqual):
     assertion_cls: unittest_assertions.comparison.AssertNotAlmostEqual = field(
         default=unittest_assertions.comparison.AssertNotAlmostEqual, init=False
     )
@@ -57,7 +57,7 @@ class AssertifyMultilineEqual(EqualityAssertify):
 
 
 @dataclass
-class SequenceEqual(BuiltinAssertionAssertify):
+class AssertifySequenceEqual(BuiltinAssertionAssertify):
     assertion_cls: unittest_assertions.comparison.AssertSequanceEqual = field(
         default=unittest_assertions.comparison.AssertSequanceEqual, init=False
     )
@@ -67,7 +67,7 @@ class SequenceEqual(BuiltinAssertionAssertify):
 
 
 @dataclass
-class ListEqual(BuiltinAssertionAssertify):
+class AssertifyListEqual(BuiltinAssertionAssertify):
     assertion_cls: unittest_assertions.comparison.AssertListEqual = field(
         default=unittest_assertions.comparison.AssertListEqual, init=False
     )
@@ -77,7 +77,7 @@ class ListEqual(BuiltinAssertionAssertify):
 
 
 @dataclass
-class TupleEqual(BuiltinAssertionAssertify):
+class AssertifyTupleEqual(BuiltinAssertionAssertify):
     assertion_cls: unittest_assertions.comparison.AssertTupleEqual = field(
         default=unittest_assertions.comparison.AssertTupleEqual, init=False
     )
@@ -87,7 +87,7 @@ class TupleEqual(BuiltinAssertionAssertify):
 
 
 @dataclass
-class SetEqual(BuiltinAssertionAssertify):
+class AssertifySetEqual(BuiltinAssertionAssertify):
     assertion_cls: unittest_assertions.comparison.AssertSetEqual = field(
         default=unittest_assertions.comparison.AssertSetEqual, init=False
     )
@@ -97,7 +97,7 @@ class SetEqual(BuiltinAssertionAssertify):
 
 
 @dataclass
-class DictEqual(BuiltinAssertionAssertify):
+class AssertifyDictEqual(BuiltinAssertionAssertify):
     assertion_cls: unittest_assertions.comparison.AssertDictEqual = field(
         default=unittest_assertions.comparison.AssertDictEqual, init=False
     )
