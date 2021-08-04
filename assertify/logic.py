@@ -1,5 +1,4 @@
 from dataclasses import dataclass, field
-from typing import Optional, Union, Type
 import unittest_assertions.logic
 from assertify.base import BuiltinAssertionAssertify
 
