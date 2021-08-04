@@ -11,7 +11,7 @@ with open("requirements.txt", "r") as file:
     INSTALL_REQUIRES = file.read().splitlines()
 
 setuptools.setup(
-    name="unittest_assertions",
+    name="assertify",
     version=__version__,
     author=__author__,
     long_description=README,
