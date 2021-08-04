@@ -1,23 +1,5 @@
 from dataclasses import dataclass, field
-from unittest_assertions.comparison import (
-    EqualityAssertion,
-    ComparisonAssertion,
-    AssertEqual,
-    AssertNotEqual,
-    AssertAlmostEqual,
-    AssertCountEqual,
-    AssertDictEqual,
-    AssertMultilineEqual,
-    AssertNotAlmostEqual,
-    AssertGreater,
-    AssertGreaterEqual,
-    AssertLess,
-    AssertLessEqual,
-    AssertListEqual,
-    AssertSequanceEqual,
-    AssertTupleEqual,
-    AssertSetEqual,
-)
+import unittest_assertions.comparison
 from assertify.base import BuiltinAssertionAssertify
 
 
@@ -29,20 +11,22 @@ class EqualityAssertify(BuiltinAssertionAssertify):
 
 @dataclass
 class AssertifyEqual(EqualityAssertify):
-    assertion_cls: EqualityAssertion = field(default=AssertEqual, init=False)
+    assertion_cls: unittest_assertions.comparison.AssertEqual = field(
+        default=unittest_assertions.comparison.AssertEqual, init=False
+    )
 
 
 @dataclass
 class AssertNotEqual(EqualityAssertify):
-    assertion_cls: EqualityAssertion = field(
-        default=AssertNotEqual, init=False
+    assertion_cls: unittest_assertions.comparison.AssertNotEqual = field(
+        default=unittest_assertions.comparison.AssertNotEqual, init=False
     )
 
 
 @dataclass
 class AssertAlmostEqual(EqualityAssertify):
-    assertion_cls: EqualityAssertion = field(
-        default=AssertAlmostEqual, init=False
+    assertion_cls: unittest_assertions.comparison.AssertAlmostEqual = field(
+        default=unittest_assertions.comparison.AssertAlmostEqual, init=False
     )
 
     def __call__(self, first, second, places=None, detla=None) -> bool:
@@ -52,28 +36,30 @@ class AssertAlmostEqual(EqualityAssertify):
 
 
 @dataclass
-class AssertNotAlmostEqual(AssertAlmostEqual):
-    function: EqualityAssertion = field(
-        default=AssertNotAlmostEqual, init=False
+class AssertNotAlmostEqual(EqualityAssertify):
+    assertion_cls: unittest_assertions.comparison.AssertNotAlmostEqual = field(
+        default=unittest_assertions.comparison.AssertNotAlmostEqual, init=False
     )
 
 
 @dataclass
 class AssertifyCountEqual(EqualityAssertify):
-    function: EqualityAssertion = field(default=AssertCountEqual, init=False)
+    assertion_cls: unittest_assertions.comparison.AssertCountEqual = field(
+        default=unittest_assertions.comparison.AssertCountEqual, init=False
+    )
 
 
 @dataclass
 class AssertifyMultilineEqual(EqualityAssertify):
-    function: EqualityAssertion = field(
-        default=AssertMultilineEqual, init=False
+    assertion_cls: unittest_assertions.comparison.AssertMultilineEqual = field(
+        default=unittest_assertions.comparison.AssertMultilineEqual, init=False
     )
 
 
 @dataclass
 class SequenceEqual(BuiltinAssertionAssertify):
-    assertion_cls: AssertSequanceEqual = field(
-        default=AssertSequanceEqual, init=False
+    assertion_cls: unittest_assertions.comparison.AssertSequanceEqual = field(
+        default=unittest_assertions.comparison.AssertSequanceEqual, init=False
     )
 
     def __call__(self, seq1, seq2) -> bool:
@@ -82,7 +68,9 @@ class SequenceEqual(BuiltinAssertionAssertify):
 
 @dataclass
 class ListEqual(BuiltinAssertionAssertify):
-    assertion_cls: AssertListEqual = field(default=AssertListEqual, init=False)
+    assertion_cls: unittest_assertions.comparison.AssertListEqual = field(
+        default=unittest_assertions.comparison.AssertListEqual, init=False
+    )
 
     def __call__(self, list1, list2) -> bool:
         return super().__call__(list1=list1, list2=list2)
@@ -90,8 +78,8 @@ class ListEqual(BuiltinAssertionAssertify):
 
 @dataclass
 class TupleEqual(BuiltinAssertionAssertify):
-    assertion_cls: AssertTupleEqual = field(
-        default=AssertTupleEqual, init=False
+    assertion_cls: unittest_assertions.comparison.AssertTupleEqual = field(
+        default=unittest_assertions.comparison.AssertTupleEqual, init=False
     )
 
     def __call__(self, tuple1, tuple2) -> bool:
@@ -100,7 +88,9 @@ class TupleEqual(BuiltinAssertionAssertify):
 
 @dataclass
 class SetEqual(BuiltinAssertionAssertify):
-    assertion_cls: AssertSetEqual = field(default=AssertSetEqual, init=False)
+    assertion_cls: unittest_assertions.comparison.AssertSetEqual = field(
+        default=unittest_assertions.comparison.AssertSetEqual, init=False
+    )
 
     def __call__(self, set1, set2) -> bool:
         return super().__call__(set1=set1, set2=set2)
@@ -108,7 +98,9 @@ class SetEqual(BuiltinAssertionAssertify):
 
 @dataclass
 class DictEqual(BuiltinAssertionAssertify):
-    assertion_cls: AssertDictEqual = field(default=AssertDictEqual, init=False)
+    assertion_cls: unittest_assertions.comparison.AssertDictEqual = field(
+        default=unittest_assertions.comparison.AssertDictEqual, init=False
+    )
 
     def __call__(self, dict1, dict2) -> bool:
         return super().__call__(dict1=dict1, dict2=dict2)
@@ -122,21 +114,27 @@ class ComparisonAssertify(BuiltinAssertionAssertify):
 
 @dataclass
 class AssertifyLess(ComparisonAssertify):
-    function: ComparisonAssertion = field(default=AssertLess, init=False)
+    assertion_cls: unittest_assertions.comparison.AssertLess = field(
+        default=unittest_assertions.comparison.AssertLess, init=False
+    )
 
 
 @dataclass
 class AssertifyLessEqual(ComparisonAssertify):
-    function: ComparisonAssertion = field(default=AssertLessEqual, init=False)
+    assertion_cls: unittest_assertions.comparison.AssertLessEqual = field(
+        default=unittest_assertions.comparison.AssertLessEqual, init=False
+    )
 
 
 @dataclass
 class AssertifyGreater(ComparisonAssertify):
-    function: ComparisonAssertion = field(default=AssertGreater, init=False)
+    assertion_cls: unittest_assertions.comparison.AssertGreater = field(
+        default=unittest_assertions.comparison.AssertGreater, init=False
+    )
 
 
 @dataclass
 class AssertifyGreaterEqual(ComparisonAssertify):
-    function: ComparisonAssertion = field(
-        default=AssertGreaterEqual, init=False
+    assertion_cls: unittest_assertions.comparison.AssertGreaterEqual = field(
+        default=unittest_assertions.comparison.AssertGreaterEqual, init=False
     )

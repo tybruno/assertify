@@ -1,19 +1,21 @@
 from dataclasses import dataclass, field
 from typing import Optional, Union, Type
-from unittest_assertions.base import BuiltinAssertion
-from unittest_assertions.container import AssertIn, AssertNotIn
-import unittest_assertions
+import unittest_assertions.container
 from assertify.base import BuiltinAssertionAssertify
 
 
 @dataclass
-class In(BuiltinAssertionAssertify):
-    assertion_cls: BuiltinAssertion = field(default=AssertIn, init=False)
+class AssertifyIn(BuiltinAssertionAssertify):
+    assertion_cls: unittest_assertions.container.AssertIn = field(
+        default=unittest_assertions.container.AssertIn, init=False
+    )
 
     def __call__(self, *, member, container) -> bool:
         return super().__call__(member=member, container=container)
 
 
 @dataclass
-class AssertifyNotIn(In):
-    assertion_cls: BuiltinAssertion = field(default=AssertNotIn, init=False)
+class AssertifyNotIn(AssertifyIn):
+    assertion_cls: unittest_assertions.container.AssertNotIn = field(
+        default=unittest_assertions.container.AssertNotIn, init=False
+    )

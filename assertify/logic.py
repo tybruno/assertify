@@ -1,7 +1,6 @@
 from dataclasses import dataclass, field
 from typing import Optional, Union, Type
-from unittest_assertions.logic import AssertTrue, AssertFalse, BuiltinAssertion
-import unittest_assertions
+import unittest_assertions.logic
 from assertify.base import BuiltinAssertionAssertify
 
 
@@ -13,9 +12,13 @@ class LogicAssertify(BuiltinAssertionAssertify):
 
 @dataclass
 class AssertifyTrue(LogicAssertify):
-    assertion_cls: BuiltinAssertion = field(default=AssertTrue, init=False)
+    assertion_cls: unittest_assertions.logic.AssertTrue = field(
+        default=unittest_assertions.logic.AssertTrue, init=False
+    )
 
 
 @dataclass
 class AssertifyFalse(LogicAssertify):
-    assertion_cls: BuiltinAssertion = field(default=AssertFalse, init=False)
+    assertion_cls: unittest_assertions.logic.AssertFalse = field(
+        default=unittest_assertions.logic.AssertFalse, init=False
+    )
