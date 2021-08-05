@@ -25,8 +25,10 @@ class AssertifyRaises(BuiltinAssertionAssertify):
             Type[BaseException], tuple[Type[BaseException]]
         ],
         **kwargs: Any
-    ):
-        super().__call__(expected_exception=expected_exception, **kwargs)
+    ) -> bool:
+        return super().__call__(
+            expected_exception=expected_exception, **kwargs
+        )
 
 
 @dataclass
@@ -35,8 +37,8 @@ class AssertifyWarns(BuiltinAssertionAssertify):
         default=unittest_assertions.control.AssertWarns, init=False
     )
 
-    def __call__(self, expected_warning, **kwargs):
-        super().__call__(expected_warning=expected_warning, **kwargs)
+    def __call__(self, expected_warning, **kwargs) -> bool:
+        return super().__call__(expected_warning=expected_warning, **kwargs)
 
 
 @dataclass
@@ -45,5 +47,5 @@ class AssertifyLogs(BuiltinAssertionAssertify):
         default=unittest_assertions.control.AssertLogs, init=False
     )
 
-    def __call__(self, logger=None, level=None):
-        super().__call__(logger=logger, level=level)
+    def __call__(self, logger=None, level=None) -> bool:
+        return super().__call__(logger=logger, level=level)

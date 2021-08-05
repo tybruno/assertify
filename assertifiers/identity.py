@@ -19,8 +19,8 @@ class AssertifyIs(BuiltinAssertionAssertify):
         default=unittest_assertions.identity.AssertIs, init=False
     )
 
-    def __call__(self, exp1, exp2):
-        super().__call__(exp1=exp1, exp2=exp2)
+    def __call__(self, exp1, exp2) -> bool:
+        return super().__call__(exp1=exp1, exp2=exp2)
 
 
 @dataclass
@@ -36,8 +36,8 @@ class AssertifyIsNone(BuiltinAssertionAssertify):
         default=unittest_assertions.identity.AssertIsNone, init=False
     )
 
-    def __call__(self, obj):
-        super().__call__(obj=obj)
+    def __call__(self, obj) -> bool:
+        return super().__call__(obj=obj)
 
 
 @dataclass
@@ -56,8 +56,8 @@ class AssertifyIsInstance(BuiltinAssertionAssertify):
         Union[None, Type[Exception], Type[AssertionError]]
     ] = field(default=TypeError)
 
-    def __call__(self, obj, cls):
-        super().__call__(obj=obj, cls=cls)
+    def __call__(self, obj, cls) -> bool:
+        return super().__call__(obj=obj, cls=cls)
 
 
 @dataclass
