@@ -17,7 +17,7 @@ setuptools.setup(
     long_description=README,
     long_description_content_type="text/markdown",
     keywords="python unittest pytest assertions assert assertify verify verification booleans standalone",
-    url="https://github.com/tybruno/unittest_assertions",
+    url="https://github.com/tybruno/assertify",
     license="MIT",
     package_data={"assertify": ["py.typed"]},
     packages=setuptools.find_packages(),
