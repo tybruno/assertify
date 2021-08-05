@@ -14,8 +14,8 @@ class AssertifyRaisesRegex(BuiltinAssertionAssertify):
         default=unittest_assertions.regex.AssertRaisesRegex, init=False
     )
 
-    def __call__(self, expected_exception, expected_regex, **kwargs):
-        super().__call__(
+    def __call__(self, expected_exception, expected_regex, **kwargs) -> bool:
+        return super().__call__(
             expected_exception=expected_exception,
             expected_regex=expected_regex,
             **kwargs
@@ -28,8 +28,8 @@ class AssertifyWarnsRegex(BuiltinAssertionAssertify):
         default=unittest_assertions.regex.AssertWarnsRegex, init=False
     )
 
-    def __call__(self, expected_warning, expected_regex, **kwargs):
-        super().__call__(
+    def __call__(self, expected_warning, expected_regex, **kwargs) -> bool:
+        return super().__call__(
             expected_warning=expected_warning,
             expected_regex=expected_regex,
             **kwargs
@@ -42,8 +42,8 @@ class AssertifyRegex(BuiltinAssertionAssertify):
         default=unittest_assertions.regex.AssertRegex, init=False
     )
 
-    def __call__(self, text, expected_regex):
-        super().__call__(text=text, expected_regex=expected_regex)
+    def __call__(self, text, expected_regex) -> bool:
+        return super().__call__(text=text, expected_regex=expected_regex)
 
 
 @dataclass
@@ -52,5 +52,5 @@ class AssertifyNotRegex(BuiltinAssertionAssertify):
         default=unittest_assertions.regex.AssertNotRegex, init=False
     )
 
-    def __call__(self, text, unexpected_regex):
-        super().__call__(text=text, unexpected_regex=unexpected_regex)
+    def __call__(self, text, unexpected_regex) -> bool:
+        return super().__call__(text=text, unexpected_regex=unexpected_regex)
