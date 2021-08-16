@@ -24,7 +24,7 @@ AssertifyIsInstance will raise a `TypeError` by default, but you can also specif
 from assertifiers.identity import AssertifyIsInstance
 
 is_instance = AssertifyIsInstance(msg="Raising Exception")
-is_instance("example str", int) # Raises TypeError("'example str' is not an instance of <class 'int'> : Raising Exception")
+is_instance("example str", int) # raise TypeError("'example str' is not an instance of <class 'int'> : Raising Exception")
 ```
 ### Assertion Example
 Specify `AssertionError` to be raised
@@ -32,7 +32,7 @@ Specify `AssertionError` to be raised
 from assertifiers.identity import AssertifyIsInstance
 
 is_instance = AssertifyIsInstance(raises=AssertionError, msg="Raising AssertionError")
-is_instance("example str", int) # Raises AssertionError("'example str' is not an instance of <class 'int'> : Raising AssertionError")
+is_instance("example str", int) # raise AssertionError("'example str' is not an instance of <class 'int'> : Raising AssertionError")
 ```
 ### Boolean Example
 If `raises=None` assertify will return a `Boolean`.
@@ -42,3 +42,56 @@ from assertifiers.identity import AssertifyIsInstance
 is_instance = AssertifyIsInstance(raises=None)
 print(is_instance("example str", int)) # False
 ```
+# Assertifiers
+## Comparison
+| Assertifier | Expression | raises |
+|-----------------|----------------|-----------|
+|AssertifyEqual| first == second| ValueError|
+| AsserityNotEqual| first != Second | ValueError|
+|AssertifyAlmostEqual| first ~ second| ValueError|
+|AssertifyNotAlmostEqual| first !~ second| ValueError|
+|AssertifyCountEqual| len(first) == len(second)| ValueError|
+|AssertifyMultilineEqual| first.splitlines() == second.splitlines()| ValueError|
+|AsseritySequenceEqual| seq1 == seq2| ValueError|
+|AssertifyListEqual| list1 == list2| ValueError|
+|AssertifyTupleEqual| tuple1 == tuple2| ValueError|
+|AssertifySetEqual| set1 == set2 | ValueError|
+|AssertifyDictEqual| dict1 == dict2| ValueError|
+|AssertifyLess| a < b| ValueError|
+|AssertifyLessEqual| a <= b | ValueError|
+|AssertifyGreater| a > b | ValueError|
+|AssertifyGreater| a >= b | ValueError|
+## Container
+| Assertifier | Expression | raises |
+|-----------------|----------------|-----------|
+|AssertifyIn| member in container| ValueError|
+| AsserityNotIn| member not in container | ValueError|
+## Control
+| Assertifier | Expression | raises |
+|-----------------|----------------|-----------|
+|AssertifyRaises| excpected_exception | ValueError|
+|AssertifyWarns| excpected_warning| ValueError|
+|AssertifyLogs| logger(level) | ValueError|
+## Identity
+| Assertifier | Expression | raises |
+|-----------------|----------------|-----------|
+|AssertifyIs| exp1 is exp2| ValueError|
+|AssertifyIsNot| exp1 is not exp2| ValueError|
+|AssertifyIsNone| obj is None| ValueError|
+|AssertifyIsNotNone| obj is not None| ValueError|
+|AssertifyIsInstance|isinstance(obj,class) | TypeError|
+|AssertifyIsInstances| isinstance(obj,cls) for cls in classes | TypeError|
+|AsserityIsNotInstance| not isinstance(obj,class) | TypeError|
+|AsserityIsNotInstances| not isinstance(obj,cls) for cls in classes | TypeError|
+## Logic
+| Assertifier | Expression | raises |
+|-----------------|----------------|-----------|
+|AssertifyTrue| expr | ValueError|
+|AssertifyFalse| not expr | ValueError|
+## Regex
+| Assertifier | Expression | raises |
+|-----------------|----------------|-----------|
+|AssertifyRaisesRegex| expected_regex in expected_exception_message | ValueError|
+|AssertifyWarnsRegex| expected_regex in expected_warning_message | ValueError|
+|AssertifyRegex| text in expected_regex| ValueError|
+|AssertifyNotRegex| text not in expected_regex| ValueError| 
