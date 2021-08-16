@@ -47,12 +47,12 @@ print(is_instance("example str", int)) # False
 | Assertifier | Expression | raises |
 |-----------------|----------------|-----------|
 |AssertifyEqual| first == second| ValueError|
-| AsserityNotEqual| first != Second | ValueError|
+| AsserifyNotEqual| first != Second | ValueError|
 |AssertifyAlmostEqual| first ~ second| ValueError|
 |AssertifyNotAlmostEqual| first !~ second| ValueError|
 |AssertifyCountEqual| len(first) == len(second)| ValueError|
 |AssertifyMultilineEqual| first.splitlines() == second.splitlines()| ValueError|
-|AsseritySequenceEqual| seq1 == seq2| ValueError|
+|AssertifySequenceEqual| seq1 == seq2| ValueError|
 |AssertifyListEqual| list1 == list2| ValueError|
 |AssertifyTupleEqual| tuple1 == tuple2| ValueError|
 |AssertifySetEqual| set1 == set2 | ValueError|
@@ -65,7 +65,7 @@ print(is_instance("example str", int)) # False
 | Assertifier | Expression | raises |
 |-----------------|----------------|-----------|
 |AssertifyIn| member in container| ValueError|
-| AsserityNotIn| member not in container | ValueError|
+| AssertifyNotIn| member not in container | ValueError|
 ## Control
 | Assertifier | Expression | raises |
 |-----------------|----------------|-----------|
@@ -81,8 +81,8 @@ print(is_instance("example str", int)) # False
 |AssertifyIsNotNone| obj is not None| ValueError|
 |AssertifyIsInstance|isinstance(obj,class) | TypeError|
 |AssertifyIsInstances| isinstance(obj,cls) for cls in classes | TypeError|
-|AsserityIsNotInstance| not isinstance(obj,class) | TypeError|
-|AsserityIsNotInstances| not isinstance(obj,cls) for cls in classes | TypeError|
+|AssertifyIsNotInstance| not isinstance(obj,class) | TypeError|
+|AssertifyIsNotInstances| not isinstance(obj,cls) for cls in classes | TypeError|
 ## Logic
 | Assertifier | Expression | raises |
 |-----------------|----------------|-----------|
