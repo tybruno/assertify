@@ -1,1 +1,1 @@
-unittest_assertions @ git+https://github.com/tybruno/unittest_assertions.git#egg=unittest_assertions
+unittest-assertions==1.0.0
