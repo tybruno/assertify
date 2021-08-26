@@ -1,6 +1,6 @@
 import setuptools
 
-__version__ = "v1.0.2"
+__version__ = "v1.0.1"
 __author__ = "Tyler Bruno"
 
 
