@@ -14,7 +14,7 @@ assertify -- assert (ver)ify -- is a Flexible, and Extendable python3.6+ library
 
 ## Installation
 ```bash
-pip install "git+https://github.com/tybruno/assertify.git#egg=assertify"
+pip install assertify
 ```
 ## Example
 Each Assertifier raises an appropriate exception by default.
