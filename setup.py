@@ -1,16 +1,15 @@
-import setuptools
+from setuptools import (
+    find_packages,
+    setup,
+)
 
 __version__ = "v1.0"
 __author__ = "Tyler Bruno"
 
-
 with open("README.md", "r", encoding="utf-8") as file:
     README = file.read()
 
-with open("requirements.txt", "r") as file:
-    INSTALL_REQUIRES = file.read().splitlines()
-
-setuptools.setup(
+setup(
     name="assertify",
     version=__version__,
     author=__author__,
@@ -20,8 +19,8 @@ setuptools.setup(
     url="https://github.com/tybruno/assertify",
     license="MIT",
     package_data={"assertify": ["py.typed"]},
-    packages=setuptools.find_packages(),
-    install_requires=INSTALL_REQUIRES,
+    packages=find_packages(),
+    install_requires=["unittest-assertions"],
     classifiers=[
         "License :: OSI Approved :: MIT License",
         "Operating System :: POSIX :: Linux",
