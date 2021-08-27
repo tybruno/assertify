@@ -1,1 +1,1 @@
-unittest-assertions==1.0.0
+unittest-assertions
