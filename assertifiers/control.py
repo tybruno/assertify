@@ -15,7 +15,7 @@ from assertifiers.base import BuiltinAssertionAssertify
 
 @dataclass
 class AssertifyRaises(BuiltinAssertionAssertify):
-    assertion_cls: unittest_assertions.control.AssertRaises = field(
+    _assertion_cls: unittest_assertions.control.AssertRaises = field(
         default=unittest_assertions.control.AssertRaises, init=False
     )
 
@@ -33,7 +33,7 @@ class AssertifyRaises(BuiltinAssertionAssertify):
 
 @dataclass
 class AssertifyWarns(BuiltinAssertionAssertify):
-    assertion_cls: unittest_assertions.control.AssertWarns = field(
+    _assertion_cls: unittest_assertions.control.AssertWarns = field(
         default=unittest_assertions.control.AssertWarns, init=False
     )
 
@@ -43,7 +43,7 @@ class AssertifyWarns(BuiltinAssertionAssertify):
 
 @dataclass
 class AssertifyLogs(BuiltinAssertionAssertify):
-    assertion_cls: unittest_assertions.control.AssertLogs = field(
+    _assertion_cls: unittest_assertions.control.AssertLogs = field(
         default=unittest_assertions.control.AssertLogs, init=False
     )
 

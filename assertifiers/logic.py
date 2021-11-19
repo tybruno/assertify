@@ -16,13 +16,13 @@ class LogicAssertify(BuiltinAssertionAssertify):
 
 @dataclass
 class AssertifyTrue(LogicAssertify):
-    assertion_cls: unittest_assertions.logic.AssertTrue = field(
+    _assertion_cls: unittest_assertions.logic.AssertTrue = field(
         default=unittest_assertions.logic.AssertTrue, init=False
     )
 
 
 @dataclass
 class AssertifyFalse(LogicAssertify):
-    assertion_cls: unittest_assertions.logic.AssertFalse = field(
+    _assertion_cls: unittest_assertions.logic.AssertFalse = field(
         default=unittest_assertions.logic.AssertFalse, init=False
     )

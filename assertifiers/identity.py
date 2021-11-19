@@ -19,7 +19,7 @@ from assertifiers.base import (
 
 @dataclass
 class AssertifyIs(BuiltinAssertionAssertify):
-    assertion_cls: unittest_assertions.identity.AssertIs = field(
+    _assertion_cls: unittest_assertions.identity.AssertIs = field(
         default=unittest_assertions.identity.AssertIs, init=False
     )
 
@@ -29,14 +29,14 @@ class AssertifyIs(BuiltinAssertionAssertify):
 
 @dataclass
 class AssertifyIsNot(AssertifyIs):
-    assertion_cls: unittest_assertions.identity.AssertIsNot = field(
+    _assertion_cls: unittest_assertions.identity.AssertIsNot = field(
         default=unittest_assertions.identity.AssertIsNot, init=False
     )
 
 
 @dataclass
 class AssertifyIsNone(BuiltinAssertionAssertify):
-    assertion_cls: unittest_assertions.identity.AssertIsNone = field(
+    _assertion_cls: unittest_assertions.identity.AssertIsNone = field(
         default=unittest_assertions.identity.AssertIsNone, init=False
     )
 
@@ -46,14 +46,14 @@ class AssertifyIsNone(BuiltinAssertionAssertify):
 
 @dataclass
 class AssertifyIsNotNone(AssertifyIsNone):
-    assertion_cls: unittest_assertions.identity.AssertIsNotNone = field(
+    _assertion_cls: unittest_assertions.identity.AssertIsNotNone = field(
         default=unittest_assertions.identity.AssertIsNotNone, init=False
     )
 
 
 @dataclass
 class AssertifyIsInstance(BuiltinAssertionAssertify):
-    assertion_cls: unittest_assertions.identity.AssertIsInstance = field(
+    _assertion_cls: unittest_assertions.identity.AssertIsInstance = field(
         default=unittest_assertions.identity.AssertIsInstance, init=False
     )
     raises: Optional[
@@ -90,7 +90,7 @@ class AssertifyIsInstances(Assertifier):
 
 @dataclass
 class AssertifyNotIsInstance(AssertifyIsInstance):
-    assertion_cls: unittest_assertions.identity.AssertNotIsInstance = field(
+    _assertion_cls: unittest_assertions.identity.AssertNotIsInstance = field(
         default=unittest_assertions.identity.AssertNotIsInstance, init=False
     )
 

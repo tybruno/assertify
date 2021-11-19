@@ -10,7 +10,7 @@ from assertifiers.base import BuiltinAssertionAssertify
 
 @dataclass
 class AssertifyRaisesRegex(BuiltinAssertionAssertify):
-    assertion_cls: unittest_assertions.regex.AssertRaisesRegex = field(
+    _assertion_cls: unittest_assertions.regex.AssertRaisesRegex = field(
         default=unittest_assertions.regex.AssertRaisesRegex, init=False
     )
 
@@ -24,7 +24,7 @@ class AssertifyRaisesRegex(BuiltinAssertionAssertify):
 
 @dataclass
 class AssertifyWarnsRegex(BuiltinAssertionAssertify):
-    assertion_cls: unittest_assertions.regex.AssertWarnsRegex = field(
+    _assertion_cls: unittest_assertions.regex.AssertWarnsRegex = field(
         default=unittest_assertions.regex.AssertWarnsRegex, init=False
     )
 
@@ -38,7 +38,7 @@ class AssertifyWarnsRegex(BuiltinAssertionAssertify):
 
 @dataclass
 class AssertifyRegex(BuiltinAssertionAssertify):
-    assertion_cls: unittest_assertions.regex.AssertRegex = field(
+    _assertion_cls: unittest_assertions.regex.AssertRegex = field(
         default=unittest_assertions.regex.AssertRegex, init=False
     )
 
@@ -48,7 +48,7 @@ class AssertifyRegex(BuiltinAssertionAssertify):
 
 @dataclass
 class AssertifyNotRegex(BuiltinAssertionAssertify):
-    assertion_cls: unittest_assertions.regex.AssertNotRegex = field(
+    _assertion_cls: unittest_assertions.regex.AssertNotRegex = field(
         default=unittest_assertions.regex.AssertNotRegex, init=False
     )
 
