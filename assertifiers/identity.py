@@ -24,7 +24,7 @@ class AssertifyIs(BuiltinAssertionAssertify):
     )
 
     def __call__(self, exp1, exp2) -> bool:
-        return super().__call__(exp1=exp1, exp2=exp2)
+        return super().__call__(expr1=exp1, expr2=exp2)
 
 
 @dataclass
