@@ -14,7 +14,7 @@ class AssertifyIn(BuiltinAssertionAssertify):
         default=unittest_assertions.container.AssertIn, init=False
     )
 
-    def __call__(self, *, member, container) -> bool:
+    def __call__(self, member, container) -> bool:
         return super().__call__(member=member, container=container)
 
 
