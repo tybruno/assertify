@@ -14,11 +14,14 @@ class AssertifyRaisesRegex(BuiltinAssertionAssertify):
         default=unittest_assertions.regex.AssertRaisesRegex, init=False
     )
 
-    def __call__(self, expected_exception, expected_regex, **kwargs) -> bool:
+    def __call__(
+        self, expected_exception, expected_regex, *args, **kwargs
+    ) -> bool:
         return super().__call__(
-            expected_exception=expected_exception,
-            expected_regex=expected_regex,
-            **kwargs
+            expected_exception,
+            expected_regex,
+            *args,
+            **kwargs,
         )
 
 
@@ -28,11 +31,14 @@ class AssertifyWarnsRegex(BuiltinAssertionAssertify):
         default=unittest_assertions.regex.AssertWarnsRegex, init=False
     )
 
-    def __call__(self, expected_warning, expected_regex, **kwargs) -> bool:
+    def __call__(
+        self, expected_warning, expected_regex, *args, **kwargs
+    ) -> bool:
         return super().__call__(
-            expected_warning=expected_warning,
-            expected_regex=expected_regex,
-            **kwargs
+            expected_warning,
+            expected_regex,
+            *args,
+            **kwargs,
         )
 
 
