@@ -33,6 +33,8 @@ from tests.base import AssertifierTester
 
 
 class TestAssertifyEqual(AssertifierTester):
+    """testing AssertifyEqual"""
+
     _assertifier_cls = AssertifyEqual
 
     @pytest.mark.parametrize(

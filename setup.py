@@ -1,3 +1,4 @@
+"""Setup.py"""
 from setuptools import (
     find_packages,
     setup,
@@ -15,7 +16,8 @@ setup(
     author=__author__,
     long_description=README,
     long_description_content_type="text/markdown",
-    keywords="python unittest pytest assertions assert assertify verify verification booleans standalone",
+    keywords="python unittest pytest assertions assert "
+    "assertify verify verification booleans standalone",
     url="https://github.com/tybruno/assertify",
     license="MIT",
     package_data={"assertify": ["py.typed"]},
@@ -32,7 +34,7 @@ setup(
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3 :: Only",
-        "Topic :: Software Development :: Libraries :: Python Modules",
+        "Topic :: Software Development :: " "Libraries :: Python Modules",
     ],
     python_requires=">=3.6",
 )
