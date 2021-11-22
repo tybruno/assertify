@@ -23,16 +23,16 @@ Each Assertifier raises an appropriate exception by default.
 ```python
 from assertifiers.identity import AssertifyIsInstance
 
-is_instance = AssertifyIsInstance(msg="Raising Exception")
-is_instance("example str", int) # raise TypeError("'example str' is not an instance of <class 'int'> : Raising Exception")
+is_instance = AssertifyIsInstance()
+is_instance("example str", int) # raise TypeError("'example str' is not an instance of <class 'int'>")
 ```
 ### Assertion Example
 Specify `AssertionError` to be raised
 ```python
 from assertifiers.identity import AssertifyIsInstance
 
-is_instance = AssertifyIsInstance(raises=AssertionError, msg="Raising AssertionError")
-is_instance("example str", int) # raise AssertionError("'example str' is not an instance of <class 'int'> : Raising AssertionError")
+is_instance = AssertifyIsInstance(raises=AssertionError)
+is_instance("example str", int) # raise AssertionError("'example str' is not an instance of <class 'int'>")
 ```
 ### Boolean Example
 If `raises=None` assertify will return a `Boolean`.
