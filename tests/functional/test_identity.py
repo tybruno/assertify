@@ -145,6 +145,8 @@ class TestAssertifyIsInstances(AssertifierTester):
         (
             *is_instances_testing_data(),
             (dict(), [Collection, Dict, dict], all),
+            ("string", str, any),
+            (2, int, all),
         ),
     )
     def test_assertify_passes(self, testing_data: list):
