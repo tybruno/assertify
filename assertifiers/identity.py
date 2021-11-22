@@ -2,7 +2,7 @@ from dataclasses import (
     dataclass,
     field,
 )
-from string import Template
+from typing import Collection, Any
 from typing import (
     Optional,
     Type,
@@ -69,11 +69,13 @@ class AssertifyIsInstances(Assertifier):
     raises: Optional[
         Union[None, Type[Exception], Type[AssertionError]]
     ] = field(default=TypeError)
-    msg: Optional[Union[None, str, Template]] = field(default=None)
-    must_pass: Union[any, all] = field(default=all)
+    must_pass: Union[any, all] = field(default=any)
 
-    def __call__(self, obj, classes) -> bool:
-        assertify_is_instance = AssertifyIsInstance(raises=None, msg=self.msg)
+    def __call__(self, obj: Any, classes: Collection) -> bool:
+        if not isinstance(classes, Collection):
+            classes: tuple = (classes,)
+        assertify_is_instance = AssertifyIsInstance(raises=None)
+
         results = tuple(
             assertify_is_instance(cls=cls, obj=obj) for cls in classes
         )
@@ -98,9 +100,7 @@ class AssertifyNotIsInstance(AssertifyIsInstance):
 @dataclass
 class AssertifyNotIsInstances(AssertifyIsInstances):
     def __call__(self, obj, classes) -> bool:
-        assertify_not_is_instance = AssertifyNotIsInstance(
-            raises=None, msg=self.msg
-        )
+        assertify_not_is_instance = AssertifyNotIsInstance(raises=None)
         results = tuple(
             assertify_not_is_instance(cls=cls, obj=obj) for cls in classes
         )
