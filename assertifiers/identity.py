@@ -111,7 +111,8 @@ class AssertifyNotIsInstances(AssertifyIsInstances):
             return True
         if self.raises:
             raise self.raises(
-                f"{obj!r} must not be an instance of {self.must_pass} of {classes}"
+                f"{obj!r} must not be an instance of "
+                f"{self.must_pass} of {classes}"
             )
 
         return False
