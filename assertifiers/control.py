@@ -6,6 +6,7 @@ from typing import (
     Any,
     Type,
     Union,
+    Tuple,
 )
 
 import unittest_assertions.control
@@ -23,7 +24,7 @@ class AssertifyRaises(BuiltinAssertionAssertify):
         self,
         *args: Any,
         expected_exception: Union[
-            Type[BaseException], tuple[Type[BaseException]]
+            Type[BaseException], Tuple[Type[BaseException]]
         ],
         **kwargs: Any,
     ) -> bool:
