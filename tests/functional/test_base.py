@@ -6,10 +6,10 @@ from typing import (
 )
 
 import pytest
+from unittest_assertions.base import BuiltinAssertion
 
 from assertifiers.base import BuiltinAssertionAssertify
 from assertifiers.comparison import AssertifyEqual
-from unittest_assertions.base import BuiltinAssertion
 
 
 class TestBuiltinAssertionAssertify:

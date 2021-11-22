@@ -1,4 +1,17 @@
 import pytest
+from pytest_builtin_types import (
+    combined_equal_all_basic_types,
+    combined_non_equal_all_basic_types,
+    equal_sequences,
+    non_equal_sequences,
+    equal_lists,
+    non_equal_list,
+    _BASIC_CONTAINERS_1,
+    _BASIC_CONTAINERS_2,
+    _MULTILINE_1,
+    _MULTILINE_2,
+)
+
 from assertifiers.comparison import (
     AssertifyEqual,
     AssertifyNotEqual,
@@ -15,18 +28,6 @@ from assertifiers.comparison import (
     AssertifySetEqual,
     AssertifyNotAlmostEqual,
     AssertifyLessEqual,
-)
-from pytest_builtin_types import (
-    combined_equal_all_basic_types,
-    combined_non_equal_all_basic_types,
-    equal_sequences,
-    non_equal_sequences,
-    equal_lists,
-    non_equal_list,
-    _BASIC_CONTAINERS_1,
-    _BASIC_CONTAINERS_2,
-    _MULTILINE_1,
-    _MULTILINE_2,
 )
 from tests.base import AssertifierTester
 

@@ -3,8 +3,8 @@ import warnings
 
 import pytest
 
-from tests.base import AssertifierTester
 from assertifiers.control import AssertifyWarns, AssertifyRaises
+from tests.base import AssertifierTester
 
 
 def _raise(e):

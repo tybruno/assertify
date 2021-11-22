@@ -1,11 +1,9 @@
 """ Testing unittest_assertifier_clss/container.py """
 
 import pytest
-
 from pytest_builtin_types import _ALL_BASIC_TYPES_1, _ALL_BASIC_TYPES_2
 
 from assertifiers.container import AssertifyIn, AssertifyNotIn
-
 from tests.base import AssertifierTester
 
 

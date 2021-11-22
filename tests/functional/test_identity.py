@@ -1,5 +1,7 @@
 """ Testing unittest_assertifier_clss/identity.py """
 
+from typing import Dict, Collection
+
 import pytest
 from pytest_builtin_types import (
     equal_sequences,
@@ -7,8 +9,7 @@ from pytest_builtin_types import (
     _ALL_BASIC_TYPES_1,
     _NOT_INSTANCE_TESTING_DATA,
 )
-from tests.base import AssertifierTester
-from typing import Dict, Collection
+
 from assertifiers.identity import (
     AssertifyIs,
     AssertifyIsNone,
@@ -16,9 +17,10 @@ from assertifiers.identity import (
     AssertifyIsNot,
     AssertifyIsInstance,
     AssertifyNotIsInstance,
-    AssertifyNotIsInstances,
     AssertifyIsNotNone,
 )
+from tests.base import AssertifierTester
+
 
 # TODO: add TestAssertifyIsInstaces and TestAssertifyNotIsINstances
 

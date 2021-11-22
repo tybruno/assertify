@@ -4,13 +4,13 @@ import warnings
 
 import pytest
 
-from tests.base import AssertifierTester
 from assertifiers.regex import (
     AssertifyRegex,
     AssertifyWarnsRegex,
     AssertifyNotRegex,
     AssertifyRaisesRegex,
 )
+from tests.base import AssertifierTester
 
 
 def _raise(e):
