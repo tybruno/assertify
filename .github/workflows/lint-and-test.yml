@@ -10,4 +10,4 @@ jobs:
   test:
     uses: tybruno/github-workflow-pytest/.github/workflows/pytest-workflow.yml@main
   coverage:
-    uses: tybruno/github-workflow-pytest/.github/workflows/pytest-coverage-workflow.yml@main
+    uses: tybruno/github-workflow-pytest-coverage/.github/workflows/pytest-coverage-workflow.yml@main
