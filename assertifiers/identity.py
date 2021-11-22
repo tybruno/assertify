@@ -100,6 +100,8 @@ class AssertifyNotIsInstance(AssertifyIsInstance):
 @dataclass
 class AssertifyNotIsInstances(AssertifyIsInstances):
     def __call__(self, obj, classes) -> bool:
+        if not isinstance(classes, Collection):
+            classes: tuple = (classes,)
         assertify_not_is_instance = AssertifyNotIsInstance(raises=None)
         results = tuple(
             assertify_not_is_instance(cls=cls, obj=obj) for cls in classes
