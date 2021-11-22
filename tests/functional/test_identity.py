@@ -8,7 +8,7 @@ from pytest_builtin_types import (
     _NOT_INSTANCE_TESTING_DATA,
 )
 from tests.base import AssertifierTester
-
+from typing import Dict, Collection
 from assertifiers.identity import (
     AssertifyIs,
     AssertifyIsNone,
@@ -110,6 +110,55 @@ class TestAssertifyIsInstance(AssertifierTester):
         obj, _type = testing_data
         if not isinstance(obj, _type):
             super().test_assertify_fails(obj, _type)
+
+
+def instances_testing_data():
+    data = []
+    for value in _ALL_BASIC_TYPES_1.values():
+        data.append([value, _ALL_BASIC_TYPES_1, any])
+    return data
+
+
+class TestAssertifyIsInstances(AssertifierTester):
+    _assertifier_cls = AssertifyIsInstances
+
+    @pytest.mark.parametrize(
+        "testing_data",
+        (*instances_testing_data(), [dict(), [Collection, Dict, dict], all]),
+    )
+    def test_assertify_passes(self, testing_data: list):
+        must_pass = testing_data.pop()
+        assertify_is_instances = AssertifyIsInstances(must_pass=must_pass)
+        assert assertify_is_instances(*testing_data) is True
+
+        assertify_is_instances.raises = AssertionError
+        assert assertify_is_instances(*testing_data) is True
+
+        assertify_is_instances.raises = None
+        assert assertify_is_instances(*testing_data) is True
+
+    @pytest.mark.parametrize("testing_data", tuple(_NOT_INSTANCE_TESTING_DATA))
+    def test_assertify_fails(self, testing_data: tuple):
+        obj, _type = testing_data
+        assertify_is_instances = AssertifyIsInstances(must_pass=any)
+
+        if not isinstance(obj, _type):
+            with pytest.raises(
+                expected_exception=assertify_is_instances.raises
+            ):
+                assertify_is_instances(obj=obj, classes=_type)
+
+        assertify_is_instances.raises = AssertionError
+
+        if not isinstance(obj, _type):
+            with pytest.raises(
+                expected_exception=assertify_is_instances.raises
+            ):
+                assertify_is_instances(obj=obj, classes=_type)
+        assertify_is_instances.raises = None
+
+        if not isinstance(obj, _type):
+            assert assertify_is_instances(obj=obj, classes=_type) is False
 
 
 class TestAssertifyNotIsInstance(AssertifierTester):
