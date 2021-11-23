@@ -2,7 +2,6 @@
 [![Code Style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blueviolet.svg)](https://opensource.org/licenses/MIT)
 [![codecov](https://codecov.io/gh/tybruno/assertify/branch/main/graph/badge.svg?token=ZO94EJFI3G)](https://codecov.io/gh/tybruno/assertify)
-
 # assertify
 assertify -- assert (ver)ify -- is a Flexible, and Extendable python3.6+ library for boolean expressions, assertions, and verifications.
 
