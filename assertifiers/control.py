@@ -6,6 +6,7 @@ from typing import (
     Any,
     Type,
     Union,
+    Tuple,
 )
 
 import unittest_assertions.control
@@ -15,35 +16,34 @@ from assertifiers.base import BuiltinAssertionAssertify
 
 @dataclass
 class AssertifyRaises(BuiltinAssertionAssertify):
-    assertion_cls: unittest_assertions.control.AssertRaises = field(
+    _assertion_cls: unittest_assertions.control.AssertRaises = field(
         default=unittest_assertions.control.AssertRaises, init=False
     )
 
     def __call__(
         self,
+        *args: Any,
         expected_exception: Union[
-            Type[BaseException], tuple[Type[BaseException]]
+            Type[BaseException], Tuple[Type[BaseException]]
         ],
-        **kwargs: Any
+        **kwargs: Any,
     ) -> bool:
-        return super().__call__(
-            expected_exception=expected_exception, **kwargs
-        )
+        return super().__call__(expected_exception, *args, **kwargs)
 
 
 @dataclass
 class AssertifyWarns(BuiltinAssertionAssertify):
-    assertion_cls: unittest_assertions.control.AssertWarns = field(
+    _assertion_cls: unittest_assertions.control.AssertWarns = field(
         default=unittest_assertions.control.AssertWarns, init=False
     )
 
-    def __call__(self, expected_warning, **kwargs) -> bool:
-        return super().__call__(expected_warning=expected_warning, **kwargs)
+    def __call__(self, *args: Any, expected_warning, **kwargs) -> bool:
+        return super().__call__(expected_warning, *args, **kwargs)
 
 
 @dataclass
 class AssertifyLogs(BuiltinAssertionAssertify):
-    assertion_cls: unittest_assertions.control.AssertLogs = field(
+    _assertion_cls: unittest_assertions.control.AssertLogs = field(
         default=unittest_assertions.control.AssertLogs, init=False
     )
 

@@ -2,7 +2,7 @@ from dataclasses import (
     dataclass,
     field,
 )
-from string import Template
+from typing import Collection, Any
 from typing import (
     Optional,
     Type,
@@ -19,24 +19,24 @@ from assertifiers.base import (
 
 @dataclass
 class AssertifyIs(BuiltinAssertionAssertify):
-    assertion_cls: unittest_assertions.identity.AssertIs = field(
+    _assertion_cls: unittest_assertions.identity.AssertIs = field(
         default=unittest_assertions.identity.AssertIs, init=False
     )
 
     def __call__(self, exp1, exp2) -> bool:
-        return super().__call__(exp1=exp1, exp2=exp2)
+        return super().__call__(expr1=exp1, expr2=exp2)
 
 
 @dataclass
 class AssertifyIsNot(AssertifyIs):
-    assertion_cls: unittest_assertions.identity.AssertIsNot = field(
+    _assertion_cls: unittest_assertions.identity.AssertIsNot = field(
         default=unittest_assertions.identity.AssertIsNot, init=False
     )
 
 
 @dataclass
 class AssertifyIsNone(BuiltinAssertionAssertify):
-    assertion_cls: unittest_assertions.identity.AssertIsNone = field(
+    _assertion_cls: unittest_assertions.identity.AssertIsNone = field(
         default=unittest_assertions.identity.AssertIsNone, init=False
     )
 
@@ -46,14 +46,14 @@ class AssertifyIsNone(BuiltinAssertionAssertify):
 
 @dataclass
 class AssertifyIsNotNone(AssertifyIsNone):
-    assertion_cls: unittest_assertions.identity.AssertIsNotNone = field(
+    _assertion_cls: unittest_assertions.identity.AssertIsNotNone = field(
         default=unittest_assertions.identity.AssertIsNotNone, init=False
     )
 
 
 @dataclass
 class AssertifyIsInstance(BuiltinAssertionAssertify):
-    assertion_cls: unittest_assertions.identity.AssertIsInstance = field(
+    _assertion_cls: unittest_assertions.identity.AssertIsInstance = field(
         default=unittest_assertions.identity.AssertIsInstance, init=False
     )
     raises: Optional[
@@ -69,11 +69,13 @@ class AssertifyIsInstances(Assertifier):
     raises: Optional[
         Union[None, Type[Exception], Type[AssertionError]]
     ] = field(default=TypeError)
-    msg: Optional[Union[None, str, Template]] = field(default=None)
-    must_pass: Union[any, all] = field(default=all)
+    must_pass: Union[any, all] = field(default=any)
 
-    def __call__(self, obj, classes) -> bool:
-        assertify_is_instance = AssertifyIsInstance(raises=None, msg=self.msg)
+    def __call__(self, obj: Any, classes: Collection) -> bool:
+        if not isinstance(classes, Collection):
+            classes: tuple = (classes,)
+        assertify_is_instance = AssertifyIsInstance(raises=None)
+
         results = tuple(
             assertify_is_instance(cls=cls, obj=obj) for cls in classes
         )
@@ -90,7 +92,7 @@ class AssertifyIsInstances(Assertifier):
 
 @dataclass
 class AssertifyNotIsInstance(AssertifyIsInstance):
-    assertion_cls: unittest_assertions.identity.AssertNotIsInstance = field(
+    _assertion_cls: unittest_assertions.identity.AssertNotIsInstance = field(
         default=unittest_assertions.identity.AssertNotIsInstance, init=False
     )
 
@@ -98,9 +100,9 @@ class AssertifyNotIsInstance(AssertifyIsInstance):
 @dataclass
 class AssertifyNotIsInstances(AssertifyIsInstances):
     def __call__(self, obj, classes) -> bool:
-        assertify_not_is_instance = AssertifyNotIsInstance(
-            raises=None, msg=self.msg
-        )
+        if not isinstance(classes, Collection):
+            classes: tuple = (classes,)
+        assertify_not_is_instance = AssertifyNotIsInstance(raises=None)
         results = tuple(
             assertify_not_is_instance(cls=cls, obj=obj) for cls in classes
         )
@@ -109,7 +111,8 @@ class AssertifyNotIsInstances(AssertifyIsInstances):
             return True
         if self.raises:
             raise self.raises(
-                f"{obj!r} must not be an instance of {self.must_pass} of {classes}"
+                f"{obj!r} must not be an instance of "
+                f"{self.must_pass} of {classes}"
             )
 
         return False

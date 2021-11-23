@@ -6,7 +6,6 @@ from dataclasses import (
     dataclass,
     field,
 )
-from string import Template
 from typing import (
     Optional,
     Type,
@@ -19,28 +18,28 @@ from unittest_assertions.base import BuiltinAssertion
 class Assertifier(ABC):
     def __init__(
         self,
-        raises: Optional[Union[None, Type[Exception], Type[AssertionError]]],
-        msg: Optional[Union[None, str, Template]],
+        raises: Optional[
+            Union[None, Type[Exception], Type[AssertionError]]
+        ] = None,
     ):
-        ...
+        self.raises = raises
 
     @abstractmethod
-    def __call__(self, **kwargs) -> bool:
+    def __call__(self, *args, **kwargs) -> bool:
         ...
 
 
 @dataclass
 class BuiltinAssertionAssertify(Assertifier):
-    assertion_cls: BuiltinAssertion
+    _assertion_cls: Type[BuiltinAssertion]
     raises: Optional[
         Union[None, Type[Exception], Type[AssertionError]]
     ] = field(default=ValueError)
-    msg: Optional[Union[None, str, Template]] = field(default=None)
 
-    def __call__(self, **kwargs) -> bool:
-        assertion_function = self.assertion_cls(msg=self.msg)
+    def __call__(self, *args, **kwargs) -> bool:
+        assertion_function = self._assertion_cls()
         try:
-            assertion_function(**kwargs)
+            assertion_function(*args, **kwargs)
             return True
         except AssertionError as error:
             if self.raises:

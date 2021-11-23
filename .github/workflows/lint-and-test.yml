@@ -1,0 +1,12 @@
+
+name: Linting and Testing
+
+on: push
+
+jobs:
+  lint:
+    uses: tybruno/github-workflow-pylama/.github/workflows/pylama-workflow.yml@main
+  test:
+    uses: tybruno/github-workflow-pytest/.github/workflows/pytest-workflow.yml@main
+  coverage:
+    uses: tybruno/github-workflow-pytest-coverage/.github/workflows/codecov.yml@main
