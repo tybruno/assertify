@@ -20,6 +20,7 @@ pip install assertify
 ```
 ## Example
 Each Assertifier raises an appropriate exception by default.
+
 ### Exception Example
 `AssertifyIsInstance` will raise a `TypeError` by default, but you can also specify any other type of exception.
 ```python
