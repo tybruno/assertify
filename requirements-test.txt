@@ -1,3 +1,2 @@
-unittest-assertions
 pytest
 pytest-builtin-types
