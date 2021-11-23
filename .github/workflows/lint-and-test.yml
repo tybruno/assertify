@@ -8,3 +8,5 @@ jobs:
     uses: tybruno/github-workflow-pylama/.github/workflows/pylama-workflow.yml@main
   test:
     uses: tybruno/github-workflow-pytest/.github/workflows/pytest-workflow.yml@main
+  coverage:
+    uses: tybruno/assertify/.github/workflows/coverage.yml@main
