@@ -3,6 +3,7 @@ name: Linting and Testing
 
 on: push
 
+
 jobs:
   lint:
     uses: tybruno/github-workflow-pylama/.github/workflows/pylama-workflow.yml@main
