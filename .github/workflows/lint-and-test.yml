@@ -9,4 +9,4 @@ jobs:
   test:
     uses: tybruno/github-workflow-pytest/.github/workflows/pytest-workflow.yml@main
   coverage:
-    uses: tybruno/assertify/.github/workflows/coverage.yml@add-testing
+    uses: tybruno/github-workflow-pytest-coverage/.github/workflows/codecov.yml@main
