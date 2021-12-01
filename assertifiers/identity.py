@@ -13,12 +13,12 @@ import unittest_assertions.identity
 
 from assertifiers.base import (
     Assertifier,
-    BuiltinAssertionAssertifier,
+    UnittestAssertionAssertifier,
 )
 
 
 @dataclass
-class AssertifierIs(BuiltinAssertionAssertifier):
+class AssertifierIs(UnittestAssertionAssertifier):
     """assertify `expr1` is `expr2`
 
     Example:
@@ -68,7 +68,7 @@ class AssertifyIsNot(AssertifierIs):
 
 
 @dataclass
-class AssertifierIsNone(BuiltinAssertionAssertifier):
+class AssertifierIsNone(UnittestAssertionAssertifier):
     """assertify `obj` is `None`
 
     Example:
@@ -114,7 +114,7 @@ class AssertifyIsNotNone(AssertifierIsNone):
 
 
 @dataclass
-class AssertifierIsInstance(BuiltinAssertionAssertifier):
+class AssertifierIsInstance(UnittestAssertionAssertifier):
     """assertify `obj` is an instance of `cls`
 
     assertify isinstance(obj,cls)

@@ -2,7 +2,7 @@
 
 Objects provided by this module:
     * `Assertifier`: Abstract Base Class for all assertify classes.
-    * `BuiltinAssertionAssertifier`: Base Class for classes that extend `unittest_assertions`
+    * `UnittestAssertionAssertifier`: Base Class for classes that extend `unittest_assertions`
 """
 from abc import (
     ABC,
@@ -22,21 +22,41 @@ from unittest_assertions.base import BuiltinAssertion
 
 
 class Assertifier(ABC):
+    """abstract base class for all assertifiers"""
+
     def __init__(
         self,
         raises: Optional[
             Union[None, Type[Exception], Type[AssertionError]]
         ] = None,
     ):
+        """Initialize Assertifier
+
+        Args:
+            raises: If assertification fails raise the provided exception or assertion.
+            If None, return a boolean.
+        """
         self.raises = raises
 
     @abstractmethod
     def __call__(self, *args, **kwargs) -> bool:
+        """Run the assertification
+
+        Args:
+            *args: args for the assertification
+            **kwargs: kwargs for the assertification
+
+        Returns:
+            `True` if assertification passes and `False` if it fails
+
+        """
         ...
 
 
 @dataclass
-class BuiltinAssertionAssertifier(Assertifier):
+class UnittestAssertionAssertifier(Assertifier):
+    """Base class for unittest assertions"""
+
     _assertion_cls: Type[BuiltinAssertion]
     raises: Optional[
         Union[None, Type[Exception], Type[AssertionError]]

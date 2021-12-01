@@ -6,11 +6,11 @@ from typing import Any, Container
 
 import unittest_assertions.container
 
-from assertifiers.base import BuiltinAssertionAssertifier
+from assertifiers.base import UnittestAssertionAssertifier
 
 
 @dataclass
-class AssertifierIn(BuiltinAssertionAssertifier):
+class AssertifierIn(UnittestAssertionAssertifier):
     """assertify `member` in `container`
 
     assertify `member` in `container`

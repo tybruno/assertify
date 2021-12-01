@@ -15,11 +15,11 @@ from typing import (
 
 import unittest_assertions.control
 
-from assertifiers.base import BuiltinAssertionAssertifier
+from assertifiers.base import UnittestAssertionAssertifier
 
 
 @dataclass
-class AssertifierRaises(BuiltinAssertionAssertifier):
+class AssertifierRaises(UnittestAssertionAssertifier):
     """assertify `Callable` raises `expected_exception`
 
     assertify `Callable` raises `Exception`
@@ -65,7 +65,7 @@ class AssertifierRaises(BuiltinAssertionAssertifier):
 
 
 @dataclass
-class AssertifierWarns(BuiltinAssertionAssertifier):
+class AssertifierWarns(UnittestAssertionAssertifier):
     """assertify `Callable` raises `Warning`
 
     assertify `Callable` raises `Warning`
@@ -107,7 +107,7 @@ class AssertifierWarns(BuiltinAssertionAssertifier):
 
 
 @dataclass
-class AssertifierLogs(BuiltinAssertionAssertifier):
+class AssertifierLogs(UnittestAssertionAssertifier):
     """assert `logger` logs at a level equal or higher to `level`
 
     assertify `logger` logs at `level`

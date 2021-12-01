@@ -7,11 +7,11 @@ from typing import Type, Union, Tuple
 
 import unittest_assertions.regex
 
-from assertifiers.base import BuiltinAssertionAssertifier
+from assertifiers.base import UnittestAssertionAssertifier
 
 
 @dataclass
-class AssertifierRaisesRegex(BuiltinAssertionAssertifier):
+class AssertifierRaisesRegex(UnittestAssertionAssertifier):
     """assertify that the message in a raised exception matches a regex
 
     Example:
@@ -56,7 +56,7 @@ class AssertifierRaisesRegex(BuiltinAssertionAssertifier):
 
 
 @dataclass
-class AssertifierWarnsRegex(BuiltinAssertionAssertifier):
+class AssertifierWarnsRegex(UnittestAssertionAssertifier):
     """assertify that the message in a triggered warning matches a regexp.
 
     Example:
@@ -102,7 +102,7 @@ class AssertifierWarnsRegex(BuiltinAssertionAssertifier):
 
 
 @dataclass
-class AssertifierRegex(BuiltinAssertionAssertifier):
+class AssertifierRegex(UnittestAssertionAssertifier):
     """assertify `text` matches `expected_regex`
 
     Example:
@@ -137,7 +137,7 @@ class AssertifierRegex(BuiltinAssertionAssertifier):
 
 
 @dataclass
-class AssertifierNotRegex(BuiltinAssertionAssertifier):
+class AssertifierNotRegex(UnittestAssertionAssertifier):
     """assertify `text` does not match `unexpected_regex`
 
     Example:

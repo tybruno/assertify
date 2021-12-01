@@ -8,7 +8,7 @@ from typing import (
 import pytest
 from unittest_assertions.base import BuiltinAssertion
 
-from assertifiers.base import BuiltinAssertionAssertifier
+from assertifiers.base import UnittestAssertionAssertifier
 from assertifiers.comparison import AssertifyEqual
 
 
@@ -25,7 +25,7 @@ class TestBuiltinAssertionAssertify:
         Returns:
             None
         """
-        bulitin_assertion = BuiltinAssertionAssertifier(
+        bulitin_assertion = UnittestAssertionAssertifier(
             _assertion_cls=function
         )
         assert bulitin_assertion._assertion_cls == function

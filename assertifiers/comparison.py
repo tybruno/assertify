@@ -11,11 +11,11 @@ from typing import Any, Optional, List, Mapping, Sequence, Tuple, Set, Dict
 
 import unittest_assertions.comparison
 
-from assertifiers.base import BuiltinAssertionAssertifier
+from assertifiers.base import UnittestAssertionAssertifier
 
 
 @dataclass
-class EqualityAssertifier(BuiltinAssertionAssertifier):
+class EqualityAssertifier(UnittestAssertionAssertifier):
     """Parent Equality Assertifier class"""
 
     def __call__(
@@ -189,7 +189,7 @@ class AssertifyMultilineEqual(EqualityAssertifier):
 
 
 @dataclass
-class AssertifierSequenceEqual(BuiltinAssertionAssertifier):
+class AssertifierSequenceEqual(UnittestAssertionAssertifier):
     """assertify `seq1` == `seq2`
 
     asserfiy `seq1` is not equal to `seq2`
@@ -221,7 +221,7 @@ class AssertifierSequenceEqual(BuiltinAssertionAssertifier):
 
 
 @dataclass
-class AssertifierListEqual(BuiltinAssertionAssertifier):
+class AssertifierListEqual(UnittestAssertionAssertifier):
     """assertify `list1` == `list2`
 
     assertify `list1` is not equal to `list2`
@@ -254,7 +254,7 @@ class AssertifierListEqual(BuiltinAssertionAssertifier):
 
 
 @dataclass
-class AssertifierTupleEqual(BuiltinAssertionAssertifier):
+class AssertifierTupleEqual(UnittestAssertionAssertifier):
     """assertify `tuple1` == `tuple2`
 
     assertify `tuple1` is not equal to `tuple2`
@@ -289,7 +289,7 @@ class AssertifierTupleEqual(BuiltinAssertionAssertifier):
 
 
 @dataclass
-class AssertifierSetEqual(BuiltinAssertionAssertifier):
+class AssertifierSetEqual(UnittestAssertionAssertifier):
     """assertify `set1` == `set2`
 
     assertify `set1` is not deep equal to `set2`
@@ -322,7 +322,7 @@ class AssertifierSetEqual(BuiltinAssertionAssertifier):
 
 
 @dataclass
-class AssertifierDictEqual(BuiltinAssertionAssertifier):
+class AssertifierDictEqual(UnittestAssertionAssertifier):
     """assertify `dic1` == `dict2`
 
     assertify `dict1` is deep equal to `dict2`
@@ -355,7 +355,7 @@ class AssertifierDictEqual(BuiltinAssertionAssertifier):
 
 
 @dataclass
-class ComparisonAssertifier(BuiltinAssertionAssertifier):
+class ComparisonAssertifier(UnittestAssertionAssertifier):
     """Parent class for Comparison Assertifiers"""
 
     def __call__(self, a: Any, b: Any) -> bool:
