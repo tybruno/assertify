@@ -49,7 +49,7 @@ print(is_instance("example str", int)) # False
 from functools import partial
 from assertifiers.identity import AssertifyIsInstances
 
-is_instance = AssertifyIsInstances(must_pass=any)
+is_instance = AssertifyIsInstances(must_be_instance_of=any)
 predicate_is_instance = partial(is_instance,classes=[int,float])
 print(predicate_is_instance(obj=7.62)) # True
 
