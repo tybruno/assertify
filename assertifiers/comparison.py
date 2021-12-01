@@ -1,3 +1,8 @@
+""" Equality Assertifiers
+
+Objects provided by this module:
+    * `EqualityAssertifier`
+"""
 from dataclasses import (
     dataclass,
     field,
@@ -6,11 +11,11 @@ from typing import Any, Optional, List, Mapping, Sequence, Tuple, Set, Dict
 
 import unittest_assertions.comparison
 
-from assertifiers.base import BuiltinAssertionAssertify
+from assertifiers.base import BuiltinAssertionAssertifier
 
 
 @dataclass
-class EqualityAssertify(BuiltinAssertionAssertify):
+class EqualityAssertifier(BuiltinAssertionAssertifier):
     """Parent Equality Assertifier class"""
 
     def __call__(
@@ -38,7 +43,7 @@ class EqualityAssertify(BuiltinAssertionAssertify):
 
 
 @dataclass
-class AssertifyEqual(EqualityAssertify):
+class AssertifyEqual(EqualityAssertifier):
     """assertify `first` == `second`
 
     assertify `first` equals `second`
@@ -59,7 +64,7 @@ class AssertifyEqual(EqualityAssertify):
 
 
 @dataclass
-class AssertifyNotEqual(EqualityAssertify):
+class AssertifyNotEqual(EqualityAssertifier):
     """assertify `first` != `second`
 
     assertify `first` does not equal `second`
@@ -80,7 +85,7 @@ class AssertifyNotEqual(EqualityAssertify):
 
 
 @dataclass
-class AssertifyAlmostEqual(EqualityAssertify):
+class AssertifyAlmostEqual(EqualityAssertifier):
     """assertify `first` ~= `second`
 
     assertify `first` almost equals `second`
@@ -144,7 +149,7 @@ class AssertifyNotAlmostEqual(AssertifyAlmostEqual):
 
 
 @dataclass
-class AssertifyCountEqual(EqualityAssertify):
+class AssertifyCountEqual(EqualityAssertifier):
     """assertify `Counter(list(first))` ==  `Counter(list(second))`
 
     Assertify `first` count equals `second` count
@@ -163,7 +168,7 @@ class AssertifyCountEqual(EqualityAssertify):
 
 
 @dataclass
-class AssertifyMultilineEqual(EqualityAssertify):
+class AssertifyMultilineEqual(EqualityAssertifier):
     """assertify `first` multiline string == `second` multiline string
 
     Example:
@@ -184,13 +189,13 @@ class AssertifyMultilineEqual(EqualityAssertify):
 
 
 @dataclass
-class AssertifySequenceEqual(BuiltinAssertionAssertify):
+class AssertifierSequenceEqual(BuiltinAssertionAssertifier):
     """assertify `seq1` == `seq2`
 
     asserfiy `seq1` is not equal to `seq2`
 
     Example:
-        >>> assert_sequence_equal = AssertifySequenceEqual(raises=None)
+        >>> assert_sequence_equal = AssertifierSequenceEqual(raises=None)
         >>> assert_sequence_equal((1,2.5),[1,2.5])
         True
         >>> assert_sequence_equal((1,2),[1,2.5])
@@ -216,14 +221,14 @@ class AssertifySequenceEqual(BuiltinAssertionAssertify):
 
 
 @dataclass
-class AssertifyListEqual(BuiltinAssertionAssertify):
+class AssertifierListEqual(BuiltinAssertionAssertifier):
     """assertify `list1` == `list2`
 
     assertify `list1` is not equal to `list2`
 
     Example:
         >>> l = [1,2,3.5]
-        >>> assert_list_equal = AssertifyListEqual(raises=None)
+        >>> assert_list_equal = AssertifierListEqual(raises=None)
         >>> assert_list_equal(l,l)
         True
         >>> assert_list_equal([],l)
@@ -249,7 +254,7 @@ class AssertifyListEqual(BuiltinAssertionAssertify):
 
 
 @dataclass
-class AssertifyTupleEqual(BuiltinAssertionAssertify):
+class AssertifierTupleEqual(BuiltinAssertionAssertifier):
     """assertify `tuple1` == `tuple2`
 
     assertify `tuple1` is not equal to `tuple2`
@@ -258,7 +263,7 @@ class AssertifyTupleEqual(BuiltinAssertionAssertify):
 
     Example:
         >>> tup = (1,2,"hello")
-        >>> assert_tuple_equal = AssertifyTupleEqual(raises=None)
+        >>> assert_tuple_equal = AssertifierTupleEqual(raises=None)
         >>> assert_tuple_equal(tup,tup)
         True
         >>> assert_tuple_equal((),tup)
@@ -284,14 +289,14 @@ class AssertifyTupleEqual(BuiltinAssertionAssertify):
 
 
 @dataclass
-class AssertifySetEqual(BuiltinAssertionAssertify):
+class AssertifierSetEqual(BuiltinAssertionAssertifier):
     """assertify `set1` == `set2`
 
     assertify `set1` is not deep equal to `set2`
 
     Example:
         >>> _set = {1,2,5}
-        >>> assert_set_equal = AssertifySetEqual(raises=None)
+        >>> assert_set_equal = AssertifierSetEqual(raises=None)
         >>> assert_set_equal(_set,_set)
         True
         >>> assert_set_equal(_set,set())
@@ -317,14 +322,14 @@ class AssertifySetEqual(BuiltinAssertionAssertify):
 
 
 @dataclass
-class AssertifyDictEqual(BuiltinAssertionAssertify):
+class AssertifierDictEqual(BuiltinAssertionAssertifier):
     """assertify `dic1` == `dict2`
 
     assertify `dict1` is deep equal to `dict2`
 
     Example:
         >>> _dict = {"a": 1, "b":2}
-        >>> assert_dict_equal = AssertifyDictEqual(raises=None)
+        >>> assert_dict_equal = AssertifierDictEqual(raises=None)
         >>> assert_dict_equal(_dict,_dict)
         True
         >>> assert_dict_equal(dict(),_dict)
@@ -350,7 +355,7 @@ class AssertifyDictEqual(BuiltinAssertionAssertify):
 
 
 @dataclass
-class ComparisonAssertify(BuiltinAssertionAssertify):
+class ComparisonAssertifier(BuiltinAssertionAssertifier):
     """Parent class for Comparison Assertifiers"""
 
     def __call__(self, a: Any, b: Any) -> bool:
@@ -367,7 +372,7 @@ class ComparisonAssertify(BuiltinAssertionAssertify):
 
 
 @dataclass
-class AssertifyLess(ComparisonAssertify):
+class AssertifyLess(ComparisonAssertifier):
     """assertify `a` < `b`
 
     assertify `a` is less than `b`
@@ -386,7 +391,7 @@ class AssertifyLess(ComparisonAssertify):
 
 
 @dataclass
-class AssertifyLessEqual(ComparisonAssertify):
+class AssertifyLessEqual(ComparisonAssertifier):
     """assertify `a` <= `b`
 
     assertify `a` is less or equal to `b`
@@ -407,7 +412,7 @@ class AssertifyLessEqual(ComparisonAssertify):
 
 
 @dataclass
-class AssertifyGreater(ComparisonAssertify):
+class AssertifyGreater(ComparisonAssertifier):
     """assertify `a` > `b`
 
     assertify `a` is greater than `b`
@@ -426,7 +431,7 @@ class AssertifyGreater(ComparisonAssertify):
 
 
 @dataclass
-class AssertifyGreaterEqual(ComparisonAssertify):
+class AssertifyGreaterEqual(ComparisonAssertifier):
     """assertify `a` >= `b`
 
     assertify `a` is greater or equal to `b`

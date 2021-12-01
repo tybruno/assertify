@@ -20,12 +20,12 @@ from assertifiers.comparison import (
     AssertifyMultilineEqual,
     AssertifyAlmostEqual,
     AssertifyCountEqual,
-    AssertifyTupleEqual,
-    AssertifySequenceEqual,
+    AssertifierTupleEqual,
+    AssertifierSequenceEqual,
     AssertifyGreaterEqual,
-    AssertifyListEqual,
-    AssertifyDictEqual,
-    AssertifySetEqual,
+    AssertifierListEqual,
+    AssertifierDictEqual,
+    AssertifierSetEqual,
     AssertifyNotAlmostEqual,
     AssertifyLessEqual,
 )
@@ -171,7 +171,7 @@ class TestAssertifyMultilineEqual(AssertifierTester):
 
 
 class TestAssertifySequenceEqual(AssertifierTester):
-    _assertifier_cls = AssertifySequenceEqual
+    _assertifier_cls = AssertifierSequenceEqual
 
     @pytest.mark.parametrize(
         "testing_data",
@@ -189,7 +189,7 @@ class TestAssertifySequenceEqual(AssertifierTester):
 
 
 class TestAssertifyListEqual(AssertifierTester):
-    _assertifier_cls = AssertifyListEqual
+    _assertifier_cls = AssertifierListEqual
 
     @pytest.mark.parametrize(
         "testing_data",
@@ -208,7 +208,7 @@ class TestAssertifyListEqual(AssertifierTester):
 
 
 class TestAssertifyTupleEqual(AssertifierTester):
-    _assertifier_cls = AssertifyTupleEqual
+    _assertifier_cls = AssertifierTupleEqual
 
     @pytest.mark.parametrize(
         "testing_data",
@@ -236,7 +236,7 @@ class TestAssertifyTupleEqual(AssertifierTester):
 
 
 class TestAssertifySetEqual(AssertifierTester):
-    _assertifier_cls = AssertifySetEqual
+    _assertifier_cls = AssertifierSetEqual
 
     @pytest.mark.parametrize(
         "testing_data",
@@ -264,7 +264,7 @@ class TestAssertifySetEqual(AssertifierTester):
 
 
 class TestAssertifyDictEqual(AssertifierTester):
-    _assertifier_cls = AssertifyDictEqual
+    _assertifier_cls = AssertifierDictEqual
 
     @pytest.mark.parametrize(
         "testing_data",

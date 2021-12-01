@@ -8,7 +8,7 @@ from typing import (
 import pytest
 from unittest_assertions.base import BuiltinAssertion
 
-from assertifiers.base import BuiltinAssertionAssertify
+from assertifiers.base import BuiltinAssertionAssertifier
 from assertifiers.comparison import AssertifyEqual
 
 
@@ -25,7 +25,9 @@ class TestBuiltinAssertionAssertify:
         Returns:
             None
         """
-        bulitin_assertion = BuiltinAssertionAssertify(_assertion_cls=function)
+        bulitin_assertion = BuiltinAssertionAssertifier(
+            _assertion_cls=function
+        )
         assert bulitin_assertion._assertion_cls == function
 
     @pytest.mark.parametrize("arguments", (("hello", None, 2),))

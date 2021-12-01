@@ -5,10 +5,10 @@ import warnings
 import pytest
 
 from assertifiers.regex import (
-    AssertifyRegex,
-    AssertifyWarnsRegex,
-    AssertifyNotRegex,
-    AssertifyRaisesRegex,
+    AssertifierRegex,
+    AssertifierWarnsRegex,
+    AssertifierNotRegex,
+    AssertifierRaisesRegex,
 )
 from tests.base import AssertifierTester
 
@@ -22,7 +22,7 @@ def _legacy_function(msg, warning):
 
 
 class TestAssertifyRaisesRegex(AssertifierTester):
-    _assertifier_cls = AssertifyRaisesRegex
+    _assertifier_cls = AssertifierRaisesRegex
 
     @pytest.mark.parametrize(
         "testing_data",
@@ -40,7 +40,7 @@ class TestAssertifyRaisesRegex(AssertifierTester):
 
 
 class TestAssertWarnsRegex(AssertifierTester):
-    _assertifier_cls = AssertifyWarnsRegex
+    _assertifier_cls = AssertifierWarnsRegex
 
     @pytest.mark.parametrize(
         "testing_data",
@@ -81,7 +81,7 @@ class TestAssertWarnsRegex(AssertifierTester):
 
 
 class TestAssertRegex(AssertifierTester):
-    _assertifier_cls = AssertifyRegex
+    _assertifier_cls = AssertifierRegex
 
     @pytest.mark.parametrize(
         "testing_data",
@@ -99,7 +99,7 @@ class TestAssertRegex(AssertifierTester):
 
 
 class TestAssertNotRegex(AssertifierTester):
-    _assertifier_cls = AssertifyNotRegex
+    _assertifier_cls = AssertifierNotRegex
 
     @pytest.mark.parametrize(
         "testing_data",

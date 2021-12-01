@@ -3,12 +3,12 @@
 import pytest
 from pytest_builtin_types import _ALL_BASIC_TYPES_1, _ALL_BASIC_TYPES_2
 
-from assertifiers.container import AssertifyIn, AssertifyNotIn
+from assertifiers.container import AssertifierIn, AssertifyNotIn
 from tests.base import AssertifierTester
 
 
 class TestAssertIn(AssertifierTester):
-    _assertifier_cls = AssertifyIn
+    _assertifier_cls = AssertifierIn
 
     @pytest.mark.parametrize(
         "testing_data",

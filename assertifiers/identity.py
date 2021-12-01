@@ -13,17 +13,17 @@ import unittest_assertions.identity
 
 from assertifiers.base import (
     Assertifier,
-    BuiltinAssertionAssertify,
+    BuiltinAssertionAssertifier,
 )
 
 
 @dataclass
-class AssertifyIs(BuiltinAssertionAssertify):
+class AssertifierIs(BuiltinAssertionAssertifier):
     """assertify `expr1` is `expr2`
 
     Example:
         >>> value = "string"
-        >>> assert_is = AssertifyIs(raises=None)
+        >>> assert_is = AssertifierIs(raises=None)
         >>> assert_is(value,value)
         True
         >>> assert_is(2,value)
@@ -49,7 +49,7 @@ class AssertifyIs(BuiltinAssertionAssertify):
 
 
 @dataclass
-class AssertifyIsNot(AssertifyIs):
+class AssertifyIsNot(AssertifierIs):
     """assertify `expr1` is not `expr2`
 
     Example:
@@ -68,11 +68,11 @@ class AssertifyIsNot(AssertifyIs):
 
 
 @dataclass
-class AssertifyIsNone(BuiltinAssertionAssertify):
+class AssertifierIsNone(BuiltinAssertionAssertifier):
     """assertify `obj` is `None`
 
     Example:
-        >>> assert_is_none = AssertifyIsNone(raises=None)
+        >>> assert_is_none = AssertifierIsNone(raises=None)
         >>> assert_is_none(None)
         True
         >>> assert_is_none(True)
@@ -97,7 +97,7 @@ class AssertifyIsNone(BuiltinAssertionAssertify):
 
 
 @dataclass
-class AssertifyIsNotNone(AssertifyIsNone):
+class AssertifyIsNotNone(AssertifierIsNone):
     """assertify `obj` is not `None`
 
     Example:
@@ -114,13 +114,13 @@ class AssertifyIsNotNone(AssertifyIsNone):
 
 
 @dataclass
-class AssertifyIsInstance(BuiltinAssertionAssertify):
+class AssertifierIsInstance(BuiltinAssertionAssertifier):
     """assertify `obj` is an instance of `cls`
 
     assertify isinstance(obj,cls)
 
     Example:
-        >>> assert_is_instance = AssertifyIsInstance(raises=None)
+        >>> assert_is_instance = AssertifierIsInstance(raises=None)
         >>> assert_is_instance(2,int)
         True
         >>> assert_is_instance(2,float)
@@ -182,7 +182,7 @@ class AssertifyIsInstances(Assertifier):
         """
         if not isinstance(classes, Collection):
             classes: tuple = (classes,)
-        assertify_is_instance = AssertifyIsInstance(raises=None)
+        assertify_is_instance = AssertifierIsInstance(raises=None)
 
         results = tuple(
             assertify_is_instance(cls=cls, obj=obj) for cls in classes
@@ -199,7 +199,7 @@ class AssertifyIsInstances(Assertifier):
 
 
 @dataclass
-class AssertifyNotIsInstance(AssertifyIsInstance):
+class AssertifyNotIsInstance(AssertifierIsInstance):
     """assertify not isinstance(obj,cls)
 
     assertify not isinstance(obj,cls)

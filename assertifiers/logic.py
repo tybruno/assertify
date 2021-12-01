@@ -6,11 +6,11 @@ from typing import Any
 
 import unittest_assertions.logic
 
-from assertifiers.base import BuiltinAssertionAssertify
+from assertifiers.base import BuiltinAssertionAssertifier
 
 
 @dataclass
-class LogicAssertify(BuiltinAssertionAssertify):
+class LogicAssertifier(BuiltinAssertionAssertifier):
     """Logic Assertify base class"""
 
     def __call__(self, expr: Any) -> bool:
@@ -27,7 +27,7 @@ class LogicAssertify(BuiltinAssertionAssertify):
 
 
 @dataclass
-class AssertifyTrue(LogicAssertify):
+class AssertifyTrue(LogicAssertifier):
     """assertify `expr` is `True`
 
     Example:
@@ -48,7 +48,7 @@ class AssertifyTrue(LogicAssertify):
 
 
 @dataclass
-class AssertifyFalse(LogicAssertify):
+class AssertifyFalse(LogicAssertifier):
     """assert `expr` is False
 
     Example:

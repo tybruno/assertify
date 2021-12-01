@@ -11,11 +11,11 @@ from pytest_builtin_types import (
 )
 from copy import deepcopy
 from assertifiers.identity import (
-    AssertifyIs,
-    AssertifyIsNone,
+    AssertifierIs,
+    AssertifierIsNone,
     AssertifyIsInstances,
     AssertifyIsNot,
-    AssertifyIsInstance,
+    AssertifierIsInstance,
     AssertifyNotIsInstance,
     AssertifyNotIsInstances,
     AssertifyIsNotNone,
@@ -24,7 +24,7 @@ from tests.base import AssertifierTester
 
 
 class TestAssertifyIs(AssertifierTester):
-    _assertifier_cls = AssertifyIs
+    _assertifier_cls = AssertifierIs
 
     @pytest.mark.parametrize(
         "testing_data",
@@ -60,7 +60,7 @@ class TestAssertifyIsNot(AssertifierTester):
 
 
 class TestAssertifyIsNone(AssertifierTester):
-    _assertifier_cls = AssertifyIsNone
+    _assertifier_cls = AssertifierIsNone
 
     @pytest.mark.parametrize(
         "testing_data",
@@ -96,7 +96,7 @@ class TestAssertifyIsNotNone(AssertifierTester):
 
 
 class TestAssertifyIsInstance(AssertifierTester):
-    _assertifier_cls = AssertifyIsInstance
+    _assertifier_cls = AssertifierIsInstance
 
     @pytest.mark.parametrize(
         "testing_data",

@@ -6,17 +6,17 @@ from typing import Any, Container
 
 import unittest_assertions.container
 
-from assertifiers.base import BuiltinAssertionAssertify
+from assertifiers.base import BuiltinAssertionAssertifier
 
 
 @dataclass
-class AssertifyIn(BuiltinAssertionAssertify):
+class AssertifierIn(BuiltinAssertionAssertifier):
     """assertify `member` in `container`
 
     assertify `member` in `container`
 
     Example:
-        >>> assert_in = AssertifyIn(raises=None)
+        >>> assert_in = AssertifierIn(raises=None)
         >>> assert_in(member=1,container=[5,2,1])
         True
         >>> assert_in(member=1, container=(5,2))
@@ -42,7 +42,7 @@ class AssertifyIn(BuiltinAssertionAssertify):
 
 
 @dataclass
-class AssertifyNotIn(AssertifyIn):
+class AssertifyNotIn(AssertifierIn):
     """assertify `member` not in `container`
 
     assertify `member` in `container`

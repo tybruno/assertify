@@ -2,7 +2,7 @@
 
 Objects provided by this module:
     * `Assertifier`: Abstract Base Class for all assertify classes.
-    * `BuiltinAssertionAssertify`: Base Class for classes that extend `unittest_assertions`
+    * `BuiltinAssertionAssertifier`: Base Class for classes that extend `unittest_assertions`
 """
 from abc import (
     ABC,
@@ -36,7 +36,7 @@ class Assertifier(ABC):
 
 
 @dataclass
-class BuiltinAssertionAssertify(Assertifier):
+class BuiltinAssertionAssertifier(Assertifier):
     _assertion_cls: Type[BuiltinAssertion]
     raises: Optional[
         Union[None, Type[Exception], Type[AssertionError]]

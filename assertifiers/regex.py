@@ -7,15 +7,15 @@ from typing import Type, Union, Tuple
 
 import unittest_assertions.regex
 
-from assertifiers.base import BuiltinAssertionAssertify
+from assertifiers.base import BuiltinAssertionAssertifier
 
 
 @dataclass
-class AssertifyRaisesRegex(BuiltinAssertionAssertify):
+class AssertifierRaisesRegex(BuiltinAssertionAssertifier):
     """assertify that the message in a raised exception matches a regex
 
     Example:
-        >>> assert_raises_regex = AssertifyRaisesRegex(raises=None)
+        >>> assert_raises_regex = AssertifierRaisesRegex(raises=None)
         >>> assert_raises_regex(ValueError, "invalid literal for.*XYZ'$",
         ... int, 'XYZ')
         True
@@ -56,7 +56,7 @@ class AssertifyRaisesRegex(BuiltinAssertionAssertify):
 
 
 @dataclass
-class AssertifyWarnsRegex(BuiltinAssertionAssertify):
+class AssertifierWarnsRegex(BuiltinAssertionAssertifier):
     """assertify that the message in a triggered warning matches a regexp.
 
     Example:
@@ -64,7 +64,7 @@ class AssertifyWarnsRegex(BuiltinAssertionAssertify):
         >>>
         >>> def legacy_function(msg):
         ...     warnings.warn(msg,DeprecationWarning)
-        >>> assert_warns_regex = AssertifyWarnsRegex(raises=None)
+        >>> assert_warns_regex = AssertifierWarnsRegex(raises=None)
         >>> assert_warns_regex(DeprecationWarning, r'deprecated',
         ... legacy_function,r'legacy_function is deprecated')
         True
@@ -102,12 +102,12 @@ class AssertifyWarnsRegex(BuiltinAssertionAssertify):
 
 
 @dataclass
-class AssertifyRegex(BuiltinAssertionAssertify):
+class AssertifierRegex(BuiltinAssertionAssertifier):
     """assertify `text` matches `expected_regex`
 
     Example:
         >>> text = "Ala ma kota"
-        >>> assert_regex = AssertifyRegex(raises=None)
+        >>> assert_regex = AssertifierRegex(raises=None)
         >>> assert_regex(text, r"k.t")
         True
         >>> assert_regex(text, r"wrong")
@@ -137,12 +137,12 @@ class AssertifyRegex(BuiltinAssertionAssertify):
 
 
 @dataclass
-class AssertifyNotRegex(BuiltinAssertionAssertify):
+class AssertifierNotRegex(BuiltinAssertionAssertifier):
     """assertify `text` does not match `unexpected_regex`
 
     Example:
         >>> text = "Ala ma kota"
-        >>> assert_regex = AssertifyNotRegex(raises=None)
+        >>> assert_regex = AssertifierNotRegex(raises=None)
         >>> assert_regex("Ala ma kota", r"wrong")
         True
         >>> assert_regex(text, r"k.t")

@@ -15,11 +15,11 @@ from typing import (
 
 import unittest_assertions.control
 
-from assertifiers.base import BuiltinAssertionAssertify
+from assertifiers.base import BuiltinAssertionAssertifier
 
 
 @dataclass
-class AssertifyRaises(BuiltinAssertionAssertify):
+class AssertifierRaises(BuiltinAssertionAssertifier):
     """assertify `Callable` raises `expected_exception`
 
     assertify `Callable` raises `Exception`
@@ -29,7 +29,7 @@ class AssertifyRaises(BuiltinAssertionAssertify):
     Example:
         >>> def _raise_value_error():
         ...     raise ValueError()
-        >>> assert_raises = AssertifyRaises(raises=None)
+        >>> assert_raises = AssertifierRaises(raises=None)
         >>> assert_raises(expected_exception=ValueError,callable_=_raise_value_error )
         True
     """
@@ -65,7 +65,7 @@ class AssertifyRaises(BuiltinAssertionAssertify):
 
 
 @dataclass
-class AssertifyWarns(BuiltinAssertionAssertify):
+class AssertifierWarns(BuiltinAssertionAssertifier):
     """assertify `Callable` raises `Warning`
 
     assertify `Callable` raises `Warning`
@@ -74,7 +74,7 @@ class AssertifyWarns(BuiltinAssertionAssertify):
         >>> import warnings
         >>> def _warning(message, warning: Warning):
         ...     warnings.warn(message, warning)
-        >>> assert_warns = AssertifyWarns(raises=None)
+        >>> assert_warns = AssertifierWarns(raises=None)
         >>> assert_warns( Warning,_warning, str(), Warning )
         True
     """
@@ -107,7 +107,7 @@ class AssertifyWarns(BuiltinAssertionAssertify):
 
 
 @dataclass
-class AssertifyLogs(BuiltinAssertionAssertify):
+class AssertifierLogs(BuiltinAssertionAssertifier):
     """assert `logger` logs at a level equal or higher to `level`
 
     assertify `logger` logs at `level`

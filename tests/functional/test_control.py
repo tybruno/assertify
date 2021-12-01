@@ -3,7 +3,7 @@ import warnings
 
 import pytest
 
-from assertifiers.control import AssertifyWarns, AssertifyRaises
+from assertifiers.control import AssertifierWarns, AssertifierRaises
 from tests.base import AssertifierTester
 
 
@@ -16,7 +16,7 @@ def _warning(message, warning: Warning):
 
 
 class TestAssertRaises(AssertifierTester):
-    _assertifier_cls = AssertifyRaises
+    _assertifier_cls = AssertifierRaises
 
     @pytest.mark.parametrize(
         "testing_data",
@@ -56,7 +56,7 @@ class TestAssertRaises(AssertifierTester):
 
 
 class TestAssertWarns(AssertifierTester):
-    _assertifier_cls = AssertifyWarns
+    _assertifier_cls = AssertifierWarns
 
     @pytest.mark.parametrize(
         "testing_data",
