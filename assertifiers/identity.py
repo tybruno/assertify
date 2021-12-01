@@ -7,7 +7,6 @@ from typing import (
     Optional,
     Type,
     Union,
-    Callable,
 )
 
 import unittest_assertions.identity
