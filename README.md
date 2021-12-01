@@ -10,7 +10,6 @@ assertify -- assert (ver)ify -- is a Flexible, and Extendable python3.6+ library
 * **Great Developer Experience**: Being fully typed makes it great for editor support.
 * **There is More!!!**:
     * [unittest_assertions](https://github.com/tybruno/unittest_assertions): Assertify is built on top of the `unittest_assertions`, which is a library that converts the assertions from `unittest` to standalone assertions.
-    * [assertify_predicates](https://github.com/tybruno/assertify_predicates): Is an extension of Assertify which allows for assertifying predicates. This is useful for validating variables or user input.
     * [descriptify](https://github.com/tybruno/descriptify): Descriptify is a library that contians helpful python descriptors. It uses `assertify_predicates` to validate various descriptors.
 
 ## Installation
@@ -44,6 +43,18 @@ from assertifiers.identity import AssertifyIsInstance
 is_instance = AssertifyIsInstance(raises=None)
 print(is_instance("example str", int)) # False
 ```
+
+### Predicate (Partial Function) Example
+```python
+from functools import partial
+from assertifiers.identity import AssertifyIsInstances
+
+is_instance = AssertifyIsInstances(must_pass=any)
+predicate_is_instance = partial(is_instance,classes=[int,float])
+print(predicate_is_instance(obj=7.62)) # True
+
+```
+
 # Assertifiers
 ## Comparison
 | Assertifier | Expression | raises |
@@ -71,8 +82,8 @@ print(is_instance("example str", int)) # False
 ## Control
 | Assertifier | Expression | raises |
 |-----------------|----------------|-----------|
-|AssertifyRaises| excpected_exception | ValueError|
-|AssertifyWarns| excpected_warning| ValueError|
+|AssertifyRaises| expected_exception | ValueError|
+|AssertifyWarns| expected_warning| ValueError|
 |AssertifyLogs| logger(level) | ValueError|
 ## Identity
 | Assertifier | Expression | raises |
