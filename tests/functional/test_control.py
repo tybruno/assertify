@@ -28,9 +28,7 @@ class TestAssertRaises(AssertifierTester):
     def test_assertify_passes(self, testing_data: list):
         expected_exception = testing_data.pop(0)
 
-        super().test_assertify_passes(
-            expected_exception=expected_exception, *testing_data
-        )
+        super().test_assertify_passes(expected_exception, *testing_data)
 
     @pytest.mark.parametrize(
         "testing_data",
@@ -43,9 +41,7 @@ class TestAssertRaises(AssertifierTester):
     )
     def test_assertify_fails(self, testing_data: list):
         expected_exception = testing_data.pop(0)
-        super().test_assertify_fails(
-            expected_exception=expected_exception, *testing_data
-        )
+        super().test_assertify_fails(expected_exception, *testing_data)
 
     @pytest.mark.parametrize(
         "testing_data",
@@ -56,7 +52,7 @@ class TestAssertRaises(AssertifierTester):
 
         with pytest.raises(testing_data[2]):
             expected_exception = testing_data.pop(0)
-            assert_raises(expected_exception=expected_exception, *testing_data)
+            assert_raises(expected_exception, *testing_data)
 
 
 class TestAssertWarns(AssertifierTester):
@@ -71,9 +67,7 @@ class TestAssertWarns(AssertifierTester):
     )
     def test_assertify_passes(self, testing_data: list):
         expected_warning = testing_data.pop(0)
-        super().test_assertify_passes(
-            expected_warning=expected_warning, *testing_data
-        )
+        super().test_assertify_passes(expected_warning, *testing_data)
 
     @pytest.mark.parametrize(
         "testing_data",
@@ -84,6 +78,4 @@ class TestAssertWarns(AssertifierTester):
     )
     def test_assertify_fails(self, testing_data: list):
         expected_warning = testing_data.pop(0)
-        super().test_assertify_fails(
-            expected_warning=expected_warning, *testing_data
-        )
+        super().test_assertify_fails(expected_warning, *testing_data)
