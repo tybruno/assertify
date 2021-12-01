@@ -19,12 +19,33 @@ from assertifiers.base import (
 
 @dataclass
 class AssertifyIs(BuiltinAssertionAssertify):
+    """assertify `expr1` is `expr2`
+
+    Example:
+        >>> value = "string"
+        >>> assert_is = AssertifyIs(raises=None)
+        >>> assert_is(value,value)
+        True
+        >>> assert_is(2,value)
+        False
+    """
+
     _assertion_cls: unittest_assertions.identity.AssertIs = field(
         default=unittest_assertions.identity.AssertIs, init=False
     )
 
-    def __call__(self, exp1, exp2) -> bool:
-        return super().__call__(expr1=exp1, expr2=exp2)
+    def __call__(self, expr1: Any, expr2: Any) -> bool:
+        """assertify `expr1` is `expr2`
+
+        Args:
+            expr1: check if is `expr2`
+            expr2: check if is `expr1
+
+        Returns:
+            `True` if `expr1` is `expr2`
+        """
+        result: bool = super().__call__(expr1=expr1, expr2=expr2)
+        return result
 
 
 @dataclass
