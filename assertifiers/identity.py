@@ -122,6 +122,9 @@ class AssertifyIsInstance(BuiltinAssertionAssertify):
     Example:
         >>> assert_is_instance = AssertifyIsInstance(raises=None)
         >>> assert_is_instance(2,int)
+        True
+        >>> assert_is_instance(2,float)
+        False
     """
 
     _assertion_cls: unittest_assertions.identity.AssertIsInstance = field(
@@ -150,7 +153,7 @@ class AssertifyIsInstances(Assertifier):
     """assertify `obj` is an instance of `any` or `all` of `classes`
 
     Example:
-        >>> assertify_is_instances = AssertifyIsInstances(raises=None, must_pass=any)
+        >>> assertify_is_instances = AssertifyIsInstances(raises=None, must_be_instance_of=any)
         >>> assertify_is_instances(1,classes=(int,float))
         True
         >>> assertify_is_instances(1,classes=(str,list))
