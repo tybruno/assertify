@@ -1,3 +1,9 @@
+""" Base classes for other assertifiers
+
+Objects provided by this module:
+    * `Assertifier`: Abstract Base Class for all assertify classes.
+    * `BuiltinAssertionAssertify`: Base Class for classes that extend `unittest_assertions`
+"""
 from abc import (
     ABC,
     abstractmethod,
