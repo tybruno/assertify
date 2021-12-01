@@ -15,8 +15,8 @@ class AssertifierRaisesRegex(BuiltinAssertionAssertifier):
     """assertify that the message in a raised exception matches a regex
 
     Example:
-        >>> assert_raises_regex = AssertifierRaisesRegex(raises=None)
-        >>> assert_raises_regex(ValueError, "invalid literal for.*XYZ'$",
+        >>> assertify_raises_regex = AssertifierRaisesRegex(raises=None)
+        >>> assertify_raises_regex(ValueError, "invalid literal for.*XYZ'$",
         ... int, 'XYZ')
         True
     """
@@ -64,8 +64,8 @@ class AssertifierWarnsRegex(BuiltinAssertionAssertifier):
         >>>
         >>> def legacy_function(msg):
         ...     warnings.warn(msg,DeprecationWarning)
-        >>> assert_warns_regex = AssertifierWarnsRegex(raises=None)
-        >>> assert_warns_regex(DeprecationWarning, r'deprecated',
+        >>> assertify_warns_regex = AssertifierWarnsRegex(raises=None)
+        >>> assertify_warns_regex(DeprecationWarning, r'deprecated',
         ... legacy_function,r'legacy_function is deprecated')
         True
     """
@@ -107,10 +107,10 @@ class AssertifierRegex(BuiltinAssertionAssertifier):
 
     Example:
         >>> text = "Ala ma kota"
-        >>> assert_regex = AssertifierRegex(raises=None)
-        >>> assert_regex(text, r"k.t")
+        >>> assertify_regex = AssertifierRegex(raises=None)
+        >>> assertify_regex(text, r"k.t")
         True
-        >>> assert_regex(text, r"wrong")
+        >>> assertify_regex(text, r"wrong")
         False
     """
 
@@ -142,10 +142,10 @@ class AssertifierNotRegex(BuiltinAssertionAssertifier):
 
     Example:
         >>> text = "Ala ma kota"
-        >>> assert_regex = AssertifierNotRegex(raises=None)
-        >>> assert_regex("Ala ma kota", r"wrong")
+        >>> assertify_regex = AssertifierNotRegex(raises=None)
+        >>> assertify_regex("Ala ma kota", r"wrong")
         True
-        >>> assert_regex(text, r"k.t")
+        >>> assertify_regex(text, r"k.t")
         False
     """
 

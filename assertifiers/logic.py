@@ -31,14 +31,14 @@ class AssertifyTrue(LogicAssertifier):
     """assertify `expr` is `True`
 
     Example:
-        >>> assert_true = AssertifyTrue(raises=None)
-        >>> assert_true(True)
+        >>> assertify_true = AssertifyTrue(raises=None)
+        >>> assertify_true(True)
         True
-        >>> assert_true(1)
+        >>> assertify_true(1)
         True
-        >>> assert_true(0)
+        >>> assertify_true(0)
         False
-        >>> assert_true(False)
+        >>> assertify_true(False)
         False
     """
 
@@ -52,14 +52,14 @@ class AssertifyFalse(LogicAssertifier):
     """assert `expr` is False
 
     Example:
-        >>> assert_false = AssertifyFalse(raises=None)
-        >>> assert_false(False)
+        >>> assertify_false = AssertifyFalse(raises=None)
+        >>> assertify_false(False)
         True
-        >>> assert_false(0)
+        >>> assertify_false(0)
         True
-        >>> assert_false(1)
+        >>> assertify_false(1)
         False
-        >>> assert_false(True)
+        >>> assertify_false(True)
         False
     """
 

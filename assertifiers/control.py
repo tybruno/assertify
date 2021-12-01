@@ -29,8 +29,8 @@ class AssertifierRaises(BuiltinAssertionAssertifier):
     Example:
         >>> def _raise_value_error():
         ...     raise ValueError()
-        >>> assert_raises = AssertifierRaises(raises=None)
-        >>> assert_raises(expected_exception=ValueError,callable_=_raise_value_error )
+        >>> assertify_raises = AssertifierRaises(raises=None)
+        >>> assertify_raises(expected_exception=ValueError,callable_=_raise_value_error )
         True
     """
 
@@ -74,8 +74,8 @@ class AssertifierWarns(BuiltinAssertionAssertifier):
         >>> import warnings
         >>> def _warning(message, warning: Warning):
         ...     warnings.warn(message, warning)
-        >>> assert_warns = AssertifierWarns(raises=None)
-        >>> assert_warns( Warning,_warning, str(), Warning )
+        >>> assertify_warns = AssertifierWarns(raises=None)
+        >>> assertify_warns( Warning,_warning, str(), Warning )
         True
     """
 

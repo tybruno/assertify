@@ -23,10 +23,10 @@ class AssertifierIs(BuiltinAssertionAssertifier):
 
     Example:
         >>> value = "string"
-        >>> assert_is = AssertifierIs(raises=None)
-        >>> assert_is(value,value)
+        >>> assertify_is = AssertifierIs(raises=None)
+        >>> assertify_is(value,value)
         True
-        >>> assert_is(2,value)
+        >>> assertify_is(2,value)
         False
     """
 
@@ -55,10 +55,10 @@ class AssertifyIsNot(AssertifierIs):
     Example:
         >>> value1 = "string1"
         >>> value2 = "string2"
-        >>> assert_is_not = AssertifyIsNot(raises=None)
-        >>> assert_is_not(value1,value2)
+        >>> assertify_is_not = AssertifyIsNot(raises=None)
+        >>> assertify_is_not(value1,value2)
         True
-        >>> assert_is_not(value1,value1)
+        >>> assertify_is_not(value1,value1)
         False
     """
 
@@ -72,10 +72,10 @@ class AssertifierIsNone(BuiltinAssertionAssertifier):
     """assertify `obj` is `None`
 
     Example:
-        >>> assert_is_none = AssertifierIsNone(raises=None)
-        >>> assert_is_none(None)
+        >>> assertify_is_none = AssertifierIsNone(raises=None)
+        >>> assertify_is_none(None)
         True
-        >>> assert_is_none(True)
+        >>> assertify_is_none(True)
         False
     """
 
@@ -101,10 +101,10 @@ class AssertifyIsNotNone(AssertifierIsNone):
     """assertify `obj` is not `None`
 
     Example:
-        >>> assert_is_not_none = AssertifyIsNotNone(raises=None)
-        >>> assert_is_not_none("")
+        >>> assertify_is_not_none = AssertifyIsNotNone(raises=None)
+        >>> assertify_is_not_none("")
         True
-        >>> assert_is_not_none(None)
+        >>> assertify_is_not_none(None)
         False
     """
 
@@ -120,10 +120,10 @@ class AssertifierIsInstance(BuiltinAssertionAssertifier):
     assertify isinstance(obj,cls)
 
     Example:
-        >>> assert_is_instance = AssertifierIsInstance(raises=None)
-        >>> assert_is_instance(2,int)
+        >>> assertify_is_instance = AssertifierIsInstance(raises=None)
+        >>> assertify_is_instance(2,int)
         True
-        >>> assert_is_instance(2,float)
+        >>> assertify_is_instance(2,float)
         False
     """
 
@@ -205,10 +205,10 @@ class AssertifyNotIsInstance(AssertifierIsInstance):
     assertify not isinstance(obj,cls)
 
     Example:
-        >>> assert_is_instance = AssertifyNotIsInstance(raises=None)
-        >>> assert_is_instance(2.5,int)
+        >>> assertify_is_instance = AssertifyNotIsInstance(raises=None)
+        >>> assertify_is_instance(2.5,int)
         True
-        >>> assert_is_instance(2,int)
+        >>> assertify_is_instance(2,int)
         False
     """
 

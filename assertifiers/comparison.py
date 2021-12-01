@@ -49,12 +49,12 @@ class AssertifyEqual(EqualityAssertifier):
     assertify `first` equals `second`
 
     Example:
-        >>> assert_equal = AssertifyEqual(raises=None)
-        >>> assert_equal(1,1)
+        >>> assertify_equal = AssertifyEqual(raises=None)
+        >>> assertify_equal(1,1)
         True
-        >>> assert_equal(first="hello",second="hello")
+        >>> assertify_equal(first="hello",second="hello")
         True
-        >>> assert_equal(1,2)
+        >>> assertify_equal(1,2)
         False
     """
 
@@ -70,12 +70,12 @@ class AssertifyNotEqual(EqualityAssertifier):
     assertify `first` does not equal `second`
 
     Example:
-        >>> assert_equal = AssertifyNotEqual(raises=None)
-        >>> assert_equal(1,2)
+        >>> assertify_equal = AssertifyNotEqual(raises=None)
+        >>> assertify_equal(1,2)
         True
-        >>> assert_equal(first="foo",second="bar")
+        >>> assertify_equal(first="foo",second="bar")
         True
-        >>> assert_equal(1,1)
+        >>> assertify_equal(1,1)
         False
     """
 
@@ -91,13 +91,13 @@ class AssertifyAlmostEqual(EqualityAssertifier):
     assertify `first` almost equals `second`
 
     Example:
-        >>> assert_not_almost_equal = AssertifyNotAlmostEqual(raises=None)
-        >>> assert_not_almost_equal(1.00000001, 2.0)
+        >>> assertify_not_almost_equal = AssertifyNotAlmostEqual(raises=None)
+        >>> assertify_not_almost_equal(1.00000001, 2.0)
         True
-        >>> assert_not_almost_equal(first=1.1,second= 1.0,
+        >>> assertify_not_almost_equal(first=1.1,second= 1.0,
         ... places=None, delta=0.05)
         True
-        >>> assert_not_almost_equal(1.000001,1,delta=0.05)
+        >>> assertify_not_almost_equal(1.000001,1,delta=0.05)
         False
     """
 
@@ -131,12 +131,12 @@ class AssertifyNotAlmostEqual(AssertifyAlmostEqual):
 
     Assertify `first` does not almost equal `second`
     Example:
-        >>> assert_almost_equal = AssertifyAlmostEqual(raises=None)
-        >>> assert_almost_equal(1.00000001, 1.0)
+        >>> assertify_almost_equal = AssertifyAlmostEqual(raises=None)
+        >>> assertify_almost_equal(1.00000001, 1.0)
         True
-        >>> assert_almost_equal(first=1.1, second=1.0, places=None, delta=0.5)
+        >>> assertify_almost_equal(first=1.1, second=1.0, places=None, delta=0.5)
         True
-        >>> assert_almost_equal(1.00001, 2.0)
+        >>> assertify_almost_equal(1.00001, 2.0)
         False
     """
 
@@ -155,10 +155,10 @@ class AssertifyCountEqual(EqualityAssertifier):
     Assertify `first` count equals `second` count
 
     Example:
-        >>> assert_count_equal = AssertifyCountEqual(raises=None)
-        >>> assert_count_equal([1,2],(1,2))
+        >>> assertify_count_equal = AssertifyCountEqual(raises=None)
+        >>> assertify_count_equal([1,2],(1,2))
         True
-        >>> assert_count_equal([],[1,2])
+        >>> assertify_count_equal([],[1,2])
         False
     """
 
@@ -173,10 +173,10 @@ class AssertifyMultilineEqual(EqualityAssertifier):
 
     Example:
         >>> multiline = 'line1\\nline2'
-        >>> assert_multiline_equal = AssertifyMultilineEqual(raises=None)
-        >>> assert_multiline_equal(first=multiline,second=multiline)
+        >>> assertify_multiline_equal = AssertifyMultilineEqual(raises=None)
+        >>> assertify_multiline_equal(first=multiline,second=multiline)
         True
-        >>> assert_multiline_equal(first="",second=multiline)
+        >>> assertify_multiline_equal(first="",second=multiline)
         False
     """
 
@@ -195,10 +195,10 @@ class AssertifierSequenceEqual(BuiltinAssertionAssertifier):
     asserfiy `seq1` is not equal to `seq2`
 
     Example:
-        >>> assert_sequence_equal = AssertifierSequenceEqual(raises=None)
-        >>> assert_sequence_equal((1,2.5),[1,2.5])
+        >>> assertify_sequence_equal = AssertifierSequenceEqual(raises=None)
+        >>> assertify_sequence_equal((1,2.5),[1,2.5])
         True
-        >>> assert_sequence_equal((1,2),[1,2.5])
+        >>> assertify_sequence_equal((1,2),[1,2.5])
         False
     """
 
@@ -228,10 +228,10 @@ class AssertifierListEqual(BuiltinAssertionAssertifier):
 
     Example:
         >>> l = [1,2,3.5]
-        >>> assert_list_equal = AssertifierListEqual(raises=None)
-        >>> assert_list_equal(l,l)
+        >>> assertify_list_equal = AssertifierListEqual(raises=None)
+        >>> assertify_list_equal(l,l)
         True
-        >>> assert_list_equal([],l)
+        >>> assertify_list_equal([],l)
         False
     """
 
@@ -263,10 +263,10 @@ class AssertifierTupleEqual(BuiltinAssertionAssertifier):
 
     Example:
         >>> tup = (1,2,"hello")
-        >>> assert_tuple_equal = AssertifierTupleEqual(raises=None)
-        >>> assert_tuple_equal(tup,tup)
+        >>> assertify_tuple_equal = AssertifierTupleEqual(raises=None)
+        >>> assertify_tuple_equal(tup,tup)
         True
-        >>> assert_tuple_equal((),tup)
+        >>> assertify_tuple_equal((),tup)
         False
     """
 
@@ -296,10 +296,10 @@ class AssertifierSetEqual(BuiltinAssertionAssertifier):
 
     Example:
         >>> _set = {1,2,5}
-        >>> assert_set_equal = AssertifierSetEqual(raises=None)
-        >>> assert_set_equal(_set,_set)
+        >>> assertify_set_equal = AssertifierSetEqual(raises=None)
+        >>> assertify_set_equal(_set,_set)
         True
-        >>> assert_set_equal(_set,set())
+        >>> assertify_set_equal(_set,set())
         False
     """
 
@@ -329,10 +329,10 @@ class AssertifierDictEqual(BuiltinAssertionAssertifier):
 
     Example:
         >>> _dict = {"a": 1, "b":2}
-        >>> assert_dict_equal = AssertifierDictEqual(raises=None)
-        >>> assert_dict_equal(_dict,_dict)
+        >>> assertify_dict_equal = AssertifierDictEqual(raises=None)
+        >>> assertify_dict_equal(_dict,_dict)
         True
-        >>> assert_dict_equal(dict(),_dict)
+        >>> assertify_dict_equal(dict(),_dict)
         False
     """
 
@@ -378,10 +378,10 @@ class AssertifyLess(ComparisonAssertifier):
     assertify `a` is less than `b`
 
     Example:
-        >>> assert_less = AssertifyLess(raises=None)
-        >>> assert_less(1,2)
+        >>> assertify_less = AssertifyLess(raises=None)
+        >>> assertify_less(1,2)
         True
-        >>> assert_less(1,1)
+        >>> assertify_less(1,1)
         False
     """
 
@@ -397,12 +397,12 @@ class AssertifyLessEqual(ComparisonAssertifier):
     assertify `a` is less or equal to `b`
 
     Example:
-        >>> assert_less = AssertifyLessEqual(raises=None)
-        >>> assert_less(1,2)
+        >>> assertify_less = AssertifyLessEqual(raises=None)
+        >>> assertify_less(1,2)
         True
-        >>> assert_less(2,2)
+        >>> assertify_less(2,2)
         True
-        >>> assert_less(3,2)
+        >>> assertify_less(3,2)
         False
     """
 
@@ -418,10 +418,10 @@ class AssertifyGreater(ComparisonAssertifier):
     assertify `a` is greater than `b`
 
     Example:
-        >>> assert_greater = AssertifyGreater(raises=None)
-        >>> assert_greater(2,1)
+        >>> assertify_greater = AssertifyGreater(raises=None)
+        >>> assertify_greater(2,1)
         True
-        >>> assert_greater(2,2)
+        >>> assertify_greater(2,2)
         False
     """
 
@@ -437,12 +437,12 @@ class AssertifyGreaterEqual(ComparisonAssertifier):
     assertify `a` is greater or equal to `b`
 
     Example:
-        >>> assert_greater_equal = AssertifyGreaterEqual(raises=None)
-        >>> assert_greater_equal(2,1)
+        >>> assertify_greater_equal = AssertifyGreaterEqual(raises=None)
+        >>> assertify_greater_equal(2,1)
         True
-        >>> assert_greater_equal(2.0,2)
+        >>> assertify_greater_equal(2.0,2)
         True
-        >>> assert_greater_equal(2,3)
+        >>> assertify_greater_equal(2,3)
         False
     """
 

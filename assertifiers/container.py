@@ -16,10 +16,10 @@ class AssertifierIn(BuiltinAssertionAssertifier):
     assertify `member` in `container`
 
     Example:
-        >>> assert_in = AssertifierIn(raises=None)
-        >>> assert_in(member=1,container=[5,2,1])
+        >>> assertify_in = AssertifierIn(raises=None)
+        >>> assertify_in(member=1,container=[5,2,1])
         True
-        >>> assert_in(member=1, container=(5,2))
+        >>> assertify_in(member=1, container=(5,2))
         False
     """
 
@@ -48,10 +48,10 @@ class AssertifyNotIn(AssertifierIn):
     assertify `member` in `container`
 
     Example:
-        >>> assert_not_in = AssertifyNotIn(raises=None)
-        >>> assert_not_in(member=1,container=[5,2,3])
+        >>> assertify_not_in = AssertifyNotIn(raises=None)
+        >>> assertify_not_in(member=1,container=[5,2,3])
         True
-        >>> assert_not_in(member=1,container=(2,1,3))
+        >>> assertify_not_in(member=1,container=(2,1,3))
         False
     """
 
