@@ -4,6 +4,7 @@ from dataclasses import (
     field,
 )
 from typing import Type, Union, Tuple
+
 import unittest_assertions.regex
 
 from assertifiers.base import BuiltinAssertionAssertify

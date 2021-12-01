@@ -2,7 +2,6 @@ from dataclasses import (
     dataclass,
     field,
 )
-
 from typing import Any, Optional, List, Mapping, Sequence, Tuple, Set, Dict
 
 import unittest_assertions.comparison

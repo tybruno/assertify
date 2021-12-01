@@ -1,3 +1,4 @@
+import logging
 from dataclasses import (
     dataclass,
     field,
@@ -11,7 +12,7 @@ from typing import (
     Collection,
     Mapping,
 )
-import logging
+
 import unittest_assertions.control
 
 from assertifiers.base import BuiltinAssertionAssertify
