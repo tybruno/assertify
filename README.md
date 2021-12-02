@@ -63,7 +63,7 @@ print(predicate_is_instance(obj=7.62)) # True
 | Assertifier | Expression | raises |
 |-----------------|----------------|-----------|
 |AssertifyEqual| first == second| ValueError|
-| AsserifyNotEqual| first != Second | ValueError|
+|AssertifyNotEqual| first != Second | ValueError|
 |AssertifyAlmostEqual| first ~ second| ValueError|
 |AssertifyNotAlmostEqual| first !~ second| ValueError|
 |AssertifyCountEqual| len(first) == len(second)| ValueError|
