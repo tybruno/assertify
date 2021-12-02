@@ -17,7 +17,7 @@ assertify -- assert (ver)ify -- is a Flexible, and Extendable python3.6+ library
 pip install assertify
 ```
 ## Example
-Each Assertifier raises an appropriate exception by default.
+ raises an appropriate exception by default.
 
 ### Exception Example
 `AssertifyIsInstance` will raise a `TypeError` by default, but you can also specify any other type of exception.
@@ -62,26 +62,26 @@ print(predicate_is_instance(obj=7.62)) # True
 ## Comparison
 | Assertifier | Expression | raises |
 |-----------------|----------------|-----------|
-|AssertifyEqual| first == second| ValueError|
-|AssertifyNotEqual| first != Second | ValueError|
-|AssertifyAlmostEqual| first ~ second| ValueError|
-|AssertifyNotAlmostEqual| first !~ second| ValueError|
-|AssertifyCountEqual| len(first) == len(second)| ValueError|
-|AssertifyMultilineEqual| first.splitlines() == second.splitlines()| ValueError|
-|AssertifySequenceEqual| seq1 == seq2| ValueError|
-|AssertifyListEqual| list1 == list2| ValueError|
-|AssertifyTupleEqual| tuple1 == tuple2| ValueError|
-|AssertifySetEqual| set1 == set2 | ValueError|
-|AssertifyDictEqual| dict1 == dict2| ValueError|
-|AssertifyLess| a < b| ValueError|
-|AssertifyLessEqual| a <= b | ValueError|
-|AssertifyGreater| a > b | ValueError|
-|AssertifyGreater| a >= b | ValueError|
+|AssertifyEqual| `first == second`| ValueError|
+|AssertifyNotEqual| `first != Second` | ValueError|
+|AssertifyAlmostEqual| `first ~= second`| ValueError|
+|AssertifyNotAlmostEqual| `first !~= second`| ValueError|
+|AssertifyCountEqual| `len(first) == len(second)`| ValueError|
+|AssertifyMultilineEqual| `first.splitlines() == second.splitlines()`| ValueError|
+|AssertifySequenceEqual| `seq1 == seq2`| ValueError|
+|AssertifyListEqual| `list1 == list2`| ValueError|
+|AssertifyTupleEqual| `tuple1 == tuple2`| ValueError|
+|AssertifySetEqual| `set1 == set2` | ValueError|
+|AssertifyDictEqual| `dict1 == dict2`| ValueError|
+|AssertifyLess| `a < b`| ValueError|
+|AssertifyLessEqual| `a <= b` | ValueError|
+|AssertifyGreater| `a > b` | ValueError|
+|AssertifyGreater| `a >= b` | ValueError|
 ## Container
 | Assertifier | Expression | raises |
 |-----------------|----------------|-----------|
-|AssertifyIn| member in container| ValueError|
-| AssertifyNotIn| member not in container | ValueError|
+|AssertifyIn| `member in container`| ValueError|
+|AssertifyNotIn| `member not in container` | ValueError|
 ## Control
 | Assertifier | Expression | raises |
 |-----------------|----------------|-----------|
@@ -91,19 +91,19 @@ print(predicate_is_instance(obj=7.62)) # True
 ## Identity
 | Assertifier | Expression | raises |
 |-----------------|----------------|-----------|
-|AssertifyIs| exp1 is exp2| ValueError|
-|AssertifyIsNot| exp1 is not exp2| ValueError|
-|AssertifyIsNone| obj is None| ValueError|
-|AssertifyIsNotNone| obj is not None| ValueError|
-|AssertifyIsInstance|isinstance(obj,class) | TypeError|
-|AssertifyIsInstances| isinstance(obj,cls) for cls in classes | TypeError|
-|AssertifyIsNotInstance| not isinstance(obj,class) | TypeError|
-|AssertifyIsNotInstances| not isinstance(obj,cls) for cls in classes | TypeError|
+|AssertifyIs| `exp1 is exp2`| ValueError|
+|AssertifyIsNot| `exp1 is not exp2`| ValueError|
+|AssertifyIsNone| `obj is None`| ValueError|
+|AssertifyIsNotNone| `obj is not None`| ValueError|
+|AssertifyIsInstance| `isinstance(obj,class)` | TypeError|
+|AssertifyIsInstances| `isinstance(obj,cls) for cls in classes` | TypeError|
+|AssertifyIsNotInstance| `not isinstance(obj,class)` | TypeError|
+|AssertifyIsNotInstances| `not isinstance(obj,cls) for cls in classes` | TypeError|
 ## Logic
 | Assertifier | Expression | raises |
 |-----------------|----------------|-----------|
-|AssertifyTrue| expr | ValueError|
-|AssertifyFalse| not expr | ValueError|
+|AssertifyTrue| `expr is True`| ValueError|
+|AssertifyFalse| `expr is False` | ValueError|
 ## Regex
 | Assertifier | Expression | raises |
 |-----------------|----------------|-----------|
