@@ -2,7 +2,7 @@
 
 Objects provided by this module:
     * `Assertifier`: Abstract Base Class for all assertify classes.
-    * `UnittestAssertionAssertifier`: Base Class for classes that extend `unittest_assertions`
+    * `UnittestAssertionAssertifier`: Base Class for classes that has-a (with Composition) `unittest_assertions`
 """
 from abc import (
     ABC,
@@ -48,14 +48,13 @@ class Assertifier(ABC):
 
         Returns:
             `True` if assertification passes and `False` if it fails
-
         """
         ...
 
 
 @dataclass
 class UnittestAssertionAssertifier(Assertifier):
-    """Base class for unittest assertions"""
+    """Base class for unittest_assertions"""
 
     _assertion_cls: Type[BuiltinAssertion]
     raises: Optional[
@@ -63,6 +62,21 @@ class UnittestAssertionAssertifier(Assertifier):
     ] = field(default=ValueError)
 
     def __call__(self, *args, **kwargs) -> bool:
+        """Run assertify
+
+        Args:
+            *args: args for the assertification
+            **kwargs: kwargs for the assertification
+
+        Returns:
+            `True` if the assertification passes. If `self.raises` is set to `None`
+            it will raise `False` when assertification fails.
+
+        Raises:
+            If assertification fails will raise the `Exception` or `AssertionError`
+            defined in `self.raises`. If `self.raises` is `None` it will return
+            a `False` when it fails.
+        """
         assertion_function = self._assertion_cls()
         try:
             assertion_function(*args, **kwargs)
