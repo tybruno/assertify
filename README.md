@@ -6,11 +6,11 @@
 assertify -- assert (ver)ify -- is a Flexible, and Extendable python3.6+ library for boolean expressions, assertions, and verifications.
 
 #### Key Features:
-* **Easy**: Designed to make it easy to evaulate an expression and return `True`/`False` or raise an `AssertionError` or `Exception`.
+* **Easy**: Designed to make it easy to evaluate an expression and return `True`/`False` or raise an `AssertionError` or `Exception`.
 * **Great Developer Experience**: Being fully typed makes it great for editor support.
 * **There is More!!!**:
     * [unittest_assertions](https://github.com/tybruno/unittest_assertions): Assertify is built on top of the `unittest_assertions`, which is a library that converts the assertions from `unittest` to standalone assertions.
-    * [descriptify](https://github.com/tybruno/descriptify): Descriptify is a library that contians helpful python descriptors. It uses `assertify_predicates` to validate various descriptors.
+    * [descriptify](https://github.com/tybruno/descriptify): Descriptify is a library that contains helpful python descriptors. It uses `assertify_predicates` to validate various descriptors.
 
 ## Installation
 ```bash
