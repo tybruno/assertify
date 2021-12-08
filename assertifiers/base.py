@@ -22,7 +22,14 @@ from unittest_assertions.base import BuiltinAssertion
 
 
 class Assertifier(ABC):
-    """abstract base class for all assertifiers"""
+    """abstract base class for all assertifiers
+
+    Attributes:
+        self.raises: `Exception` or `AssertionError` that will be
+            raised if the assertifier (`__call__`) fails. If `None` `True`
+            will be returned if assertifier (`__call__`) passes and `False`
+            if it fails.
+    """
 
     def __init__(
         self,
@@ -47,14 +54,27 @@ class Assertifier(ABC):
             **kwargs: kwargs for the assertification
 
         Returns:
-            `True` if assertification passes and `False` if it fails
+            `True` if assertification passes.`False` if `self.raises = None`
+            and assertification fails.
+        Raises:
+            `Exception` or `AssertifyError` defined by `self.raises` when
+            assertification fails.
         """
         ...
 
 
 @dataclass
 class UnittestAssertionAssertifier(Assertifier):
-    """Base class for unittest_assertions"""
+    """Base class for unittest_assertions
+
+    Attributes:
+        self._assertion_cls: builtin unittest assertion
+            class that will run the assertion.
+        self.raises: `Exception` or `AssertionError` that will be
+            raised if the assertifier (`__call__`) fails. If `None` `True`
+            will be returned if assertifier (`__call__`) passes and `False`
+            if it fails.
+    """
 
     _assertion_cls: Type[BuiltinAssertion]
     raises: Optional[
