@@ -50,8 +50,8 @@ class Assertifier(ABC):
         """Run the assertification
 
         Args:
-            *args: args for the assertification
-            **kwargs: kwargs for the assertification
+            *args: function_args for the assertification
+            **kwargs: function_kwargs for the assertification
 
         Returns:
             `True` if assertification passes.`False` if `self.raises = None`
@@ -85,8 +85,8 @@ class UnittestAssertionAssertifier(Assertifier):
         """Run assertify
 
         Args:
-            *args: args for the assertification
-            **kwargs: kwargs for the assertification
+            *args: function_args for the assertification
+            **kwargs: function_kwargs for the assertification
 
         Returns:
             `True` if the assertification passes. If `self.raises` is set to `None`

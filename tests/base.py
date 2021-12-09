@@ -30,28 +30,28 @@ class AssertifierTester:
 
         assert assertify(*args, **kwargs) is False
 
-    # def test_assertion_passes(self, *args, **kwargs):
+    # def test_assertion_passes(self, *function_args, **function_kwargs):
     #     assertion = self._assertion()
-    #     assertion(*args, **kwargs)
+    #     assertion(*function_args, **function_kwargs)
     #
-    # def test_exception_passes(self, *args, **kwargs):
+    # def test_exception_passes(self, *function_args, **function_kwargs):
     #     assertion = self._assertion()
-    #     assertion(*args, **kwargs)
+    #     assertion(*function_args, **function_kwargs)
     #
-    # def test_bool_passes(self, *args, **kwargs):
+    # def test_bool_passes(self, *function_args, **function_kwargs):
     #     assertion = self._assertion()
-    #     assert assertion(*args, **kwargs) is True
+    #     assert assertion(*function_args, **function_kwargs) is True
 
-    # def test_assertion_raises(self, *args, **kwargs):
+    # def test_assertion_raises(self, *function_args, **function_kwargs):
     #     assertion = self._assertion()
     #     with pytest.raises(AssertionError):
-    #         assertion(*args, **kwargs)
+    #         assertion(*function_args, **function_kwargs)
     #
-    # def test_exception_raises(self, *args, **kwargs):
+    # def test_exception_raises(self, *function_args, **function_kwargs):
     #     assertion = self._assertion()
     #     with pytest.raises(assertion.raises):
-    #         assertion(*args, **kwargs)
+    #         assertion(*function_args, **function_kwargs)
     #
-    # def test_bool_fails(self, *args, **kwargs):
+    # def test_bool_fails(self, *function_args, **function_kwargs):
     #     assertion = self._assertion()
-    #     assert assertion(*args, **kwargs) is False
+    #     assert assertion(*function_args, **function_kwargs) is False

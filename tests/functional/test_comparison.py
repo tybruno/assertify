@@ -12,7 +12,7 @@ from pytest_builtin_types import (
     _MULTILINE_2,
 )
 
-from assertifiers.comparison import (
+from assertifiers.equality import (
     AssertifyEqual,
     AssertifyNotEqual,
     AssertifyGreater,

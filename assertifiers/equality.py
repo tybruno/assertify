@@ -1,50 +1,50 @@
 """ Equality Assertifiers
 
 Objects provided by this module:
-    * `EqualityAssertifier`
+    * `AssertifyEqual`: assertify `first == second`
+    * `AssertifyNotEqual`: assertify `first != second`
+    * `AssertifyAlmostEqual`: assertify `first ~= second`
+    * `AssertifyNotAlmostEqual`: assertify `first !~= second`
+    * `AssertifyCountEqual`: assertify `len(first) == len(second)`
+    * `AssertifyMultilineEqual`: assertify `first.splitlines() == second.splitlines()`
+    * `AssertifySequenceEqual`: assertify `seq1 == seq2`
+    * `AssertifyListEqual`: assertify `list1 == list2`
+    * `AssertifyTupleEqual`: assertify `tuple1 == tuple2`
+    * `AssertifySetEqual`: assertify `seq1 == seq2`
+    * `AssertifyDictEqual`: assertify `dict1 == dict2`
+    * `AssertifyLess`: assertify `a < b`
+    * `AssertifyLessEqual`: assertify `a <= b`
+    * `AssertifyGreater`: assertify `a > b`
+    * `AssertifyGreaterEqual`: assertify `a >= b`
 """
 from dataclasses import (
     dataclass,
     field,
 )
-from typing import Any, Optional, List, Mapping, Sequence, Tuple, Set, Dict
+from typing import (
+    Any,
+    Type,
+    Optional,
+    List,
+    Mapping,
+    Sequence,
+    Tuple,
+    Set,
+    Dict,
+)
 
 import unittest_assertions.comparison
 
 from assertifiers.base import UnittestAssertionAssertifier
 
+import unittest_assertions.logic
 
-@dataclass
-class EqualityAssertifier(UnittestAssertionAssertifier):
-    """Parent Equality Assertifier class"""
-
-    def __call__(
-        self,
-        first: Any,
-        second: Any,
-        *args: Optional[Sequence],
-        **kwargs: Optional[Mapping]
-    ) -> bool:
-        """Run Assertify on the `first` and `second` with `args` and `kwargs`
-
-        Args:
-            first: will be compared against `second`
-            second: will be compared against `first`
-            *args: Optional args
-            **kwargs: Optional kwargs
-
-        Returns:
-            `True` if assertify passes and `False` if it fails
-        """
-        result: bool = super().__call__(
-            first=first, second=second, *args, **kwargs
-        )
-        return result
+from assertifiers.base import UnittestAssertionAssertifier
 
 
 @dataclass
-class AssertifyEqual(EqualityAssertifier):
-    """assertify `first` == `second`
+class AssertifyEqual(UnittestAssertionAssertifier):
+    """assertify `first == second`
 
     assertify `first` equals `second`
 
@@ -64,8 +64,8 @@ class AssertifyEqual(EqualityAssertifier):
 
 
 @dataclass
-class AssertifyNotEqual(EqualityAssertifier):
-    """assertify `first` != `second`
+class AssertifyNotEqual(UnittestAssertionAssertifier):
+    """assertify `first != second`
 
     assertify `first` does not equal `second`
 
@@ -85,8 +85,20 @@ class AssertifyNotEqual(EqualityAssertifier):
 
 
 @dataclass
-class AssertifyAlmostEqual(EqualityAssertifier):
-    """assertify `first` ~= `second`
+class AssertifyAlmostEqual(UnittestAssertionAssertifier):
+    """assertify `first ~= second`
+
+    Fail if the two objects are unequal as determined by their
+    difference rounded to the given number of decimal places
+    (default 7) and comparing to zero, or by comparing that the
+    difference between the two objects is more than the given
+    delta.
+
+    Note that decimal places (from zero) are usually not the same
+    as significant digits (measured from the most significant digit).
+
+    If the two objects compare equal then they will automatically
+    compare almost equal.
 
     assertify `first` almost equals `second`
 
@@ -105,7 +117,9 @@ class AssertifyAlmostEqual(EqualityAssertifier):
         default=unittest_assertions.comparison.AssertAlmostEqual, init=False
     )
 
-    def __call__(self, first: Any, second, places=None, delta=None) -> bool:
+    def __call__(
+        self, first: Any, second: Any, places: int = None, delta: float = None
+    ) -> bool:
         """Assertify `first` almost equals `second`
 
         For more documentation read unittest.TestCase.assertSequenceEqual.__doc__
@@ -129,6 +143,19 @@ class AssertifyAlmostEqual(EqualityAssertifier):
 class AssertifyNotAlmostEqual(AssertifyAlmostEqual):
     """assertify `first` !~= `second`
 
+    raise `AssertionError` if `first` is almost  equal to `second`
+
+    For more documentation read TestCase().assertNotAlmostEqual.__doc__
+    Fail if the two objects are equal as determined by their
+    difference rounded to the given number of decimal places
+    (default 7) and comparing to zero, or by comparing that the
+    difference between the two objects is less than the given delta.
+
+    Note that decimal places (from zero) are usually not the same
+    as significant digits (measured from the most significant digit).
+
+    Objects that are equal automatically fail.
+
     Assertify `first` does not almost equal `second`
     Example:
         >>> assertify_almost_equal = AssertifyAlmostEqual(raises=None)
@@ -149,8 +176,11 @@ class AssertifyNotAlmostEqual(AssertifyAlmostEqual):
 
 
 @dataclass
-class AssertifyCountEqual(EqualityAssertifier):
+class AssertifyCountEqual(UnittestAssertionAssertifier):
     """assertify `Counter(list(first))` ==  `Counter(list(second))`
+
+    Asserts that two iterables have the same elements, the same number of
+    times, without regard to order.
 
     Assertify `first` count equals `second` count
 
@@ -168,7 +198,7 @@ class AssertifyCountEqual(EqualityAssertifier):
 
 
 @dataclass
-class AssertifyMultilineEqual(EqualityAssertifier):
+class AssertifyMultilineEqual(UnittestAssertionAssertifier):
     """assertify `first` multiline string == `second` multiline string
 
     Example:
@@ -187,10 +217,27 @@ class AssertifyMultilineEqual(EqualityAssertifier):
         )
     )
 
+    def __call__(self, first: str, second: str) -> bool:
+        """assertify multiline strings
+        Args:
+            first: multiline string to be compared against `second`
+            second: multiline string to be compared against `first`
+
+        Returns:
+            `True` if assertify passes
+        """
+        result = super().__call__(first=first, second=second)
+        return result
+
 
 @dataclass
 class AssertifierSequenceEqual(UnittestAssertionAssertifier):
     """assertify `seq1` == `seq2`
+
+    An equality assertion for ordered sequences (like lists and tuples).
+
+    For the purposes of this function, a valid ordered sequence type is one
+    which can be indexed, has a length, and has an equality operator.
 
     asserfiy `seq1` is not equal to `seq2`
 
@@ -206,17 +253,22 @@ class AssertifierSequenceEqual(UnittestAssertionAssertifier):
         default=unittest_assertions.comparison.AssertSequanceEqual, init=False
     )
 
-    def __call__(self, seq1: Sequence, seq2: Sequence) -> bool:
+    def __call__(
+        self, seq1: Sequence, seq2: Sequence, seq_type: Type = None
+    ) -> bool:
         """Assertify `seq1` is deep equal to `seq2`
 
         Args:
             seq1: checks if equal to `seq2`
             seq2: checks if equal to `seq1`
-
+            seq_type: The expected datatype of the sequences, or None if no
+                    datatype should be enforced.
         Returns:
             `True` if equal
         """
-        result: bool = super().__call__(seq1=seq1, seq2=seq2)
+        result: bool = super().__call__(
+            seq1=seq1, seq2=seq2, seq_type=seq_type
+        )
         return result
 
 

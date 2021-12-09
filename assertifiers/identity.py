@@ -1,3 +1,15 @@
+""" Identity Assertifiers
+
+Objects provided by this module:
+    * `AssertifyTrue`: assertify `expr is True`
+    * `AssertifyFalse`: assertify `expr is False`
+    * `AssertifyIs`: assertify `expr1 is expr2`
+    * `AssertifyIsNot`: assertify `expr1 is not expr2`
+    * `AssertifyIsNone`: assertify `obj is None`
+    * `AssertifyIsNotNone`: assertify `obj is not None`
+    * `AssertifyIsInstance`: assertify `isinstance(obj, cls)`
+    * `AssertifyNotIsInstance`: assertify `not isinstance(obj,cls)`
+"""
 from dataclasses import (
     dataclass,
     field,
@@ -7,6 +19,7 @@ from typing import (
     Optional,
     Type,
     Union,
+    Callable,
 )
 
 import unittest_assertions.identity
@@ -18,8 +31,57 @@ from assertifiers.base import (
 
 
 @dataclass
+class AssertifyTrue(UnittestAssertionAssertifier):
+    """assertify `expr is True`
+
+    raise `AssertionError` if `expr is False`
+
+    For more documentation read TestCase().assertTrue.__doc__
+
+    Example:
+        >>> assertify_true = AssertifyTrue(raises=None)
+        >>> assertify_true(True)
+        True
+        >>> assertify_true(1)
+        True
+        >>> assertify_true(0)
+        False
+    """
+
+    _assertion_cls: unittest_assertions.identity.AssertTrue = field(
+        default=unittest_assertions.identity.AssertTrue, init=False
+    )
+
+    def __call__(self, expr: Any) -> bool:
+        result: bool = super().__call__(expr=expr)
+        return result
+
+
+@dataclass
+class AssertifyFalse(UnittestAssertionAssertifier):
+    """assertify `expr is False`
+
+    raise `AssertionError` if `expr is True`
+
+
+    Example:
+        >>> assertify_false = AssertifyFalse(raises=None)
+        >>> assertify_false(False)
+        True
+        >>> assertify_false(0)
+        True
+        >>> assertify_false(1)
+        False
+    """
+
+    _assertion_cls: unittest_assertions.identity.AssertTrue = field(
+        default=unittest_assertions.identity.AssertTrue, init=False
+    )
+
+
+@dataclass
 class AssertifierIs(UnittestAssertionAssertifier):
-    """assertify `expr1` is `expr2`
+    """assertify `expr1 is expr2`
 
     Example:
         >>> value = "string"
@@ -50,7 +112,7 @@ class AssertifierIs(UnittestAssertionAssertifier):
 
 @dataclass
 class AssertifyIsNot(AssertifierIs):
-    """assertify `expr1` is not `expr2`
+    """assertify `expr1 is not expr2`
 
     Example:
         >>> value1 = "string1"
@@ -98,7 +160,7 @@ class AssertifierIsNone(UnittestAssertionAssertifier):
 
 @dataclass
 class AssertifyIsNotNone(AssertifierIsNone):
-    """assertify `obj` is not `None`
+    """assertify `obj is not None`
 
     Example:
         >>> assertify_is_not_none = AssertifyIsNotNone(raises=None)
@@ -115,7 +177,7 @@ class AssertifyIsNotNone(AssertifierIsNone):
 
 @dataclass
 class AssertifierIsInstance(UnittestAssertionAssertifier):
-    """assertify `obj` is an instance of `cls`
+    """assertify `isinstance(obj,cls)`
 
     assertify isinstance(obj,cls)
 

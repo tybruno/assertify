@@ -9,7 +9,7 @@ import pytest
 from unittest_assertions.base import BuiltinAssertion
 
 from assertifiers.base import UnittestAssertionAssertifier
-from assertifiers.comparison import AssertifyEqual
+from assertifiers.equality import AssertifyEqual
 
 
 class TestBuiltinAssertionAssertify:

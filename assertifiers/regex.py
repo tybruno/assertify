@@ -1,9 +1,17 @@
+""" Regex Assertifiers
+
+Objects provided by this module:
+    * `AssertifyRaisesRegex`: assertifies that the message in a raised exception matches a regex
+    * `AssertifyWarnsRegex`: assertifies that the message in a triggered warning matches a regexp.
+    * `AssertifyRegex`: Fail the assertifier unless the text matches the regular expression
+    * `AssertifyNotRegex`: Fail the assertifier if the text matches the regular expression
+"""
 import re
 from dataclasses import (
     dataclass,
     field,
 )
-from typing import Type, Union, Tuple
+from typing import Type, Union, Tuple, Callable
 
 import unittest_assertions.regex
 
@@ -31,16 +39,18 @@ class AssertifierRaisesRegex(UnittestAssertionAssertifier):
             Type[BaseException], Tuple[Type[BaseException]]
         ],
         expected_regex: Union[re.Pattern, str],
-        *args,
-        **kwargs
+        function: Callable,
+        *function_args,
+        **function_kwargs
     ) -> bool:
-        """assertify
+        """assertify function raises regex
 
         Args:
             expected_exception: expected exception to be raised
             expected_regex: expected regex during `expected_exception` is raised
-            *arg: Function to be called and extra positional args
-            **kwargs: Extra kwargs.
+            function: function to be called
+            *arg: extra positional function_args for the called function
+            **function_kwargs: Extra function_kwargs for the called function.
 
         Returns:
             `True` if the message in a raised exception matches a regex
@@ -49,8 +59,9 @@ class AssertifierRaisesRegex(UnittestAssertionAssertifier):
         result: bool = super().__call__(
             expected_exception,
             expected_regex,
-            *args,
-            **kwargs,
+            function,
+            *function_args,
+            **function_kwargs,
         )
         return result
 
@@ -78,16 +89,18 @@ class AssertifierWarnsRegex(UnittestAssertionAssertifier):
         self,
         expected_warning: Type[Warning],
         expected_regex: Union[re.Pattern, str],
-        *args,
-        **kwargs
+        function: Callable,
+        *function_args,
+        **function_kwargs
     ) -> bool:
-        """
+        """Assertifies that the message in a triggered warning matches a regexp.
 
         Args:
             expected_warning: `Warning~ class expected to be raised
             expected_regex: Regex expected to be found in error message
-            *args: Function to be called and extra postional args
-            **kwargs: Extra kwargs
+            function: function that will be called
+            *function_args: extra positional function_args for called function
+            **function_kwargs: Extra function_kwargs for called function
 
         Returns:
             `True` when the regex of the message in the triggered `Warning`
@@ -95,8 +108,8 @@ class AssertifierWarnsRegex(UnittestAssertionAssertifier):
         result: bool = super().__call__(
             expected_warning,
             expected_regex,
-            *args,
-            **kwargs,
+            *function_args,
+            **function_kwargs,
         )
         return result
 

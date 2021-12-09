@@ -1,3 +1,9 @@
+""" Container assertifiers
+
+Objects provided by this module:
+    * `AssertifyIn`: assertify `member in container`
+    * `AssertifyNotIn`: assertify `member not in container`
+"""
 from dataclasses import (
     dataclass,
     field,
@@ -11,9 +17,7 @@ from assertifiers.base import UnittestAssertionAssertifier
 
 @dataclass
 class AssertifierIn(UnittestAssertionAssertifier):
-    """assertify `member` in `container`
-
-    assertify `member` in `container`
+    """assertify `member in container`
 
     Example:
         >>> assertify_in = AssertifierIn(raises=None)
@@ -28,7 +32,7 @@ class AssertifierIn(UnittestAssertionAssertifier):
     )
 
     def __call__(self, member: Any, container: Container) -> bool:
-        """assertify `member` in `container`
+        """assertify `member in container`
 
         Args:
             member: check if in `container`

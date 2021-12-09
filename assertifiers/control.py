@@ -1,3 +1,9 @@
+""" Control Assertifiers
+
+Objects provided by this module:
+    * `AssertifyRaises`: assertify Callable raises expected exception
+    * `AssertifyWarns`: assertify Callable raises a warning
+"""
 import logging
 from dataclasses import (
     dataclass,
@@ -22,9 +28,12 @@ from assertifiers.base import UnittestAssertionAssertifier
 class AssertifierRaises(UnittestAssertionAssertifier):
     """assertify `Callable` raises `expected_exception`
 
-    assertify `Callable` raises `Exception`
-
-    For more documentation read unittest.TestCase.assertRaises.__doc__
+    Fail unless an exception of class expected_exception is raised
+    by the callable_ when invoked with specified positional and
+    keyword arguments. If a different type of exception is
+    raised, it will not be caught, and the test case will be
+    deemed to have suffered an error, exactly as for an
+    unexpected exception.
 
     Example:
         >>> def _raise_value_error():
@@ -52,8 +61,8 @@ class AssertifierRaises(UnittestAssertionAssertifier):
         Args:
             expected_exception: The expected exception to be raised by `callable_`
             callable_: callable that is expecting to raise exception `expected_exception`
-            *args: Optional args
-            **kwargs: Optional kwargs
+            *args: Optional function_args
+            **kwargs: Optional function_kwargs
 
         Returns:
             `True` if `callable_` raises `expected_exception`
@@ -68,7 +77,12 @@ class AssertifierRaises(UnittestAssertionAssertifier):
 class AssertifierWarns(UnittestAssertionAssertifier):
     """assertify `Callable` raises `Warning`
 
-    assertify `Callable` raises `Warning`
+    Fail unless a warning of class warnClass is triggered
+    by the callable_ when invoked with specified positional and
+    keyword arguments.  If a different type of warning is
+    triggered, it will not be handled: depending on the other
+    warning filtering rules in effect, it might be silenced, printed
+    out, or raised as an exception.
 
     Example:
         >>> import warnings
@@ -94,8 +108,8 @@ class AssertifierWarns(UnittestAssertionAssertifier):
         Args:
             expected_warning: The expected warning to be raised by `callable_`
             callable_: The callable that is expected to raise `expected_warning`
-            *args: Optional args
-            **kwargs: Optional kwargs
+            *args: Optional function_args
+            **kwargs: Optional function_kwargs
 
         Returns:
             `True` if `callable_` raises `expected_warning`
@@ -110,7 +124,9 @@ class AssertifierWarns(UnittestAssertionAssertifier):
 class AssertifierLogs(UnittestAssertionAssertifier):
     """assert `logger` logs at a level equal or higher to `level`
 
-    assertify `logger` logs at `level`
+    Fail unless a log message of level *level* or higher is emitted
+    on *logger_name* or its children.  If omitted, *level* defaults to
+    INFO and *logger* defaults to the root logger.
     """
 
     _assertion_cls: unittest_assertions.control.AssertLogs = field(
