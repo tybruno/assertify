@@ -108,6 +108,7 @@ class AssertifierWarnsRegex(UnittestAssertionAssertifier):
         result: bool = super().__call__(
             expected_warning,
             expected_regex,
+            function,
             *function_args,
             **function_kwargs,
         )

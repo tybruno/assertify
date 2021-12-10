@@ -19,7 +19,6 @@ from typing import (
     Optional,
     Type,
     Union,
-    Callable,
 )
 
 import unittest_assertions.identity
@@ -75,7 +74,7 @@ class AssertifyFalse(UnittestAssertionAssertifier):
     """
 
     _assertion_cls: unittest_assertions.identity.AssertTrue = field(
-        default=unittest_assertions.identity.AssertTrue, init=False
+        default=unittest_assertions.identity.AssertFalse, init=False
     )
 
 

@@ -3,7 +3,7 @@
 import pytest
 from pytest_builtin_types import _ALL_BASIC_TYPES_1
 
-from assertifiers.logic import AssertifyTrue, AssertifyFalse
+from assertifiers.identity import AssertifyTrue, AssertifyFalse
 from tests.base import AssertifierTester
 
 

@@ -18,7 +18,7 @@ from typing import (
     Union,
 )
 
-from unittest_assertions.base import BuiltinAssertion
+from unittest_assertions.base import Assertion
 
 
 class Assertifier(ABC):
@@ -76,7 +76,7 @@ class UnittestAssertionAssertifier(Assertifier):
             if it fails.
     """
 
-    _assertion_cls: Type[BuiltinAssertion]
+    _assertion_cls: Type[Assertion]
     raises: Optional[
         Union[None, Type[Exception], Type[AssertionError]]
     ] = field(default=ValueError)
