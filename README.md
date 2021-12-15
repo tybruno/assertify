@@ -3,7 +3,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blueviolet.svg)](https://opensource.org/licenses/MIT)
 [![codecov](https://codecov.io/gh/tybruno/assertify/branch/main/graph/badge.svg?token=ZO94EJFI3G)](https://codecov.io/gh/tybruno/assertify)
 # assertify
-assertify -- assert or (ver)ify -- is a Flexible, and Extendable python3.6+ library for boolean expressions, assertions, and verifications.
+assertify -- assert or (ver)ify -- is a Flexible, and Extendable python3.6+ library for evaluating an expression by returning `False` or raising an `AssertionError` or the given `Exception` if the expression is invalid.
 
 #### Key Features:
 * **Easy**: Designed to make it easy to evaluate an expression and return `True`/`False` or raise an `AssertionError` or `Exception`.
