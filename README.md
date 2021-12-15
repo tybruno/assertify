@@ -23,27 +23,27 @@ pip install assertify
 `AssertifyIsInstance` will raise a `TypeError` by default, but you can also specify any other type of exception.
 
 ```python
-from assertifiers.identity import AssertifierIsInstance
+from assertifiers.identity import AssertifyIsInstance
 
-is_instance = AssertifierIsInstance()
+is_instance = AssertifyIsInstance()
 is_instance("example str", int)  # raise TypeError("'example str' is not an instance of <class 'int'>")
 ```
 ### Assertion Example
 Specify `AssertionError` to be raised
 
 ```python
-from assertifiers.identity import AssertifierIsInstance
+from assertifiers.identity import AssertifyIsInstance
 
-is_instance = AssertifierIsInstance(raises=AssertionError)
+is_instance = AssertifyIsInstance(raises=AssertionError)
 is_instance("example str", int)  # raise AssertionError("'example str' is not an instance of <class 'int'>")
 ```
 ### Boolean Example
 If `raises=None` assertify will return a `Boolean`.
 
 ```python
-from assertifiers.identity import AssertifierIsInstance
+from assertifiers.identity import AssertifyIsInstance
 
-is_instance = AssertifierIsInstance(raises=None)
+is_instance = AssertifyIsInstance(raises=None)
 print(is_instance("example str", int))  # False
 ```
 

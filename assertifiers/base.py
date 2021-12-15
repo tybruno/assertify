@@ -8,10 +8,6 @@ from abc import (
     ABC,
     abstractmethod,
 )
-from dataclasses import (
-    dataclass,
-    field,
-)
 from typing import (
     Optional,
     Type,
@@ -63,7 +59,6 @@ class Assertifier(ABC):
         ...
 
 
-@dataclass
 class UnittestAssertionAssertifier(Assertifier):
     """Base class for unittest_assertions
 
@@ -76,10 +71,33 @@ class UnittestAssertionAssertifier(Assertifier):
             if it fails.
     """
 
-    _assertion_cls: Type[Assertion]
-    raises: Optional[
-        Union[None, Type[Exception], Type[AssertionError]]
-    ] = field(default=ValueError)
+    _assertion_class: Assertion
+
+    def __init__(
+        self,
+        msg: str = None,
+        raises: Optional[
+            Union[None, Type[Exception], Type[AssertionError]]
+        ] = ValueError,
+    ):
+
+        super().__init__(raises=raises)
+        self.msg = msg
+
+    @property
+    def msg(self):
+        return self._assertion_function.msg
+
+    @msg.setter
+    def msg(self, msg):
+        if hasattr(self, "_assertion_function"):
+            self._assertion_function.msg = msg
+        else:
+            self._assertion_function = self._assertion_class(msg=msg)
+
+    def __repr__(self):
+        result = f"{self.__class__.__name__}(msg={self.msg!r}, raises={self.raises!r})"
+        return result
 
     def __call__(self, *args, **kwargs) -> bool:
         """Run assertify
@@ -97,9 +115,8 @@ class UnittestAssertionAssertifier(Assertifier):
             defined in `self.raises`. If `self.raises` is `None` it will return
             a `False` when it fails.
         """
-        assertion_function = self._assertion_cls()
         try:
-            assertion_function(*args, **kwargs)
+            self._assertion_function(*args, **kwargs)
             return True
         except AssertionError as error:
             if self.raises:

@@ -5,10 +5,6 @@ Objects provided by this module:
     * `AssertifyWarns`: assertify Callable raises a warning
 """
 import logging
-from dataclasses import (
-    dataclass,
-    field,
-)
 from typing import (
     Type,
     Union,
@@ -24,7 +20,6 @@ import unittest_assertions.control
 from assertifiers.base import UnittestAssertionAssertifier
 
 
-@dataclass
 class AssertifierRaises(UnittestAssertionAssertifier):
     """assertify `Callable` raises `expected_exception`
 
@@ -43,8 +38,8 @@ class AssertifierRaises(UnittestAssertionAssertifier):
         True
     """
 
-    _assertion_cls: unittest_assertions.control.AssertRaises = field(
-        default=unittest_assertions.control.AssertRaises, init=False
+    _assertion_class: unittest_assertions.control.AssertRaises = (
+        unittest_assertions.control.AssertRaises
     )
 
     def __call__(
@@ -73,7 +68,6 @@ class AssertifierRaises(UnittestAssertionAssertifier):
         return result
 
 
-@dataclass
 class AssertifierWarns(UnittestAssertionAssertifier):
     """assertify `Callable` raises `Warning`
 
@@ -93,8 +87,8 @@ class AssertifierWarns(UnittestAssertionAssertifier):
         True
     """
 
-    _assertion_cls: unittest_assertions.control.AssertWarns = field(
-        default=unittest_assertions.control.AssertWarns, init=False
+    _assertion_class: unittest_assertions.control.AssertWarns = (
+        unittest_assertions.control.AssertWarns
     )
 
     def __call__(
@@ -120,7 +114,6 @@ class AssertifierWarns(UnittestAssertionAssertifier):
         return result
 
 
-@dataclass
 class AssertifierLogs(UnittestAssertionAssertifier):
     """assert `logger` logs at a level equal or higher to `level`
 
@@ -129,8 +122,8 @@ class AssertifierLogs(UnittestAssertionAssertifier):
     INFO and *logger* defaults to the root logger.
     """
 
-    _assertion_cls: unittest_assertions.control.AssertLogs = field(
-        default=unittest_assertions.control.AssertLogs, init=False
+    _assertion_class: unittest_assertions.control.AssertLogs = (
+        unittest_assertions.control.AssertLogs
     )
 
     def __call__(

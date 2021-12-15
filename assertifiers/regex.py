@@ -7,10 +7,6 @@ Objects provided by this module:
     * `AssertifyNotRegex`: Fail the assertifier if the text matches the regular expression
 """
 import re
-from dataclasses import (
-    dataclass,
-    field,
-)
 from typing import Type, Union, Tuple, Callable
 
 import unittest_assertions.regex
@@ -18,7 +14,6 @@ import unittest_assertions.regex
 from assertifiers.base import UnittestAssertionAssertifier
 
 
-@dataclass
 class AssertifierRaisesRegex(UnittestAssertionAssertifier):
     """assertify that the message in a raised exception matches a regex
 
@@ -29,8 +24,8 @@ class AssertifierRaisesRegex(UnittestAssertionAssertifier):
         True
     """
 
-    _assertion_cls: unittest_assertions.regex.AssertRaisesRegex = field(
-        default=unittest_assertions.regex.AssertRaisesRegex, init=False
+    _assertion_class: unittest_assertions.regex.AssertRaisesRegex = (
+        unittest_assertions.regex.AssertRaisesRegex
     )
 
     def __call__(
@@ -66,7 +61,6 @@ class AssertifierRaisesRegex(UnittestAssertionAssertifier):
         return result
 
 
-@dataclass
 class AssertifierWarnsRegex(UnittestAssertionAssertifier):
     """assertify that the message in a triggered warning matches a regexp.
 
@@ -81,8 +75,8 @@ class AssertifierWarnsRegex(UnittestAssertionAssertifier):
         True
     """
 
-    _assertion_cls: unittest_assertions.regex.AssertWarnsRegex = field(
-        default=unittest_assertions.regex.AssertWarnsRegex, init=False
+    _assertion_class: unittest_assertions.regex.AssertWarnsRegex = (
+        unittest_assertions.regex.AssertWarnsRegex
     )
 
     def __call__(
@@ -115,7 +109,6 @@ class AssertifierWarnsRegex(UnittestAssertionAssertifier):
         return result
 
 
-@dataclass
 class AssertifierRegex(UnittestAssertionAssertifier):
     """assertify `text` matches `expected_regex`
 
@@ -128,8 +121,8 @@ class AssertifierRegex(UnittestAssertionAssertifier):
         False
     """
 
-    _assertion_cls: unittest_assertions.regex.AssertRegex = field(
-        default=unittest_assertions.regex.AssertRegex, init=False
+    _assertion_class: unittest_assertions.regex.AssertRegex = (
+        unittest_assertions.regex.AssertRegex
     )
 
     def __call__(
@@ -150,7 +143,6 @@ class AssertifierRegex(UnittestAssertionAssertifier):
         return result
 
 
-@dataclass
 class AssertifierNotRegex(UnittestAssertionAssertifier):
     """assertify `text` does not match `unexpected_regex`
 
@@ -163,8 +155,8 @@ class AssertifierNotRegex(UnittestAssertionAssertifier):
         False
     """
 
-    _assertion_cls: unittest_assertions.regex.AssertNotRegex = field(
-        default=unittest_assertions.regex.AssertNotRegex, init=False
+    _assertion_class: unittest_assertions.regex.AssertNotRegex = (
+        unittest_assertions.regex.AssertNotRegex
     )
 
     def __call__(

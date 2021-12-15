@@ -1,4 +1,4 @@
-""" Testing unittest_assertifier_clss/regex.py """
+""" Testing unittest_assertion_classs/regex.py """
 
 import warnings
 
@@ -10,7 +10,7 @@ from assertifiers.regex import (
     AssertifierNotRegex,
     AssertifierRaisesRegex,
 )
-from tests.base import AssertifierTester
+from tests.base import UnittestAssertionAssertifierTester
 
 
 def _raise(e):
@@ -21,8 +21,8 @@ def _legacy_function(msg, warning):
     warnings.warn(msg, warning)
 
 
-class TestAssertifyRaisesRegex(AssertifierTester):
-    _assertifier_cls = AssertifierRaisesRegex
+class TestAssertifyRaisesRegex(UnittestAssertionAssertifierTester):
+    _assertion_class = AssertifierRaisesRegex
 
     @pytest.mark.parametrize(
         "testing_data",
@@ -39,8 +39,8 @@ class TestAssertifyRaisesRegex(AssertifierTester):
         super().test_assertify_fails(*testing_data)
 
 
-class TestAssertWarnsRegex(AssertifierTester):
-    _assertifier_cls = AssertifierWarnsRegex
+class TestAssertWarnsRegex(UnittestAssertionAssertifierTester):
+    _assertion_class = AssertifierWarnsRegex
 
     @pytest.mark.parametrize(
         "testing_data",
@@ -80,8 +80,8 @@ class TestAssertWarnsRegex(AssertifierTester):
         super().test_assertify_fails(*testing_data)
 
 
-class TestAssertRegex(AssertifierTester):
-    _assertifier_cls = AssertifierRegex
+class TestAssertRegex(UnittestAssertionAssertifierTester):
+    _assertion_class = AssertifierRegex
 
     @pytest.mark.parametrize(
         "testing_data",
@@ -98,8 +98,8 @@ class TestAssertRegex(AssertifierTester):
         super().test_assertify_fails(*testing_data)
 
 
-class TestAssertNotRegex(AssertifierTester):
-    _assertifier_cls = AssertifierNotRegex
+class TestAssertNotRegex(UnittestAssertionAssertifierTester):
+    _assertion_class = AssertifierNotRegex
 
     @pytest.mark.parametrize(
         "testing_data",

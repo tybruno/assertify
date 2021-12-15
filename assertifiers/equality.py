@@ -17,10 +17,6 @@ Objects provided by this module:
     * `AssertifyGreater`: assertify `a > b`
     * `AssertifyGreaterEqual`: assertify `a >= b`
 """
-from dataclasses import (
-    dataclass,
-    field,
-)
 from typing import (
     Any,
     Type,
@@ -33,14 +29,9 @@ from typing import (
 
 import unittest_assertions
 
-
 from assertifiers.base import UnittestAssertionAssertifier
 
 
-from assertifiers.base import UnittestAssertionAssertifier
-
-
-@dataclass
 class AssertifyEqual(UnittestAssertionAssertifier):
     """assertify `first == second`
 
@@ -56,12 +47,11 @@ class AssertifyEqual(UnittestAssertionAssertifier):
         False
     """
 
-    _assertion_cls: unittest_assertions.equality.AssertEqual = field(
-        default=unittest_assertions.equality.AssertEqual, init=False
+    _assertion_class: unittest_assertions.equality.AssertEqual = (
+        unittest_assertions.equality.AssertEqual
     )
 
 
-@dataclass
 class AssertifyNotEqual(UnittestAssertionAssertifier):
     """assertify `first != second`
 
@@ -77,12 +67,11 @@ class AssertifyNotEqual(UnittestAssertionAssertifier):
         False
     """
 
-    _assertion_cls: unittest_assertions.equality.AssertNotEqual = field(
-        default=unittest_assertions.equality.AssertNotEqual, init=False
+    _assertion_class: unittest_assertions.equality.AssertNotEqual = (
+        unittest_assertions.equality.AssertNotEqual
     )
 
 
-@dataclass
 class AssertifyAlmostEqual(UnittestAssertionAssertifier):
     """assertify `first ~= second`
 
@@ -111,8 +100,8 @@ class AssertifyAlmostEqual(UnittestAssertionAssertifier):
         False
     """
 
-    _assertion_cls: unittest_assertions.equality.AssertAlmostEqual = field(
-        default=unittest_assertions.equality.AssertAlmostEqual, init=False
+    _assertion_class: unittest_assertions.equality.AssertAlmostEqual = (
+        unittest_assertions.equality.AssertAlmostEqual
     )
 
     def __call__(
@@ -137,7 +126,6 @@ class AssertifyAlmostEqual(UnittestAssertionAssertifier):
         return result
 
 
-@dataclass
 class AssertifyNotAlmostEqual(AssertifyAlmostEqual):
     """assertify `first` !~= `second`
 
@@ -165,13 +153,11 @@ class AssertifyNotAlmostEqual(AssertifyAlmostEqual):
         False
     """
 
-    _assertion_cls: unittest_assertions.equality.AssertNotAlmostEqual = field(
-        default=unittest_assertions.equality.AssertNotAlmostEqual,
-        init=False,
+    _assertion_class: unittest_assertions.equality.AssertNotAlmostEqual = (
+        unittest_assertions.equality.AssertNotAlmostEqual
     )
 
 
-@dataclass
 class AssertifyCountEqual(UnittestAssertionAssertifier):
     """assertify `Counter(list(first))` ==  `Counter(list(second))`
 
@@ -188,12 +174,11 @@ class AssertifyCountEqual(UnittestAssertionAssertifier):
         False
     """
 
-    _assertion_cls: unittest_assertions.equality.AssertCountEqual = field(
-        default=unittest_assertions.equality.AssertCountEqual, init=False
+    _assertion_class: unittest_assertions.equality.AssertCountEqual = (
+        unittest_assertions.equality.AssertCountEqual
     )
 
 
-@dataclass
 class AssertifyMultilineEqual(UnittestAssertionAssertifier):
     """assertify `first` multiline string == `second` multiline string
 
@@ -206,9 +191,8 @@ class AssertifyMultilineEqual(UnittestAssertionAssertifier):
         False
     """
 
-    _assertion_cls: unittest_assertions.equality.AssertMultilineEqual = field(
-        default=unittest_assertions.equality.AssertMultilineEqual,
-        init=False,
+    _assertion_class: unittest_assertions.equality.AssertMultilineEqual = (
+        unittest_assertions.equality.AssertMultilineEqual
     )
 
     def __call__(self, first: str, second: str) -> bool:
@@ -224,7 +208,6 @@ class AssertifyMultilineEqual(UnittestAssertionAssertifier):
         return result
 
 
-@dataclass
 class AssertifierSequenceEqual(UnittestAssertionAssertifier):
     """assertify `seq1` == `seq2`
 
@@ -243,8 +226,8 @@ class AssertifierSequenceEqual(UnittestAssertionAssertifier):
         False
     """
 
-    _assertion_cls: unittest_assertions.equality.AssertSequenceEqual = field(
-        default=unittest_assertions.equality.AssertSequenceEqual, init=False
+    _assertion_class: unittest_assertions.equality.AssertSequenceEqual = (
+        unittest_assertions.equality.AssertSequenceEqual
     )
 
     def __call__(
@@ -266,7 +249,6 @@ class AssertifierSequenceEqual(UnittestAssertionAssertifier):
         return result
 
 
-@dataclass
 class AssertifierListEqual(UnittestAssertionAssertifier):
     """assertify `list1` == `list2`
 
@@ -281,8 +263,8 @@ class AssertifierListEqual(UnittestAssertionAssertifier):
         False
     """
 
-    _assertion_cls: unittest_assertions.equality.AssertListEqual = field(
-        default=unittest_assertions.equality.AssertListEqual, init=False
+    _assertion_class: unittest_assertions.equality.AssertListEqual = (
+        unittest_assertions.equality.AssertListEqual
     )
 
     def __call__(self, list1: List, list2: List) -> bool:
@@ -299,7 +281,6 @@ class AssertifierListEqual(UnittestAssertionAssertifier):
         return result
 
 
-@dataclass
 class AssertifierTupleEqual(UnittestAssertionAssertifier):
     """assertify `tuple1` == `tuple2`
 
@@ -316,8 +297,8 @@ class AssertifierTupleEqual(UnittestAssertionAssertifier):
         False
     """
 
-    _assertion_cls: unittest_assertions.equality.AssertTupleEqual = field(
-        default=unittest_assertions.equality.AssertTupleEqual, init=False
+    _assertion_class: unittest_assertions.equality.AssertTupleEqual = (
+        unittest_assertions.equality.AssertTupleEqual
     )
 
     def __call__(self, tuple1: Tuple, tuple2: Tuple) -> bool:
@@ -334,7 +315,6 @@ class AssertifierTupleEqual(UnittestAssertionAssertifier):
         return result
 
 
-@dataclass
 class AssertifierSetEqual(UnittestAssertionAssertifier):
     """assertify `set1` == `set2`
 
@@ -349,8 +329,8 @@ class AssertifierSetEqual(UnittestAssertionAssertifier):
         False
     """
 
-    _assertion_cls: unittest_assertions.equality.AssertSetEqual = field(
-        default=unittest_assertions.equality.AssertSetEqual, init=False
+    _assertion_class: unittest_assertions.equality.AssertSetEqual = (
+        unittest_assertions.equality.AssertSetEqual
     )
 
     def __call__(self, set1: Set, set2: Set) -> bool:
@@ -367,7 +347,6 @@ class AssertifierSetEqual(UnittestAssertionAssertifier):
         return result
 
 
-@dataclass
 class AssertifierDictEqual(UnittestAssertionAssertifier):
     """assertify `dic1` == `dict2`
 
@@ -382,8 +361,8 @@ class AssertifierDictEqual(UnittestAssertionAssertifier):
         False
     """
 
-    _assertion_cls: unittest_assertions.equality.AssertDictEqual = field(
-        default=unittest_assertions.equality.AssertDictEqual, init=False
+    _assertion_class: unittest_assertions.equality.AssertDictEqual = (
+        unittest_assertions.equality.AssertDictEqual
     )
 
     def __call__(self, dict1: Dict, dict2: Dict) -> bool:
@@ -400,7 +379,6 @@ class AssertifierDictEqual(UnittestAssertionAssertifier):
         return result
 
 
-@dataclass
 class ComparisonAssertifier(UnittestAssertionAssertifier):
     """Parent class for Comparison Assertifiers"""
 
@@ -417,7 +395,6 @@ class ComparisonAssertifier(UnittestAssertionAssertifier):
         return result
 
 
-@dataclass
 class AssertifyLess(ComparisonAssertifier):
     """assertify `a` < `b`
 
@@ -431,12 +408,11 @@ class AssertifyLess(ComparisonAssertifier):
         False
     """
 
-    _assertion_cls: unittest_assertions.equality.AssertLess = field(
-        default=unittest_assertions.equality.AssertLess, init=False
+    _assertion_class: unittest_assertions.equality.AssertLess = (
+        unittest_assertions.equality.AssertLess
     )
 
 
-@dataclass
 class AssertifyLessEqual(ComparisonAssertifier):
     """assertify `a` <= `b`
 
@@ -452,12 +428,11 @@ class AssertifyLessEqual(ComparisonAssertifier):
         False
     """
 
-    _assertion_cls: unittest_assertions.equality.AssertLessEqual = field(
-        default=unittest_assertions.equality.AssertLessEqual, init=False
+    _assertion_class: unittest_assertions.equality.AssertLessEqual = (
+        unittest_assertions.equality.AssertLessEqual
     )
 
 
-@dataclass
 class AssertifyGreater(ComparisonAssertifier):
     """assertify `a` > `b`
 
@@ -471,12 +446,11 @@ class AssertifyGreater(ComparisonAssertifier):
         False
     """
 
-    _assertion_cls: unittest_assertions.equality.AssertGreater = field(
-        default=unittest_assertions.equality.AssertGreater, init=False
+    _assertion_class: unittest_assertions.equality.AssertGreater = (
+        unittest_assertions.equality.AssertGreater
     )
 
 
-@dataclass
 class AssertifyGreaterEqual(ComparisonAssertifier):
     """assertify `a` >= `b`
 
@@ -492,6 +466,6 @@ class AssertifyGreaterEqual(ComparisonAssertifier):
         False
     """
 
-    _assertion_cls: unittest_assertions.equality.AssertGreaterEqual = field(
-        default=unittest_assertions.equality.AssertGreaterEqual, init=False
+    _assertion_class: unittest_assertions.equality.AssertGreaterEqual = (
+        unittest_assertions.equality.AssertGreaterEqual
     )

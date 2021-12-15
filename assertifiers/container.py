@@ -4,10 +4,6 @@ Objects provided by this module:
     * `AssertifyIn`: assertify `member in container`
     * `AssertifyNotIn`: assertify `member not in container`
 """
-from dataclasses import (
-    dataclass,
-    field,
-)
 from typing import Any, Container
 
 import unittest_assertions.container
@@ -15,20 +11,19 @@ import unittest_assertions.container
 from assertifiers.base import UnittestAssertionAssertifier
 
 
-@dataclass
-class AssertifierIn(UnittestAssertionAssertifier):
+class AssertifyIn(UnittestAssertionAssertifier):
     """assertify `member in container`
 
     Example:
-        >>> assertify_in = AssertifierIn(raises=None)
+        >>> assertify_in = AssertifyIn(raises=None)
         >>> assertify_in(member=1,container=[5,2,1])
         True
         >>> assertify_in(member=1, container=(5,2))
         False
     """
 
-    _assertion_cls: unittest_assertions.container.AssertIn = field(
-        default=unittest_assertions.container.AssertIn, init=False
+    _assertion_class: unittest_assertions.container.AssertIn = (
+        unittest_assertions.container.AssertIn
     )
 
     def __call__(self, member: Any, container: Container) -> bool:
@@ -45,8 +40,7 @@ class AssertifierIn(UnittestAssertionAssertifier):
         return result
 
 
-@dataclass
-class AssertifyNotIn(AssertifierIn):
+class AssertifyNotIn(AssertifyIn):
     """assertify `member` not in `container`
 
     assertify `member` in `container`
@@ -59,6 +53,6 @@ class AssertifyNotIn(AssertifierIn):
         False
     """
 
-    _assertion_cls: unittest_assertions.container.AssertNotIn = field(
-        default=unittest_assertions.container.AssertNotIn, init=False
+    _assertion_class: unittest_assertions.container.AssertNotIn = (
+        unittest_assertions.container.AssertNotIn
     )

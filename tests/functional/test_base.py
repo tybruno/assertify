@@ -1,41 +1,42 @@
 """ Testing unittest_assertions/base.py """
 from typing import (
-    Type,
     Iterable,
-    Mapping,
 )
 
 import pytest
 from unittest_assertions.base import Assertion
+from unittest_assertions.identity import AssertIs, AssertTrue, AssertFalse
 
 from assertifiers.base import UnittestAssertionAssertifier
-from assertifiers.equality import AssertifyEqual
 
 
 class TestBuiltinAssertionAssertify:
     """Testing builtin assertions"""
 
-    @pytest.mark.parametrize("function", (AssertifyEqual,))
-    def test_init(self, function: Type[Assertion]) -> None:
-        """Test builtin assertion __init__
+    @pytest.mark.parametrize(
+        "assertion_class, msg, raises",
+        (
+            (AssertIs, "Testing message", AssertionError),
+            (AssertTrue, "", None),
+            (AssertFalse, None, TypeError),
+        ),
+    )
+    def test_init(self, assertion_class, msg, raises) -> None:
 
-        Args:
-            function: function for BuiltinAssertion parameter
-
-        Returns:
-            None
-        """
+        UnittestAssertionAssertifier._assertion_class = assertion_class
         unittest_assertion = UnittestAssertionAssertifier(
-            _assertion_cls=function
+            msg=msg, raises=raises
         )
-        assert unittest_assertion._assertion_cls == function
+        assert unittest_assertion._assertion_class == assertion_class
+        assert unittest_assertion.msg == msg
+        assert unittest_assertion.raises == raises
 
     @pytest.mark.parametrize("arguments", (("hello", None, 2),))
     @pytest.mark.parametrize(
         "keyword_args",
         ({"testing": "hello there"}, {"a": 1, "b": 2}),
     )
-    def test_call(self, arguments: Iterable, keyword_args: Mapping) -> None:
+    def test_call(self, arguments: Iterable, keyword_args: dict) -> None:
         """Test `BuiltinAssertion` __call__ function
 
         Args:

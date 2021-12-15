@@ -10,10 +10,6 @@ Objects provided by this module:
     * `AssertifyIsInstance`: assertify `isinstance(obj, cls)`
     * `AssertifyNotIsInstance`: assertify `not isinstance(obj,cls)`
 """
-from dataclasses import (
-    dataclass,
-    field,
-)
 from typing import Collection, Any
 from typing import (
     Optional,
@@ -29,7 +25,6 @@ from assertifiers.base import (
 )
 
 
-@dataclass
 class AssertifyTrue(UnittestAssertionAssertifier):
     """assertify `expr is True`
 
@@ -47,8 +42,8 @@ class AssertifyTrue(UnittestAssertionAssertifier):
         False
     """
 
-    _assertion_cls: unittest_assertions.identity.AssertTrue = field(
-        default=unittest_assertions.identity.AssertTrue, init=False
+    _assertion_class: unittest_assertions.identity.AssertTrue = (
+        unittest_assertions.identity.AssertTrue
     )
 
     def __call__(self, expr: Any) -> bool:
@@ -56,7 +51,6 @@ class AssertifyTrue(UnittestAssertionAssertifier):
         return result
 
 
-@dataclass
 class AssertifyFalse(UnittestAssertionAssertifier):
     """assertify `expr is False`
 
@@ -73,26 +67,25 @@ class AssertifyFalse(UnittestAssertionAssertifier):
         False
     """
 
-    _assertion_cls: unittest_assertions.identity.AssertTrue = field(
-        default=unittest_assertions.identity.AssertFalse, init=False
+    _assertion_class: unittest_assertions.identity.AssertTrue = (
+        unittest_assertions.identity.AssertFalse
     )
 
 
-@dataclass
-class AssertifierIs(UnittestAssertionAssertifier):
+class AssertifyIs(UnittestAssertionAssertifier):
     """assertify `expr1 is expr2`
 
     Example:
         >>> value = "string"
-        >>> assertify_is = AssertifierIs(raises=None)
+        >>> assertify_is = AssertifyIs(raises=None)
         >>> assertify_is(value,value)
         True
         >>> assertify_is(2,value)
         False
     """
 
-    _assertion_cls: unittest_assertions.identity.AssertIs = field(
-        default=unittest_assertions.identity.AssertIs, init=False
+    _assertion_class: unittest_assertions.identity.AssertIs = (
+        unittest_assertions.identity.AssertIs
     )
 
     def __call__(self, expr1: Any, expr2: Any) -> bool:
@@ -109,8 +102,7 @@ class AssertifierIs(UnittestAssertionAssertifier):
         return result
 
 
-@dataclass
-class AssertifyIsNot(AssertifierIs):
+class AssertifyIsNot(AssertifyIs):
     """assertify `expr1 is not expr2`
 
     Example:
@@ -123,25 +115,24 @@ class AssertifyIsNot(AssertifierIs):
         False
     """
 
-    _assertion_cls: unittest_assertions.identity.AssertIsNot = field(
-        default=unittest_assertions.identity.AssertIsNot, init=False
+    _assertion_class: unittest_assertions.identity.AssertIsNot = (
+        unittest_assertions.identity.AssertIsNot
     )
 
 
-@dataclass
-class AssertifierIsNone(UnittestAssertionAssertifier):
+class AssertifyIsNone(UnittestAssertionAssertifier):
     """assertify `obj` is `None`
 
     Example:
-        >>> assertify_is_none = AssertifierIsNone(raises=None)
+        >>> assertify_is_none = AssertifyIsNone(raises=None)
         >>> assertify_is_none(None)
         True
         >>> assertify_is_none(True)
         False
     """
 
-    _assertion_cls: unittest_assertions.identity.AssertIsNone = field(
-        default=unittest_assertions.identity.AssertIsNone, init=False
+    _assertion_class: unittest_assertions.identity.AssertIsNone = (
+        unittest_assertions.identity.AssertIsNone
     )
 
     def __call__(self, obj: Any) -> bool:
@@ -157,8 +148,7 @@ class AssertifierIsNone(UnittestAssertionAssertifier):
         return result
 
 
-@dataclass
-class AssertifyIsNotNone(AssertifierIsNone):
+class AssertifyIsNotNone(AssertifyIsNone):
     """assertify `obj is not None`
 
     Example:
@@ -169,31 +159,36 @@ class AssertifyIsNotNone(AssertifierIsNone):
         False
     """
 
-    _assertion_cls: unittest_assertions.identity.AssertIsNotNone = field(
-        default=unittest_assertions.identity.AssertIsNotNone, init=False
+    _assertion_class: unittest_assertions.identity.AssertIsNotNone = (
+        unittest_assertions.identity.AssertIsNotNone
     )
 
 
-@dataclass
-class AssertifierIsInstance(UnittestAssertionAssertifier):
+class AssertifyIsInstance(UnittestAssertionAssertifier):
     """assertify `isinstance(obj,cls)`
 
     assertify isinstance(obj,cls)
 
     Example:
-        >>> assertify_is_instance = AssertifierIsInstance(raises=None)
+        >>> assertify_is_instance = AssertifyIsInstance(raises=None)
         >>> assertify_is_instance(2,int)
         True
         >>> assertify_is_instance(2,float)
         False
     """
 
-    _assertion_cls: unittest_assertions.identity.AssertIsInstance = field(
-        default=unittest_assertions.identity.AssertIsInstance, init=False
+    _assertion_class: unittest_assertions.identity.AssertIsInstance = (
+        unittest_assertions.identity.AssertIsInstance
     )
-    raises: Optional[
-        Union[None, Type[Exception], Type[AssertionError]]
-    ] = field(default=TypeError)
+
+    def __init__(
+        self,
+        msg: str = None,
+        raises: Optional[
+            Union[None, Type[Exception], Type[AssertionError]]
+        ] = TypeError,
+    ):
+        super().__init__(msg=msg, raises=raises)
 
     def __call__(self, obj: Any, cls: Type) -> bool:
         """assertify `isinstance(obj,cls)`
@@ -209,7 +204,34 @@ class AssertifierIsInstance(UnittestAssertionAssertifier):
         return result
 
 
-@dataclass
+class Assertifiers(UnittestAssertionAssertifier):
+    _base_assertifier_function: Assertifier
+
+    def __init__(
+        self,
+        msg: Union[str, None] = None,
+        raises: Optional[
+            Union[None, Type[Exception], Type[AssertionError]]
+        ] = TypeError,
+        must_be_instance_of: Union[any, all] = any,
+    ):
+        super().__init__(raises=raises)
+        self.msg = msg
+        self.must_be_instance_of = must_be_instance_of
+
+    def __call__(self, value: Any, valid_values: Collection) -> bool:
+        self._base_assertifier_function.raises = None
+        results = tuple(
+            self._base_assertifier_function(value, valid_value)
+            for valid_value in valid_values
+        )
+        passed = self.must_be_instance_of(results)
+        if passed:
+            return True
+
+        return False
+
+
 class AssertifyIsInstances(Assertifier):
     """assertify `obj` is an instance of `any` or `all` of `classes`
 
@@ -226,10 +248,21 @@ class AssertifyIsInstances(Assertifier):
         False
     """
 
-    raises: Optional[
-        Union[None, Type[Exception], Type[AssertionError]]
-    ] = field(default=TypeError)
-    must_be_instance_of: Union[any, all] = field(default=any)
+    _base_assertifier_function: AssertifyIsInstance = AssertifyIsInstance(
+        raises=None
+    )
+
+    def __init__(
+        self,
+        msg: Union[str, None] = None,
+        raises: Optional[
+            Union[None, Type[Exception], Type[AssertionError]]
+        ] = TypeError,
+        must_be_instance_of: Union[any, all] = any,
+    ):
+        super().__init__(raises=raises)
+        self.msg = msg
+        self.must_be_instance_of = must_be_instance_of
 
     def __call__(self, obj: Any, classes: Collection[Type]) -> bool:
         """assertify `obj` is an instance of `any` or `all` of `classes`
@@ -243,24 +276,29 @@ class AssertifyIsInstances(Assertifier):
         """
         if not isinstance(classes, Collection):
             classes: tuple = (classes,)
-        assertify_is_instance = AssertifierIsInstance(raises=None)
 
         results = tuple(
-            assertify_is_instance(cls=cls, obj=obj) for cls in classes
+            self._base_assertifier_function(cls=cls, obj=obj)
+            for cls in classes
         )
+
         passed = self.must_be_instance_of(results)
+
         if passed:
             return True
+
         if self.raises:
             raise self.raises(
-                f"{obj!r} must be an instance of {self.must_be_instance_of} of {classes}"
+                (
+                    f"{obj!r} must be an instance of {self.must_be_instance_of} of {classes}"
+                    f"{ f': {self.msg}' if self.msg else ''}"
+                )
             )
 
         return False
 
 
-@dataclass
-class AssertifyNotIsInstance(AssertifierIsInstance):
+class AssertifyNotIsInstance(AssertifyIsInstance):
     """assertify not isinstance(obj,cls)
 
     assertify not isinstance(obj,cls)
@@ -273,12 +311,11 @@ class AssertifyNotIsInstance(AssertifierIsInstance):
         False
     """
 
-    _assertion_cls: unittest_assertions.identity.AssertNotIsInstance = field(
-        default=unittest_assertions.identity.AssertNotIsInstance, init=False
+    _assertion_class: unittest_assertions.identity.AssertNotIsInstance = (
+        unittest_assertions.identity.AssertNotIsInstance
     )
 
 
-@dataclass
 class AssertifyNotIsInstances(AssertifyIsInstances):
     """assertify `obj` is not an instance of `any` or `all` of `classes`
 
@@ -295,6 +332,10 @@ class AssertifyNotIsInstances(AssertifyIsInstances):
 
     """
 
+    _base_assertifier_function: AssertifyNotIsInstance = (
+        AssertifyNotIsInstance(raises=None)
+    )
+
     def __call__(self, obj: Any, classes: Collection[Type]) -> bool:
         """assertify `obj` is not an instance of `any` or `all` of `classes`
 
@@ -308,13 +349,17 @@ class AssertifyNotIsInstances(AssertifyIsInstances):
         """
         if not isinstance(classes, Collection):
             classes: tuple = (classes,)
-        assertify_not_is_instance = AssertifyNotIsInstance(raises=None)
+
         results = tuple(
-            assertify_not_is_instance(cls=cls, obj=obj) for cls in classes
+            self._base_assertifier_function(cls=cls, obj=obj)
+            for cls in classes
         )
+
         passed = self.must_be_instance_of(results)
+
         if passed:
             return True
+
         if self.raises:
             raise self.raises(
                 f"{obj!r} must not be an instance of "
