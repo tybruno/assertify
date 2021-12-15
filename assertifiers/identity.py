@@ -204,34 +204,6 @@ class AssertifyIsInstance(UnittestAssertionAssertifier):
         return result
 
 
-class Assertifiers(UnittestAssertionAssertifier):
-    _base_assertifier_function: Assertifier
-
-    def __init__(
-        self,
-        msg: Union[str, None] = None,
-        raises: Optional[
-            Union[None, Type[Exception], Type[AssertionError]]
-        ] = TypeError,
-        must_be_instance_of: Union[any, all] = any,
-    ):
-        super().__init__(raises=raises)
-        self.msg = msg
-        self.must_be_instance_of = must_be_instance_of
-
-    def __call__(self, value: Any, valid_values: Collection) -> bool:
-        self._base_assertifier_function.raises = None
-        results = tuple(
-            self._base_assertifier_function(value, valid_value)
-            for valid_value in valid_values
-        )
-        passed = self.must_be_instance_of(results)
-        if passed:
-            return True
-
-        return False
-
-
 class AssertifyIsInstances(Assertifier):
     """assertify `obj` is an instance of `any` or `all` of `classes`
 

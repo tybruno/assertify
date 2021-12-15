@@ -20,7 +20,7 @@ import unittest_assertions.control
 from assertifiers.base import UnittestAssertionAssertifier
 
 
-class AssertifierRaises(UnittestAssertionAssertifier):
+class AssertifyRaises(UnittestAssertionAssertifier):
     """assertify `Callable` raises `expected_exception`
 
     Fail unless an exception of class expected_exception is raised
@@ -33,7 +33,7 @@ class AssertifierRaises(UnittestAssertionAssertifier):
     Example:
         >>> def _raise_value_error():
         ...     raise ValueError()
-        >>> assertify_raises = AssertifierRaises(raises=None)
+        >>> assertify_raises = AssertifyRaises(raises=None)
         >>> assertify_raises(expected_exception=ValueError,callable_=_raise_value_error )
         True
     """
@@ -68,7 +68,7 @@ class AssertifierRaises(UnittestAssertionAssertifier):
         return result
 
 
-class AssertifierWarns(UnittestAssertionAssertifier):
+class AssertifyWarns(UnittestAssertionAssertifier):
     """assertify `Callable` raises `Warning`
 
     Fail unless a warning of class warnClass is triggered
@@ -82,7 +82,7 @@ class AssertifierWarns(UnittestAssertionAssertifier):
         >>> import warnings
         >>> def _warning(message, warning: Warning):
         ...     warnings.warn(message, warning)
-        >>> assertify_warns = AssertifierWarns(raises=None)
+        >>> assertify_warns = AssertifyWarns(raises=None)
         >>> assertify_warns( Warning,_warning, str(), Warning )
         True
     """
@@ -114,7 +114,7 @@ class AssertifierWarns(UnittestAssertionAssertifier):
         return result
 
 
-class AssertifierLogs(UnittestAssertionAssertifier):
+class AssertifyLogs(UnittestAssertionAssertifier):
     """assert `logger` logs at a level equal or higher to `level`
 
     Fail unless a log message of level *level* or higher is emitted

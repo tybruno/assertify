@@ -208,7 +208,7 @@ class AssertifyMultilineEqual(UnittestAssertionAssertifier):
         return result
 
 
-class AssertifierSequenceEqual(UnittestAssertionAssertifier):
+class AssertifySequenceEqual(UnittestAssertionAssertifier):
     """assertify `seq1` == `seq2`
 
     An equality assertion for ordered sequences (like lists and tuples).
@@ -219,7 +219,7 @@ class AssertifierSequenceEqual(UnittestAssertionAssertifier):
     asserfiy `seq1` is not equal to `seq2`
 
     Example:
-        >>> assertify_sequence_equal = AssertifierSequenceEqual(raises=None)
+        >>> assertify_sequence_equal = AssertifySequenceEqual(raises=None)
         >>> assertify_sequence_equal((1,2.5),[1,2.5])
         True
         >>> assertify_sequence_equal((1,2),[1,2.5])
@@ -249,14 +249,14 @@ class AssertifierSequenceEqual(UnittestAssertionAssertifier):
         return result
 
 
-class AssertifierListEqual(UnittestAssertionAssertifier):
+class AssertifyListEqual(UnittestAssertionAssertifier):
     """assertify `list1` == `list2`
 
     assertify `list1` is not equal to `list2`
 
     Example:
         >>> l = [1,2,3.5]
-        >>> assertify_list_equal = AssertifierListEqual(raises=None)
+        >>> assertify_list_equal = AssertifyListEqual(raises=None)
         >>> assertify_list_equal(l,l)
         True
         >>> assertify_list_equal([],l)
@@ -281,7 +281,7 @@ class AssertifierListEqual(UnittestAssertionAssertifier):
         return result
 
 
-class AssertifierTupleEqual(UnittestAssertionAssertifier):
+class AssertifyTupleEqual(UnittestAssertionAssertifier):
     """assertify `tuple1` == `tuple2`
 
     assertify `tuple1` is not equal to `tuple2`
@@ -290,7 +290,7 @@ class AssertifierTupleEqual(UnittestAssertionAssertifier):
 
     Example:
         >>> tup = (1,2,"hello")
-        >>> assertify_tuple_equal = AssertifierTupleEqual(raises=None)
+        >>> assertify_tuple_equal = AssertifyTupleEqual(raises=None)
         >>> assertify_tuple_equal(tup,tup)
         True
         >>> assertify_tuple_equal((),tup)
@@ -315,14 +315,14 @@ class AssertifierTupleEqual(UnittestAssertionAssertifier):
         return result
 
 
-class AssertifierSetEqual(UnittestAssertionAssertifier):
+class AssertifySetEqual(UnittestAssertionAssertifier):
     """assertify `set1` == `set2`
 
     assertify `set1` is not deep equal to `set2`
 
     Example:
         >>> _set = {1,2,5}
-        >>> assertify_set_equal = AssertifierSetEqual(raises=None)
+        >>> assertify_set_equal = AssertifySetEqual(raises=None)
         >>> assertify_set_equal(_set,_set)
         True
         >>> assertify_set_equal(_set,set())
@@ -347,14 +347,14 @@ class AssertifierSetEqual(UnittestAssertionAssertifier):
         return result
 
 
-class AssertifierDictEqual(UnittestAssertionAssertifier):
+class AssertifyDictEqual(UnittestAssertionAssertifier):
     """assertify `dic1` == `dict2`
 
     assertify `dict1` is deep equal to `dict2`
 
     Example:
         >>> _dict = {"a": 1, "b":2}
-        >>> assertify_dict_equal = AssertifierDictEqual(raises=None)
+        >>> assertify_dict_equal = AssertifyDictEqual(raises=None)
         >>> assertify_dict_equal(_dict,_dict)
         True
         >>> assertify_dict_equal(dict(),_dict)
