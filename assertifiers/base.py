@@ -2,7 +2,8 @@
 
 Objects provided by this module:
     * `Assertifier`: Abstract Base Class for all assertify classes.
-    * `UnittestAssertionAssertifier`: Base Class for classes that has-a (with Composition) `unittest_assertions`
+    * `UnittestAssertionAssertifier`: Base Class for classes that has-a
+    (with Composition) `unittest_assertions`
 """
 from abc import (
     ABC,
