@@ -6,7 +6,8 @@ Objects provided by this module:
     * `AssertifyAlmostEqual`: assertify `first ~= second`
     * `AssertifyNotAlmostEqual`: assertify `first !~= second`
     * `AssertifyCountEqual`: assertify `len(first) == len(second)`
-    * `AssertifyMultilineEqual`: assertify `first.splitlines() == second.splitlines()`
+    * `AssertifyMultilineEqual`: assertify `first.splitlines()
+    == second.splitlines()`
     * `AssertifySequenceEqual`: assertify `seq1 == seq2`
     * `AssertifyListEqual`: assertify `list1 == list2`
     * `AssertifyTupleEqual`: assertify `tuple1 == tuple2`
@@ -82,7 +83,8 @@ class AssertifyAlmostEqual(UnittestAssertionAssertifier):
     delta.
 
     Note that decimal places (from zero) are usually not the same
-    as significant digits (measured from the most significant digit).
+    as significant digits (measured from the most
+    significant digit).
 
     If the two objects compare equal then they will automatically
     compare almost equal.
@@ -109,7 +111,8 @@ class AssertifyAlmostEqual(UnittestAssertionAssertifier):
     ) -> bool:
         """Assertify `first` almost equals `second`
 
-        For more documentation read unittest.TestCase.assertSequenceEqual.__doc__
+        For more documentation read
+        unittest.TestCase.assertSequenceEqual.__doc__
 
         Args:
             first: will be checked if it almost equals `second`
@@ -213,7 +216,8 @@ class AssertifySequenceEqual(UnittestAssertionAssertifier):
 
     An equality assertion for ordered sequences (like lists and tuples).
 
-    For the purposes of this function, a valid ordered sequence type is one
+    For the purposes of this function, a valid
+    ordered sequence type is one
     which can be indexed, has a length, and has an equality operator.
 
     asserfiy `seq1` is not equal to `seq2`
