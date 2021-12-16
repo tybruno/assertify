@@ -34,7 +34,8 @@ class AssertifyRaises(UnittestAssertionAssertifier):
         >>> def _raise_value_error():
         ...     raise ValueError()
         >>> assertify_raises = AssertifyRaises(raises=None)
-        >>> assertify_raises(expected_exception=ValueError,callable_=_raise_value_error )
+        >>> assertify_raises(expected_exception=ValueError,
+        ... callable_=_raise_value_error )
         True
     """
 
