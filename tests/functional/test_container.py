@@ -4,11 +4,11 @@ import pytest
 from pytest_builtin_types import _ALL_BASIC_TYPES_1, _ALL_BASIC_TYPES_2
 
 from assertifiers.container import AssertifyIn, AssertifyNotIn
-from tests.base import AssertifierTester
+from tests.base import UnittestAssertionAssertifierTester
 
 
-class TestAssertIn(AssertifierTester):
-    _assertifier_cls = AssertifyIn
+class TestAssertIn(UnittestAssertionAssertifierTester):
+    _assertion_class = AssertifyIn
 
     @pytest.mark.parametrize(
         "testing_data",
@@ -28,8 +28,8 @@ class TestAssertIn(AssertifierTester):
         super().test_assertify_fails(*testing_data)
 
 
-class TestAssertNotIn(AssertifierTester):
-    _assertifier_cls = AssertifyNotIn
+class TestAssertNotIn(UnittestAssertionAssertifierTester):
+    _assertion_class = AssertifyNotIn
 
     @pytest.mark.parametrize(
         "testing_data",

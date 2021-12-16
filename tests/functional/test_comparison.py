@@ -12,7 +12,7 @@ from pytest_builtin_types import (
     _MULTILINE_2,
 )
 
-from assertifiers.comparison import (
+from assertifiers.equality import (
     AssertifyEqual,
     AssertifyNotEqual,
     AssertifyGreater,
@@ -29,13 +29,13 @@ from assertifiers.comparison import (
     AssertifyNotAlmostEqual,
     AssertifyLessEqual,
 )
-from tests.base import AssertifierTester
+from tests.base import UnittestAssertionAssertifierTester
 
 
-class TestAssertifyEqual(AssertifierTester):
+class TestAssertifyEqual(UnittestAssertionAssertifierTester):
     """testing AssertifyEqual"""
 
-    _assertifier_cls = AssertifyEqual
+    _assertion_class = AssertifyEqual
 
     @pytest.mark.parametrize(
         "testing_data",
@@ -52,8 +52,8 @@ class TestAssertifyEqual(AssertifierTester):
         super().test_assertify_fails(*testing_data)
 
 
-class TestAssertifyNotEqual(AssertifierTester):
-    _assertifier_cls = AssertifyNotEqual
+class TestAssertifyNotEqual(UnittestAssertionAssertifierTester):
+    _assertion_class = AssertifyNotEqual
 
     @pytest.mark.parametrize(
         "testing_data",
@@ -70,8 +70,8 @@ class TestAssertifyNotEqual(AssertifierTester):
         super().test_assertify_fails(*testing_data)
 
 
-class TestAlmostEqual(AssertifierTester):
-    _assertifier_cls = AssertifyAlmostEqual
+class TestAlmostEqual(UnittestAssertionAssertifierTester):
+    _assertion_class = AssertifyAlmostEqual
 
     @pytest.mark.parametrize(
         "testing_data",
@@ -98,8 +98,8 @@ class TestAlmostEqual(AssertifierTester):
         super().test_assertify_fails(*testing_data)
 
 
-class TestNotAlmostEqual(AssertifierTester):
-    _assertifier_cls = AssertifyNotAlmostEqual
+class TestNotAlmostEqual(UnittestAssertionAssertifierTester):
+    _assertion_class = AssertifyNotAlmostEqual
 
     @pytest.mark.parametrize(
         "testing_data",
@@ -126,8 +126,8 @@ class TestNotAlmostEqual(AssertifierTester):
         super().test_assertify_fails(*testing_data)
 
 
-class TestAssertifyCountEqual(AssertifierTester):
-    _assertifier_cls = AssertifyCountEqual
+class TestAssertifyCountEqual(UnittestAssertionAssertifierTester):
+    _assertion_class = AssertifyCountEqual
 
     @pytest.mark.parametrize(
         "testing_data",
@@ -155,8 +155,8 @@ class TestAssertifyCountEqual(AssertifierTester):
         super().test_assertify_fails(*testing_data)
 
 
-class TestAssertifyMultilineEqual(AssertifierTester):
-    _assertifier_cls = AssertifyMultilineEqual
+class TestAssertifyMultilineEqual(UnittestAssertionAssertifierTester):
+    _assertion_class = AssertifyMultilineEqual
 
     @pytest.mark.parametrize(
         "testing_data",
@@ -170,8 +170,8 @@ class TestAssertifyMultilineEqual(AssertifierTester):
         super().test_assertify_fails(*testing_data)
 
 
-class TestAssertifySequenceEqual(AssertifierTester):
-    _assertifier_cls = AssertifySequenceEqual
+class TestAssertifySequenceEqual(UnittestAssertionAssertifierTester):
+    _assertion_class = AssertifySequenceEqual
 
     @pytest.mark.parametrize(
         "testing_data",
@@ -188,8 +188,8 @@ class TestAssertifySequenceEqual(AssertifierTester):
         super().test_assertify_fails(*testing_data)
 
 
-class TestAssertifyListEqual(AssertifierTester):
-    _assertifier_cls = AssertifyListEqual
+class TestAssertifyListEqual(UnittestAssertionAssertifierTester):
+    _assertion_class = AssertifyListEqual
 
     @pytest.mark.parametrize(
         "testing_data",
@@ -207,8 +207,8 @@ class TestAssertifyListEqual(AssertifierTester):
         super().test_assertify_fails(*testing_data)
 
 
-class TestAssertifyTupleEqual(AssertifierTester):
-    _assertifier_cls = AssertifyTupleEqual
+class TestAssertifyTupleEqual(UnittestAssertionAssertifierTester):
+    _assertion_class = AssertifyTupleEqual
 
     @pytest.mark.parametrize(
         "testing_data",
@@ -235,8 +235,8 @@ class TestAssertifyTupleEqual(AssertifierTester):
         super().test_assertify_fails(*testing_data)
 
 
-class TestAssertifySetEqual(AssertifierTester):
-    _assertifier_cls = AssertifySetEqual
+class TestAssertifySetEqual(UnittestAssertionAssertifierTester):
+    _assertion_class = AssertifySetEqual
 
     @pytest.mark.parametrize(
         "testing_data",
@@ -263,8 +263,8 @@ class TestAssertifySetEqual(AssertifierTester):
         super().test_assertify_fails(*testing_data)
 
 
-class TestAssertifyDictEqual(AssertifierTester):
-    _assertifier_cls = AssertifyDictEqual
+class TestAssertifyDictEqual(UnittestAssertionAssertifierTester):
+    _assertion_class = AssertifyDictEqual
 
     @pytest.mark.parametrize(
         "testing_data",
@@ -291,8 +291,8 @@ class TestAssertifyDictEqual(AssertifierTester):
         super().test_assertify_fails(*testing_data)
 
 
-class TestAssertifyLess(AssertifierTester):
-    _assertifier_cls = AssertifyLess
+class TestAssertifyLess(UnittestAssertionAssertifierTester):
+    _assertion_class = AssertifyLess
 
     @pytest.mark.parametrize(
         "testing_data",
@@ -319,8 +319,8 @@ class TestAssertifyLess(AssertifierTester):
         super().test_assertify_fails(*testing_data)
 
 
-class TestAssertifyLessEqual(AssertifierTester):
-    _assertifier_cls = AssertifyLessEqual
+class TestAssertifyLessEqual(UnittestAssertionAssertifierTester):
+    _assertion_class = AssertifyLessEqual
 
     @pytest.mark.parametrize(
         "testing_data",
@@ -355,8 +355,8 @@ class TestAssertifyLessEqual(AssertifierTester):
         super().test_assertify_fails(*testing_data)
 
 
-class TestAssertifyGreater(AssertifierTester):
-    _assertifier_cls = AssertifyGreater
+class TestAssertifyGreater(UnittestAssertionAssertifierTester):
+    _assertion_class = AssertifyGreater
 
     @pytest.mark.parametrize(
         "testing_data",
@@ -382,8 +382,8 @@ class TestAssertifyGreater(AssertifierTester):
         super().test_assertify_fails(*testing_data)
 
 
-class TestAssertifyGreaterEqual(AssertifierTester):
-    _assertifier_cls = AssertifyGreaterEqual
+class TestAssertifyGreaterEqual(UnittestAssertionAssertifierTester):
+    _assertion_class = AssertifyGreaterEqual
 
     @pytest.mark.parametrize(
         "testing_data",

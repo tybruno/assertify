@@ -1,5 +1,6 @@
-""" Testing unittest_assertifier_clss/identity.py """
+""" Testing unittest_assertion_classs/identity.py """
 
+from copy import deepcopy
 from typing import Dict, Collection
 
 import pytest
@@ -9,7 +10,7 @@ from pytest_builtin_types import (
     _ALL_BASIC_TYPES_1,
     _NOT_INSTANCE_TESTING_DATA,
 )
-from copy import deepcopy
+
 from assertifiers.identity import (
     AssertifyIs,
     AssertifyIsNone,
@@ -20,11 +21,11 @@ from assertifiers.identity import (
     AssertifyNotIsInstances,
     AssertifyIsNotNone,
 )
-from tests.base import AssertifierTester
+from tests.base import UnittestAssertionAssertifierTester, AssertifierTester
 
 
-class TestAssertifyIs(AssertifierTester):
-    _assertifier_cls = AssertifyIs
+class TestAssertifyIs(UnittestAssertionAssertifierTester):
+    _assertion_class = AssertifyIs
 
     @pytest.mark.parametrize(
         "testing_data",
@@ -41,8 +42,8 @@ class TestAssertifyIs(AssertifierTester):
         super().test_assertify_fails(*testing_data)
 
 
-class TestAssertifyIsNot(AssertifierTester):
-    _assertifier_cls = AssertifyIsNot
+class TestAssertifyIsNot(UnittestAssertionAssertifierTester):
+    _assertion_class = AssertifyIsNot
 
     @pytest.mark.parametrize(
         "testing_data",
@@ -59,8 +60,8 @@ class TestAssertifyIsNot(AssertifierTester):
         super().test_assertify_fails(*testing_data)
 
 
-class TestAssertifyIsNone(AssertifierTester):
-    _assertifier_cls = AssertifyIsNone
+class TestAssertifyIsNone(UnittestAssertionAssertifierTester):
+    _assertion_class = AssertifyIsNone
 
     @pytest.mark.parametrize(
         "testing_data",
@@ -77,8 +78,8 @@ class TestAssertifyIsNone(AssertifierTester):
         super().test_assertify_fails(*testing_data)
 
 
-class TestAssertifyIsNotNone(AssertifierTester):
-    _assertifier_cls = AssertifyIsNotNone
+class TestAssertifyIsNotNone(UnittestAssertionAssertifierTester):
+    _assertion_class = AssertifyIsNotNone
 
     @pytest.mark.parametrize(
         "testing_data",
@@ -95,8 +96,8 @@ class TestAssertifyIsNotNone(AssertifierTester):
         super().test_assertify_fails(*testing_data)
 
 
-class TestAssertifyIsInstance(AssertifierTester):
-    _assertifier_cls = AssertifyIsInstance
+class TestAssertifyIsInstance(UnittestAssertionAssertifierTester):
+    _assertion_class = AssertifyIsInstance
 
     @pytest.mark.parametrize(
         "testing_data",
@@ -119,26 +120,26 @@ def instances_testing_data():
     return data
 
 
-def is_instances_testing_data(must_pass=any):
+def is_instances_testing_data(must_be_instance_of=any):
     testing_data = []
     for _type, obj in _ALL_BASIC_TYPES_1.items():
-        testing_data.append((obj, _ALL_BASIC_TYPES_1, must_pass))
+        testing_data.append((obj, _ALL_BASIC_TYPES_1, must_be_instance_of))
     return testing_data
 
 
-def is_not_instances_testing_data(must_pass=any):
+def is_not_instances_testing_data(must_be_instance_of=any):
     testing_data = []
     for _type, obj in _ALL_BASIC_TYPES_1.items():
         container = deepcopy(_ALL_BASIC_TYPES_1)
         if isinstance(obj, bool):
             container.pop(int)
         container.pop(_type)
-        testing_data.append((obj, container, must_pass))
+        testing_data.append((obj, container, must_be_instance_of))
     return testing_data
 
 
 class TestAssertifyIsInstances(AssertifierTester):
-    _assertifier_cls = AssertifyIsInstances
+    _assertion_class = AssertifyIsInstances
 
     @pytest.mark.parametrize(
         "testing_data",
@@ -150,9 +151,11 @@ class TestAssertifyIsInstances(AssertifierTester):
         ),
     )
     def test_assertify_passes(self, testing_data: list):
-        obj, classes, must_pass = testing_data
+        obj, classes, must_be_instance_of = testing_data
 
-        assertify_is_instances = AssertifyIsInstances(must_pass=must_pass)
+        assertify_is_instances = AssertifyIsInstances(
+            must_be_instance_of=must_be_instance_of
+        )
         assert assertify_is_instances(obj=obj, classes=classes) is True
 
         assertify_is_instances.raises = AssertionError
@@ -165,9 +168,11 @@ class TestAssertifyIsInstances(AssertifierTester):
         "testing_data", tuple(is_not_instances_testing_data())
     )
     def test_assertify_fails(self, testing_data: tuple):
-        obj, classes, must_pass = testing_data
+        obj, classes, must_be_instance_of = testing_data
 
-        assertify_is_instances = self._assertifier_cls(must_pass=must_pass)
+        assertify_is_instances = self._assertion_class(
+            must_be_instance_of=must_be_instance_of
+        )
 
         with pytest.raises(expected_exception=assertify_is_instances.raises):
             assertify_is_instances(obj=obj, classes=classes)
@@ -181,8 +186,8 @@ class TestAssertifyIsInstances(AssertifierTester):
         assert assertify_is_instances(obj=obj, classes=classes) is False
 
 
-class TestAssertifyNotIsInstance(AssertifierTester):
-    _assertifier_cls = AssertifyNotIsInstance
+class TestAssertifyNotIsInstance(UnittestAssertionAssertifierTester):
+    _assertion_class = AssertifyNotIsInstance
 
     @pytest.mark.parametrize("testing_data", tuple(_NOT_INSTANCE_TESTING_DATA))
     def test_assertify_passes(self, testing_data: tuple):
@@ -199,14 +204,16 @@ class TestAssertifyNotIsInstance(AssertifierTester):
 
 
 class TestAssertifyNotIsInstances(AssertifierTester):
-    _assertifier_cls = AssertifyNotIsInstances
+    _assertion_class = AssertifyNotIsInstances
 
     @pytest.mark.parametrize(
         "testing_data", tuple(is_not_instances_testing_data())
     )
     def test_assertify_passes(self, testing_data: list):
-        obj, classes, must_pass = testing_data
-        assertify_is_instances = self._assertifier_cls(must_pass=must_pass)
+        obj, classes, must_be_instance_of = testing_data
+        assertify_is_instances = self._assertion_class(
+            must_be_instance_of=must_be_instance_of
+        )
         assert assertify_is_instances(obj=obj, classes=classes) is True
 
         assertify_is_instances.raises = AssertionError
@@ -224,9 +231,11 @@ class TestAssertifyNotIsInstances(AssertifierTester):
         ),
     )
     def test_assertify_fails(self, testing_data: tuple):
-        obj, classes, must_pass = testing_data
+        obj, classes, must_be_instance_of = testing_data
 
-        assertify_is_not_instances = self._assertifier_cls(must_pass=must_pass)
+        assertify_is_not_instances = self._assertion_class(
+            must_be_instance_of=must_be_instance_of
+        )
         with pytest.raises(
             expected_exception=assertify_is_not_instances.raises
         ):
