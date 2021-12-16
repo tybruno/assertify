@@ -208,7 +208,8 @@ class AssertifyIsInstances(Assertifier):
     """assertify `obj` is an instance of `any` or `all` of `classes`
 
     Example:
-        >>> assertify_is_instances = AssertifyIsInstances(raises=None, must_be_instance_of=any)
+        >>> assertify_is_instances = AssertifyIsInstances(raises=None,
+        ... must_be_instance_of=any)
         >>> assertify_is_instances(1,classes=(int,float))
         True
         >>> assertify_is_instances(1,classes=(str,list))
@@ -262,7 +263,8 @@ class AssertifyIsInstances(Assertifier):
         if self.raises:
             raise self.raises(
                 (
-                    f"{obj!r} must be an instance of {self.must_be_instance_of} of {classes}"
+                    f"{obj!r} must be an instance of "
+                    f"{self.must_be_instance_of} of {classes}"
                     f"{ f': {self.msg}' if self.msg else ''}"
                 )
             )
@@ -313,7 +315,8 @@ class AssertifyNotIsInstances(AssertifyIsInstances):
 
         Args:
             obj: check if is not an instance of `any` or `all` of `classes`
-            classes: check if `obj` is not an instance of `any` or `all` of classes
+            classes: check if `obj` is not an instance of
+            `any` or `all` of classes
 
         Returns:
             `True` if `obj` is not a an instance of `any` or `all` of `classes`

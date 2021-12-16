@@ -150,7 +150,8 @@ class AssertifyNotAlmostEqual(AssertifyAlmostEqual):
         >>> assertify_almost_equal = AssertifyAlmostEqual(raises=None)
         >>> assertify_almost_equal(1.00000001, 1.0)
         True
-        >>> assertify_almost_equal(first=1.1, second=1.0, places=None, delta=0.5)
+        >>> assertify_almost_equal(first=1.1, second=1.0,
+        ... places=None, delta=0.5)
         True
         >>> assertify_almost_equal(1.00001, 2.0)
         False

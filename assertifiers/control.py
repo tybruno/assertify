@@ -54,8 +54,10 @@ class AssertifyRaises(UnittestAssertionAssertifier):
         """assertify `callable_` raises `expected_exception`
 
         Args:
-            expected_exception: The expected exception to be raised by `callable_`
-            callable_: callable that is expecting to raise exception `expected_exception`
+            expected_exception: The expected exception to be
+            raised by `callable_`
+            callable_: callable that is expecting to
+            raise exception `expected_exception`
             *args: Optional function_args
             **kwargs: Optional function_kwargs
 
@@ -101,7 +103,8 @@ class AssertifyWarns(UnittestAssertionAssertifier):
         """assertify `Callable` raises `Warning`
         Args:
             expected_warning: The expected warning to be raised by `callable_`
-            callable_: The callable that is expected to raise `expected_warning`
+            callable_: The callable that is expected
+            to raise `expected_warning`
             *args: Optional function_args
             **kwargs: Optional function_kwargs
 

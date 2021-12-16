@@ -37,7 +37,8 @@ class Assertifier(ABC):
         """Initialize Assertifier
 
         Args:
-            raises: If assertification fails raise the provided exception or assertion.
+            raises: If assertification fails raise the
+            provided exception or assertion.
             If None, return a boolean.
         """
         self.raises = raises
@@ -97,7 +98,10 @@ class UnittestAssertionAssertifier(Assertifier):
             self._assertion_function = self._assertion_class(msg=msg)
 
     def __repr__(self):
-        result = f"{self.__class__.__name__}(msg={self.msg!r}, raises={self.raises!r})"
+        result = (
+            f"{self.__class__.__name__}"
+            f"(msg={self.msg!r}, raises={self.raises!r})"
+        )
         return result
 
     def __call__(self, *args, **kwargs) -> bool:
@@ -108,11 +112,13 @@ class UnittestAssertionAssertifier(Assertifier):
             **kwargs: function_kwargs for the assertification
 
         Returns:
-            `True` if the assertification passes. If `self.raises` is set to `None`
+            `True` if the assertification passes.
+            If `self.raises` is set to `None`
             it will raise `False` when assertification fails.
 
         Raises:
-            If assertification fails will raise the `Exception` or `AssertionError`
+            If assertification fails will raise the
+            `Exception` or `AssertionError`
             defined in `self.raises`. If `self.raises` is `None` it will return
             a `False` when it fails.
         """

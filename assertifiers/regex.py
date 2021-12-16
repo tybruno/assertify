@@ -1,10 +1,14 @@
 """ Regex Assertifiers
 
 Objects provided by this module:
-    * `AssertifyRaisesRegex`: assertifies that the message in a raised exception matches a regex
-    * `AssertifyWarnsRegex`: assertifies that the message in a triggered warning matches a regexp.
-    * `AssertifyRegex`: Fail the assertifier unless the text matches the regular expression
-    * `AssertifyNotRegex`: Fail the assertifier if the text matches the regular expression
+    * `AssertifyRaisesRegex`: assertifies that the message in a raised
+     exception matches a regex
+    * `AssertifyWarnsRegex`: assertifies that the message in a triggered
+    warning matches a regexp.
+    * `AssertifyRegex`: Fail the assertifier unless the text
+    matches the regular expression
+    * `AssertifyNotRegex`: Fail the assertifier if the text
+    matches the regular expression
 """
 import re
 from typing import Type, Union, Tuple, Callable
@@ -42,7 +46,8 @@ class AssertifyRaisesRegex(UnittestAssertionAssertifier):
 
         Args:
             expected_exception: expected exception to be raised
-            expected_regex: expected regex during `expected_exception` is raised
+            expected_regex: expected regex during
+            `expected_exception` is raised
             function: function to be called
             *arg: extra positional function_args for the called function
             **function_kwargs: Extra function_kwargs for the called function.
@@ -87,7 +92,8 @@ class AssertifyWarnsRegex(UnittestAssertionAssertifier):
         *function_args,
         **function_kwargs
     ) -> bool:
-        """Assertifies that the message in a triggered warning matches a regexp.
+        """Assertifies that the message in a triggered
+        warning matches a regexp.
 
         Args:
             expected_warning: `Warning~ class expected to be raised
